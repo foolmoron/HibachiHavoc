@@ -1,7 +1,13 @@
-[gd_scene format=3 uid="uid://bvl2cvvnl327t"]
+[gd_scene load_steps=2 format=3 uid="uid://bvl2cvvnl327t"]
+
+[ext_resource type="AudioStream" uid="uid://bqhtu2hdv4prm" path="res://audio/placeholder.mp3" id="1_wdo3m"]
 
 [node name="AudioController" type="Node"]
 
 [node name="BgMusic" type="AudioStreamPlayer" parent="."]
 
 [node name="EatSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_wdo3m")
+
+[node name="WhooshSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_wdo3m")

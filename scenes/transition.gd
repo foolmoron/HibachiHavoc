@@ -7,7 +7,6 @@ extends Node2D
 
 func _ready() -> void:
 	timer.wait_time = delay_in_sec
-	_on_Level_End("Win!")
 
 func _physics_process(_delta: float) -> void:
 	countdown.text = str(timer.time_left).pad_decimals(0)

@@ -5,15 +5,16 @@ static var isPlaying : bool
 @onready var currentScene : int = 0;
 var levels : Array[PackedScene] = [preload("res://scenes/level1.tscn")]
 #var levels : Array[PackedScene] = [preload("res://scenes/level1.tscn"), preload("res://scenes/level2.tscn"), preload("res://scenes/level3.tscn")]
-var songs : Array[AudioStream] #= [preload("")]
+var songs : Array[AudioStream] = [preload("res://audio/music/menu.mp3")]
 
 #variables to return to titlescreen after no user interaction for a while
 var idleTimer : Timer
 @export var idle_delay : int = 60
 
 #audio variables
-@onready var eatSFX = AudioController.get_node("EatSFX")
 @onready var bgMusic = AudioController.get_node("BgMusic")
+@onready var eatSFX = AudioController.get_node("EatSFX")
+@onready var whooshSFX = AudioController.get_node("WhooshSFX")
 
 
 func _ready() -> void:
@@ -21,8 +22,8 @@ func _ready() -> void:
 	idleTimer = Timer.new()
 	idleTimer.wait_time = idle_delay   #wait for idleness
 	idleTimer.timeout.connect(_on_IdleTimer_Timeout)
-	#switchMusic("menu")
-	#_loadScene(levels[0])
+	switchMusic(0)
+	_loadScene(levels[0])
 
 #switch to next scene and change music to that scene's music; 
 func switchScene(nextScene : int):
@@ -66,6 +67,9 @@ func eat():
 		eatSFX.stop()
 	eatSFX.play()
 
+func whoosh():
+	if(!whooshSFX.playing):
+		whooshSFX.play()
 
 ### IDLE CONTROL ###
 func _on_IdleTimer_Timeout():
