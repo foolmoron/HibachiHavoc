@@ -1,9 +1,9 @@
-extends Node2D
+extends CanvasLayer
 
 @export var delay_in_sec := 5.0 
 @onready var timer : Timer = $Timer
-@onready var countdown := $CanvasLayer/VBoxContainer/Countdown
-@onready var message := $CanvasLayer/Message
+@onready var countdown := $Countdown
+@onready var message := $Message
 
 func _ready() -> void:
 	timer.wait_time = delay_in_sec

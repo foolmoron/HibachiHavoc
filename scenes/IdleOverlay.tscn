@@ -3,12 +3,12 @@
 [ext_resource type="Script" uid="uid://cpkcmunsqvkbu" path="res://scenes/idle_overlay.gd" id="1_v43c8"]
 [ext_resource type="Texture2D" uid="uid://b156n4pjoliaq" path="res://art/level1/food/shrimp.png" id="2_22oun"]
 
-[sub_resource type="Gradient" id="Gradient_v43c8"]
+[sub_resource type="Gradient" id="Gradient_22oun"]
 offsets = PackedFloat32Array(1)
 colors = PackedColorArray(0.756863, 0.443137, 0, 0.835294)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_22oun"]
-gradient = SubResource("Gradient_v43c8")
+gradient = SubResource("Gradient_22oun")
 
 [sub_resource type="Animation" id="Animation_22oun"]
 length = 0.001
