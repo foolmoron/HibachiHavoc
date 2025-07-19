@@ -23,7 +23,7 @@ func _ready() -> void:
 	idleTimer.wait_time = idle_delay   #wait for idleness
 	idleTimer.timeout.connect(_on_IdleTimer_Timeout)
 	switchMusic(0)
-	_loadScene(levels[0])
+	_loadScene.bind(levels[0]).call_deferred()
 
 #switch to next scene and change music to that scene's music; 
 func switchScene(nextScene : int):
@@ -34,7 +34,7 @@ func switchScene(nextScene : int):
 	else:
 		isPlaying = true
 		currentScene = nextScene
-	_loadScene(levels[currentScene])
+	self._loadScene.bind(levels[currentScene]).call_deferred()
 	#switchMusic(currentScene)
 
 func _loadScene(scene : PackedScene):
