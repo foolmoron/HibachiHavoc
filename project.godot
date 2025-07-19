@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 MediaPipeExternalFiles="*res://addons/GDMP/MediaPipeExternalFiles.gd"
+Global="*res://vision/Global.gd"
+GDMPAndroid="*res://addons/GDMP/GDMPAndroid.gd"
 
 [display]
 
@@ -30,7 +32,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GDMP/plugin.cfg")
+enabled=PackedStringArray("res://addons/CameraServerExtension/plugin.cfg", "res://addons/FileAccessWeb/plugin.cfg", "res://addons/GDMP/plugin.cfg")
 
 [rendering]
 

@@ -18,4 +18,5 @@ mono_crash.*.json
 .DS_Store
 Build/
 
-addons/GDMP/libs/x86_64/~GDMP.windows.dll
+*~*
+*.TMP
