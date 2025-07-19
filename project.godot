@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 MediaPipeExternalFiles="*res://addons/GDMP/MediaPipeExternalFiles.gd"
-GDMPAndroid="*res://addons/GDMP/GDMPAndroid.gd"
 Global="*res://Global.gd"
 AudioController="*res://scenes/AudioController.tscn"
 
@@ -27,7 +26,6 @@ AudioController="*res://scenes/AudioController.tscn"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=3
-window/size/resizable=false
 window/size/borderless=true
 window/stretch/mode="viewport"
 

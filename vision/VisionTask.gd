@@ -1,5 +1,5 @@
 class_name VisionTask
-extends Node2D
+extends Node
 
 var model_assets_dir := "user://GDMP/vision"
 var request: HTTPRequest

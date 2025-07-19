@@ -5,4 +5,4 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="Face" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(960, 500)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 960, 500, 0)
