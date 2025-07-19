@@ -3,7 +3,6 @@ extends Node2D
 
 var model_assets_dir := "user://GDMP/vision"
 var request: HTTPRequest
-var running_mode := MediaPipeVisionTask.RUNNING_MODE_LIVE_STREAM
 var delegate := MediaPipeTaskBaseOptions.DELEGATE_CPU
 var camera_helper: MediaPipeCameraHelper = MediaPipeCameraHelper.new()
 var camera_extension := CameraServerExtension.new()
@@ -101,9 +100,6 @@ func _camera_feed_frame() -> void:
 	_camera_frame(img)
 
 func _camera_frame(image: MediaPipeImage) -> void:
-	if not running_mode == MediaPipeVisionTask.RUNNING_MODE_LIVE_STREAM:
-		running_mode = MediaPipeVisionTask.RUNNING_MODE_LIVE_STREAM
-		_init_task()
 	if delegate == MediaPipeTaskBaseOptions.DELEGATE_CPU and image.is_gpu_image():
 		image.convert_to_cpu()
 	_process_camera(image, Time.get_ticks_msec())
