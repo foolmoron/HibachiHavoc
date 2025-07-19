@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://wpefkw1tk5ph"]
+
+[ext_resource type="PackedScene" uid="uid://f7asg18dn30d" path="res://scenes/IdleOverlay.tscn" id="1_dwgg1"]
+[ext_resource type="Script" uid="uid://b4ohdwkxdqgk6" path="res://scenes/level_1.gd" id="1_ru4tf"]
+[ext_resource type="Texture2D" uid="uid://b156n4pjoliaq" path="res://art/level1/food/shrimp.png" id="2_dwgg1"]
+[ext_resource type="PackedScene" uid="uid://dq8kr1y6gj6vg" path="res://scenes/Transition.tscn" id="3_6sh32"]
+[ext_resource type="Texture2D" uid="uid://djgplnu6orsxg" path="res://art/placeholderimage.png" id="3_ru4tf"]
+[ext_resource type="Texture2D" uid="uid://ct72nshuyko3g" path="res://art/placeholderimage1.png" id="4_dwgg1"]
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_ru4tf")
+
+[node name="IdleOverlay" parent="." instance=ExtResource("1_dwgg1")]
+
+[node name="Transition" parent="." instance=ExtResource("3_6sh32")]
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(2.10231, 1.88021)
+texture = ExtResource("3_ru4tf")
+centered = false
+
+[node name="PlayerAnchor" type="Node2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="Body" type="Sprite2D" parent="PlayerAnchor"]
+texture = ExtResource("2_dwgg1")
+
+[node name="Foreground" type="Sprite2D" parent="."]
+position = Vector2(0, 756)
+scale = Vector2(2.10781, 2.11321)
+texture = ExtResource("4_dwgg1")
+centered = false
