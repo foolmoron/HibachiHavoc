@@ -4,8 +4,6 @@ var task: MediaPipeFaceLandmarker
 var task_file := "face_landmarker_v2_with_blendshapes.task"
 var task_file_generation := 1681322467931433
 
-@onready var lbl_blendshapes: Label = $VBoxContainer/Image/Blendshapes
-
 func _result_callback(result: MediaPipeFaceLandmarkerResult, image: MediaPipeImage, timestamp_ms: int) -> void:
 	var img := image.get_image()
 	show_result(img, result)
@@ -35,14 +33,15 @@ func _process_video(image: Image, timestamp_ms: int) -> void:
 	show_result(image, result)
 
 func _process_camera(image: MediaPipeImage, timestamp_ms: int) -> void:
-	task.detect_async(image, timestamp_ms)
+	if task:
+		task.detect_async(image, timestamp_ms)
 
 func show_result(image: Image, result: MediaPipeFaceLandmarkerResult) -> void:
 	for landmarks in result.face_landmarks:
 		draw_landmarks(image, landmarks)
 	if result.has_face_blendshapes():
 		for blendshape in result.face_blendshapes:
-			call_deferred("show_blendshapes", image, blendshape)
+			pass # HANDLE BLENDSHAPES
 	update_image(image)
 
 func draw_landmarks(image: Image, landmarks: MediaPipeNormalizedLandmarks) -> void:
@@ -53,10 +52,3 @@ func draw_landmarks(image: Image, landmarks: MediaPipeNormalizedLandmarks) -> vo
 	for landmark in landmarks.landmarks:
 		var pos := Vector2(landmark.x, landmark.y)
 		image.blit_rect(rect, rect.get_used_rect(), Vector2i(image_size * pos) - rect.get_size() / 2)
-
-func show_blendshapes(image: Image, blendshapes: MediaPipeClassifications) -> void:
-	lbl_blendshapes.text = ""
-	for category in blendshapes.categories:
-		if category.score >= 0.5:
-			if category.has_category_name():
-				lbl_blendshapes.text += "%s: %.2f\n" % [category.category_name, category.score]
