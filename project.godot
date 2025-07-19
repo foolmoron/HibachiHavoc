@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="Hibachi Havoc"
+run/main_scene="uid://cecqnmowco7dj"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+MediaPipeExternalFiles="*res://addons/GDMP/MediaPipeExternalFiles.gd"
 
 [display]
 
@@ -22,6 +27,10 @@ window/size/mode=3
 window/size/resizable=false
 window/size/borderless=true
 window/stretch/mode="viewport"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/GDMP/plugin.cfg")
 
 [rendering]
 
