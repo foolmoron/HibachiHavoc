@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 MediaPipeExternalFiles="*res://addons/GDMP/MediaPipeExternalFiles.gd"
+GDMPAndroid="*res://addons/GDMP/GDMPAndroid.gd"
 Global="*res://Global.gd"
 AudioController="*res://scenes/AudioController.tscn"
 
