@@ -78,6 +78,8 @@ mesh = SubResource("PlaneMesh_qegch")
 mesh = SubResource("PlaneMesh_jj0ry")
 
 [node name="Count" parent="CanvasLayer" index="0"]
+anchor_top = 1.018
+anchor_bottom = 1.018
 theme_override_fonts/normal_font = SubResource("FontVariation_76ugp")
 
 [node name="Message" parent="CanvasLayer" index="1"]

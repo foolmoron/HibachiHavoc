@@ -1,7 +1,46 @@
-[gd_scene load_steps=4 format=3 uid="uid://t78hswf4clja"]
+[gd_scene load_steps=12 format=3 uid="uid://t78hswf4clja"]
 
 [ext_resource type="PackedScene" uid="uid://wpefkw1tk5ph" path="res://scenes/level_base.tscn" id="1_r8unp"]
 [ext_resource type="Texture2D" uid="uid://dxt0n16ui0b8f" path="res://art/level3/star.png" id="2_kvvkh"]
+[ext_resource type="Texture2D" uid="uid://5rn8b46r3nsw" path="res://art/maskman.png" id="3_0fm5q"]
+[ext_resource type="Texture2D" uid="uid://clssdwld4y2jg" path="res://art/idleguy.png" id="4_cpie4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_udvx3"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("3_0fm5q")
+texture_filter = 1
+texture_repeat = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1xfnq"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_udvx3")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6uckl"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 0.387955, 0.319725, 1)
+albedo_texture = ExtResource("3_0fm5q")
+texture_filter = 1
+texture_repeat = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_d6jip"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_6uckl")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kkm8t"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("4_cpie4")
+texture_filter = 1
+texture_repeat = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cpuyl"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_kkm8t")
 
 [sub_resource type="FontVariation" id="FontVariation_r8unp"]
 resource_local_to_scene = true
@@ -16,8 +55,25 @@ level = 3
 [node name="IdleOverlay" parent="." index="0"]
 idle_foodSprites = Array[Texture]([ExtResource("2_kvvkh"), ExtResource("2_kvvkh"), ExtResource("2_kvvkh")])
 
+[node name="SubViewport" parent="FaceContainer" index="0"]
+size = Vector2i(2417, 2302)
+
+[node name="MeshClosed" parent="FaceContainer/SubViewport/Face/MeshContainer" index="0"]
+mesh = SubResource("PlaneMesh_1xfnq")
+
+[node name="MeshOpen" parent="FaceContainer/SubViewport/Face/MeshContainer" index="1"]
+mesh = SubResource("PlaneMesh_d6jip")
+
+[node name="MeshMissing" parent="FaceContainer/SubViewport/Face/MeshContainer" index="2"]
+mesh = SubResource("PlaneMesh_cpuyl")
+
 [node name="Count" parent="CanvasLayer" index="0"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
 theme_override_fonts/normal_font = SubResource("FontVariation_r8unp")
 
 [node name="Message" parent="CanvasLayer" index="1"]
 theme_override_fonts/normal_font = SubResource("FontVariation_r8unp")
+
+[editable path="FaceContainer"]

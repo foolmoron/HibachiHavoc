@@ -72,6 +72,7 @@ func _process(delta: float) -> void:
 			)
 
 func reset():
+	print("reset")
 	idle_time = 0.0
 	isPlaying = false
 	streak = 0
@@ -84,4 +85,4 @@ func doWipe(onWipeCallback: Callable = func(): pass):
 	await onWipeCallback.call()
 	await get_tree().create_timer(0.4).timeout
 	w.queue_free()
-		
+	

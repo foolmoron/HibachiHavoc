@@ -121,7 +121,7 @@ animations = [{
 
 [node name="LevelBase" type="Node2D" node_paths=PackedStringArray("spawnpoints", "aim_targets")]
 script = ExtResource("1_2v7b3")
-foodBarMax = 8
+foodBarMax = 10
 spawnpoints = [NodePath("Spawn1"), NodePath("Spawn2"), NodePath("Spawn3"), NodePath("Spawn4"), NodePath("Spawn5"), NodePath("Spawn6")]
 aim_targets = [NodePath("Aim1"), NodePath("Aim2")]
 
