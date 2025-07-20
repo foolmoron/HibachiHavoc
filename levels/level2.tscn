@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cqcwlhjtwwstw"]
+[gd_scene load_steps=18 format=3 uid="uid://cqcwlhjtwwstw"]
 
 [ext_resource type="PackedScene" uid="uid://wpefkw1tk5ph" path="res://scenes/level_base.tscn" id="1_y0xe8"]
 [ext_resource type="Texture2D" uid="uid://buqwao8pmjw72" path="res://art/level2/coffee.png" id="2_py88r"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cb0h1bvjww7nu" path="res://art/level2/bakery_BG.PNG" id="5_s1bpp"]
 [ext_resource type="Texture2D" uid="uid://b48kiwwb11qnq" path="res://art/level2/bakery_FG.PNG" id="6_76ugp"]
 [ext_resource type="Texture2D" uid="uid://c1exbr7keqb3n" path="res://art/level2/bakerybunny.png" id="7_55gdq"]
+[ext_resource type="Texture2D" uid="uid://b0uv4j1jtk0d2" path="res://art/level2/bakery plate.png" id="7_crte6"]
 [ext_resource type="Texture2D" uid="uid://bmivbthcnxn6c" path="res://art/level2/bakerybunny_open.png" id="8_crte6"]
 [ext_resource type="Texture2D" uid="uid://clssdwld4y2jg" path="res://art/idleguy.png" id="9_hq01p"]
 
@@ -64,6 +65,10 @@ texture = ExtResource("5_s1bpp")
 
 [node name="Foreground" parent="." index="3"]
 texture = ExtResource("6_76ugp")
+
+[node name="BakeryPlate" type="Sprite2D" parent="Foreground" index="0"]
+position = Vector2(937, 917)
+texture = ExtResource("7_crte6")
 
 [node name="SubViewport" parent="FaceContainer" index="0"]
 size = Vector2i(2417, 2302)
