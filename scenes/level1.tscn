@@ -1,19 +1,23 @@
-[gd_scene load_steps=8 format=3 uid="uid://wpefkw1tk5ph"]
+[gd_scene load_steps=9 format=3 uid="uid://wpefkw1tk5ph"]
 
 [ext_resource type="PackedScene" uid="uid://f7asg18dn30d" path="res://scenes/IdleOverlay.tscn" id="1_dwgg1"]
-[ext_resource type="Script" uid="uid://b4ohdwkxdqgk6" path="res://scenes/level_1.gd" id="1_ru4tf"]
+[ext_resource type="Script" uid="uid://b4ohdwkxdqgk6" path="res://scenes/level.gd" id="1_ru4tf"]
 [ext_resource type="Texture2D" uid="uid://b156n4pjoliaq" path="res://art/level1/food/shrimp.png" id="2_dwgg1"]
 [ext_resource type="PackedScene" uid="uid://dq8kr1y6gj6vg" path="res://scenes/Transition.tscn" id="3_6sh32"]
 [ext_resource type="Texture2D" uid="uid://djgplnu6orsxg" path="res://art/placeholderimage.png" id="3_ru4tf"]
 [ext_resource type="Texture2D" uid="uid://ct72nshuyko3g" path="res://art/placeholderimage1.png" id="4_dwgg1"]
 [ext_resource type="PackedScene" uid="uid://c75boorltp1vc" path="res://scenes/Player.tscn" id="6_ejswk"]
+[ext_resource type="PackedScene" uid="uid://cjffoc1y34w1g" path="res://face/face_container.tscn" id="7_bbk5w"]
 
-[node name="Level1" type="Node2D"]
+[node name="Level" type="Node2D"]
 script = ExtResource("1_ru4tf")
 
 [node name="IdleOverlay" parent="." instance=ExtResource("1_dwgg1")]
+z_index = 50
 
 [node name="Transition" parent="." instance=ExtResource("3_6sh32")]
+layer = 100
+visible = false
 
 [node name="Background" type="Sprite2D" parent="."]
 scale = Vector2(2.10231, 1.88021)
@@ -25,12 +29,26 @@ z_index = 1
 position = Vector2(960, 540)
 
 [node name="Body" type="Sprite2D" parent="PlayerAnchor"]
+position = Vector2(-69, -15)
 texture = ExtResource("2_dwgg1")
 
 [node name="Player" parent="PlayerAnchor" instance=ExtResource("6_ejswk")]
 
+[node name="FaceContainer" parent="." instance=ExtResource("7_bbk5w")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 294.0
+offset_top = 16.0
+offset_right = 1594.0
+offset_bottom = 1254.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Foreground" type="Sprite2D" parent="."]
-z_index = 2
+z_index = 100
 position = Vector2(0, 756)
 scale = Vector2(2.10781, 2.11321)
 texture = ExtResource("4_dwgg1")

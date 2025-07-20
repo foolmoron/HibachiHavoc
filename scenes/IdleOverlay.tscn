@@ -54,6 +54,7 @@ z_index = 1
 script = ExtResource("1_v43c8")
 
 [node name="BG" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(29.8906, 17.0781)
 texture = SubResource("GradientTexture2D_22oun")
 centered = false

@@ -4,7 +4,8 @@ var task: MediaPipeFaceLandmarker
 var task_file := "face_landmarker_v2_with_blendshapes.task"
 var task_file_generation := 1681322467931433
 
-# @onready var faceMesh: MeshInstance2D = $FaceMesh
+@onready var meshContainer: Node3D = $MeshContainer
+@onready var meshInstance: MeshInstance3D = $MeshContainer/Mesh
 
 func _result_callback(result: MediaPipeFaceLandmarkerResult, image: MediaPipeImage, timestamp_ms: int) -> void:
 	var img := image.get_image()
@@ -21,18 +22,6 @@ func _init_task() -> void:
 	task.initialize(base_options, MediaPipeTask.VisionRunningMode.RUNNING_MODE_LIVE_STREAM, 1, 0.5, 0.5, 0.5, true)
 	task.result_callback.connect(self._result_callback)
 	super()
-
-func _process_image(image: Image) -> void:
-	var input_image := MediaPipeImage.new()
-	input_image.set_image(image)
-	var result := task.detect(input_image)
-	show_result(image, result)
-
-func _process_video(image: Image, timestamp_ms: int) -> void:
-	var input_image := MediaPipeImage.new()
-	input_image.set_image(image)
-	var result := task.detect_video(input_image, timestamp_ms)
-	show_result(image, result)
 
 func _process_camera(image: MediaPipeImage, timestamp_ms: int) -> void:
 	if task:
@@ -62,10 +51,10 @@ var current_mouth := 0.0
 
 func do_mesh_stuff(landmarks: MediaPipeNormalizedLandmarks, blendshapes: Array[MediaPipeClassifications]) -> void:
 	var diffH = landmarks.landmarks[356].z - (landmarks.landmarks[34].z + 0.030)
-	var dirH = inverse_lerp(0.08, -0.08, diffH)
+	var dirH = clamp(inverse_lerp(0.08, -0.08, diffH), 0.0, 1.0)
 	current_rot.y = lerp(-45, 45, dirH)
 	var diffV = landmarks.landmarks[10].z - (landmarks.landmarks[18].z + 0.035)
-	var dirV = inverse_lerp(0.08, -0.08, diffV)
+	var dirV = clamp(inverse_lerp(0.08, -0.08, diffV), 0.0, 1.0)
 	current_rot.x = 90.0 + lerp(-45, 45, dirV)
 
 	current_mouth = 0.0
@@ -73,12 +62,11 @@ func do_mesh_stuff(landmarks: MediaPipeNormalizedLandmarks, blendshapes: Array[M
 		for category in blendshape.categories:
 			if category.has_category_name() and (category.category_name == "jawOpen" or category.category_name == "jawLeft" or category.category_name == "jawRight"):
 				current_mouth = max(current_mouth, category.score)
-				print(current_mouth, category.category_name)
 
 func _process(delta: float) -> void:
-	$MeshContainer.rotation_degrees.y = current_rot.y
-	$MeshContainer.rotation_degrees.x = current_rot.x
-	($MeshContainer/Mesh.mesh as PlaneMesh).material.albedo_color = lerp(Color.WHITE, Color.RED, 1.0 if current_mouth > 0.05 else 0.0)
+	meshContainer.rotation_degrees = lerp(meshContainer.rotation_degrees, current_rot, 15 * delta)
+	# meshContainer.rotation_degrees.y = current_rot.y#lerp(meshContainer.rotation_degrees.y, , 0.2 * delta)
+	(meshInstance.mesh as PlaneMesh).material.albedo_color = lerp(Color.WHITE, Color.RED, 1.0 if current_mouth > 0.05 else 0.0)
 
 # var i := 0
 

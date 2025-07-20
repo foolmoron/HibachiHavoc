@@ -93,7 +93,7 @@ func _camera_feed_frame() -> void:
 	if camera_texture == null:
 		return
 	var image := camera_texture.get_image()
-	if image == null:
+	if image == null or image.is_empty():
 		return
 	var img := MediaPipeImage.new()
 	img.set_image(image)
@@ -127,6 +127,8 @@ func get_model_asset(filename: String, generation: int = -1) -> FileAccess:
 	return null
 
 func update_image(image: Image) -> void:
+	if image == null or image.is_empty():
+		return
 	if Vector2i(image_view.texture.get_size()) == image.get_size():
 		image_view.texture.call_deferred("update", image)
 	else:

@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 signal levelEnd(message : String)
 @export var win_message := "Plate Cleaned!"
@@ -7,6 +7,7 @@ signal levelEnd(message : String)
 @onready var currentHealthBar := healthBarMax
 
 #VARIABLES TO ADJUST IN INSPECTOR FOR GAMEPLAY OPTIMIZATION
+@export var musicIdx := 0
 @export var foodBarMax : int = 15
 @export var healthBarMax : int = 20
 @export var spawn_timer_waittime := 3.0
@@ -26,6 +27,7 @@ func _ready() -> void:
 	spawnTimer.wait_time = spawn_timer_waittime
 	spawnTimer.timeout.connect(_spawnFoodItems)
 	clearFood()
+	Global.switchMusic(musicIdx)
 
 func clearFood():
 	for item in foodItems:
