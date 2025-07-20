@@ -31,7 +31,8 @@ func _ready() -> void:
 	Global.switchMusic(musicIdx)
 
 func ateFood(_item : Node):
-	currentFoodBar -= 1
+	if Global.isPlaying:
+		currentFoodBar -= 1
 
 func clearFood():
 	for item in foodItems:
