@@ -41,6 +41,7 @@ _data = {
 }
 
 [node name="Wiper" type="Node2D"]
+z_index = 4096
 
 [node name="Node2D" type="Sprite2D" parent="."]
 modulate = Color(0.1461, 0.057, 0.3, 1)

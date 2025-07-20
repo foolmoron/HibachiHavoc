@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://cjffoc1y34w1g"]
 
-[ext_resource type="Script" uid="uid://4tsamaaxt8ba" path="res://vision/face_landmarker/FaceLandmarker.gd" id="1_5gk4o"]
+[ext_resource type="Script" uid="uid://b1wsycjk66ogp" path="res://scenes/face.gd" id="1_iy6cr"]
 [ext_resource type="Texture2D" uid="uid://5rn8b46r3nsw" path="res://art/maskman.png" id="2_5gk4o"]
 [ext_resource type="Texture2D" uid="uid://clssdwld4y2jg" path="res://art/idleguy.png" id="3_iy6cr"]
 
@@ -64,7 +64,7 @@ size = Vector2i(602, 642)
 render_target_update_mode = 4
 
 [node name="Face" type="Node3D" parent="SubViewport"]
-script = ExtResource("1_5gk4o")
+script = ExtResource("1_iy6cr")
 
 [node name="ProgressBar" type="ProgressBar" parent="SubViewport/Face"]
 visible = false
