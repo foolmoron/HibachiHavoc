@@ -40,7 +40,7 @@ func _spawnFoodItem():
 	var target := (Global.randomItem(aim_targets) as Node2D).global_position
 	var dir := (target - new_food.global_position).normalized() as Vector2
 	new_food.apply_impulse(dir * 1500.0)
-	new_food.apply_torque_impulse(randf_range(50.0, 150.0) * (-1 if randf() < 0.5 else 1))
+	new_food.apply_torque_impulse(randf_range(20.0, 60.0) * (-1 if randf() < 0.5 else 1))
 
 
 func _physics_process(delta: float) -> void:

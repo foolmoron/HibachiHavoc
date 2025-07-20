@@ -166,7 +166,6 @@ shape = SubResource("RectangleShape2D_vm68j")
 position = Vector2(0.999999, 31)
 scale = Vector2(0.378192, 0.378192)
 sprite_frames = SubResource("SpriteFrames_qurbw")
-frame_progress = 0.677092
 speed_scale = 0.0
 script = ExtResource("11_qurbw")
 
