@@ -1,16 +1,17 @@
-[gd_scene load_steps=13 format=3 uid="uid://t78hswf4clja"]
+[gd_scene load_steps=14 format=3 uid="uid://t78hswf4clja"]
 
 [ext_resource type="PackedScene" uid="uid://wpefkw1tk5ph" path="res://scenes/level_base.tscn" id="1_r8unp"]
 [ext_resource type="Texture2D" uid="uid://dxt0n16ui0b8f" path="res://art/level3/star.png" id="2_kvvkh"]
-[ext_resource type="Texture2D" uid="uid://5rn8b46r3nsw" path="res://art/maskman.png" id="3_0fm5q"]
 [ext_resource type="Texture2D" uid="uid://dndk77a6x0vkv" path="res://art/level3/spacebg.png" id="3_cpie4"]
 [ext_resource type="Texture2D" uid="uid://clssdwld4y2jg" path="res://art/idleguy.png" id="4_cpie4"]
+[ext_resource type="Texture2D" uid="uid://ilit0jbr7yc" path="res://art/level3/space_char.png" id="4_udvx3"]
+[ext_resource type="Texture2D" uid="uid://c8iehxyw5enof" path="res://art/level3/space_char_open.png" id="5_1xfnq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_udvx3"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = ExtResource("3_0fm5q")
+albedo_texture = ExtResource("4_udvx3")
 texture_filter = 1
 texture_repeat = false
 
@@ -22,8 +23,7 @@ material = SubResource("StandardMaterial3D_udvx3")
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_color = Color(1, 0.387955, 0.319725, 1)
-albedo_texture = ExtResource("3_0fm5q")
+albedo_texture = ExtResource("5_1xfnq")
 texture_filter = 1
 texture_repeat = false
 
