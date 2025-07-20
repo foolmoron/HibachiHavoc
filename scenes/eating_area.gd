@@ -32,7 +32,7 @@ func _physics_process(delta: float) -> void:
 				ate_food.emit(item)
 				items_touching.erase(item)
 				item.queue_free()
-				Global.eat()
+				Global.playSound("eat")
 				if Global.isPlaying:
 					Global.foods_eaten += 1
 				var particles = food_particles_scn.instantiate()

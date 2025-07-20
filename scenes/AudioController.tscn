@@ -1,18 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvl2cvvnl327t"]
+[gd_scene load_steps=5 format=3 uid="uid://bvl2cvvnl327t"]
 
 [ext_resource type="AudioStream" uid="uid://cnlsgl3sl7f8m" path="res://audio/MouthOpened.mp3" id="1_8lvwy"]
-[ext_resource type="AudioStream" uid="uid://bqhtu2hdv4prm" path="res://audio/placeholder.mp3" id="1_wdo3m"]
+[ext_resource type="AudioStream" uid="uid://dali7c5xgyrch" path="res://audio/whoosh.wav" id="2_8lvwy"]
 [ext_resource type="AudioStream" uid="uid://cgk8rjy4eylgf" path="res://audio/StreakBegin.mp3" id="3_7g2nl"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8lvwy"]
+playback_mode = 1
+random_pitch = 1.38
+streams_count = 1
+stream_0/stream = ExtResource("2_8lvwy")
 
 [node name="AudioController" type="Node"]
 
 [node name="BgMusic" type="AudioStreamPlayer" parent="."]
+volume_db = -11.45
 
 [node name="EatSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_8lvwy")
+volume_db = 4.15
 
 [node name="WhooshSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("1_wdo3m")
+stream = SubResource("AudioStreamRandomizer_8lvwy")
 
 [node name="LevelSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_7g2nl")
