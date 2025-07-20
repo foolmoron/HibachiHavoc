@@ -12,6 +12,7 @@
 
 [sub_resource type="Animation" id="Animation_02j7v"]
 length = 0.001
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -119,7 +120,7 @@ autoplay = "pulse_text"
 
 [node name="Instructions" type="AnimatedSprite2D" parent="CanvasLayer"]
 z_index = 200
-position = Vector2(1607, 966)
+position = Vector2(1575, 962)
 scale = Vector2(0.158796, 0.165278)
 sprite_frames = SubResource("SpriteFrames_e0rvp")
 autoplay = "default"

@@ -3,6 +3,9 @@ extends Node
 signal levelEnd(didWin : bool)
 @onready var currentFoodBar := foodBarMax
 @onready var currentHealthBar := healthBarMax
+@onready var local_count := $CanvasLayer/Count
+const prefix := "[center][outline_size=20][outline_color=#331E1D]Total Food Eaten: "
+const suffix := "[/outline_color][/outline_size][/center]"
 
 #VARIABLES TO ADJUST IN INSPECTOR FOR GAMEPLAY OPTIMIZATION
 @export var musicIdx := 0
@@ -46,6 +49,9 @@ func _spawnFoodItem():
 func _physics_process(delta: float) -> void:
 	if not Global.isPlaying:
 		return
+	
+	#PLAYING GAME
+	local_count.text = prefix + str(Global.foods_eaten) + suffix
 	if currentFoodBar == 0:
 		winLevel()
 		clearFood()
@@ -67,7 +73,9 @@ func beginGame():
 func winLevel():
 	levelEnd.emit(true)
 	$Transition.show()
+	$CanvasLayer.hide()
 
 func loseLevel():
 	levelEnd.emit(false)
 	$Transition.show()
+	$CanvasLayer.hide()
