@@ -1,15 +1,17 @@
 extends Node
 
 static var isPlaying : bool
+
 @onready var streak : int = 0;
 @onready var foods_eaten : int = 0;
 @onready var currentScene : int = 0;
 var levels : Array[PackedScene] = [preload("res://levels/level1.tscn"), preload("res://levels/level2.tscn"), preload("res://levels/level3.tscn")]
 var songs : Array[AudioStream] = [preload("res://audio/music/Theme 2b.mp3")]
+var wiper : PackedScene = preload("res://scenes/wiper.tscn")
 
 #variables to return to titlescreen after no user interaction for a while
-var idleTimer : Timer
-@export var idle_delay : int = 60
+var idle_delay := 5.0
+var idle_time := 0.0
 
 #audio variables
 @onready var bgMusic = AudioController.get_node("BgMusic")
@@ -19,9 +21,6 @@ var idleTimer : Timer
 
 func _ready() -> void:
 	isPlaying = false
-	idleTimer = Timer.new()
-	idleTimer.wait_time = idle_delay   #wait for idleness
-	idleTimer.timeout.connect(_on_IdleTimer_Timeout)
 
 #switch to next scene and change music to that scene's music; 
 func switchScene(nextScene : int):
@@ -30,13 +29,8 @@ func switchScene(nextScene : int):
 	elif nextScene >= levels.size():
 		currentScene = 0
 	else:
-		isPlaying = true
 		currentScene = nextScene
-	self._loadScene.bind(levels[currentScene]).call_deferred()
-
-func _loadScene(scene : PackedScene):
-	print("switching to next scene")
-	get_tree().change_scene_to_packed(scene)
+	get_tree().change_scene_to_packed.bind(levels[currentScene]).call_deferred()
 
 func whichScene(num : int) -> String:
 	var level : String = ""
@@ -68,10 +62,26 @@ func whoosh():
 	if(!whooshSFX.playing):
 		whooshSFX.play()
 
-### IDLE CONTROL ###
-func _on_IdleTimer_Timeout():
-	switchScene(-1)
+func _process(delta: float) -> void:
+	if isPlaying and not FaceLandmarker.player_detected_latest:
+		idle_time += delta
+		if idle_time >= idle_delay:
+			reset()
+			Global.doWipe(func():
+				await switchScene(-1)
+			)
 
-func _physics_process(_delta: float) -> void:
-	if (!isPlaying && false):    # if facial input happens at any time, reset the idleTimer. 
-		idleTimer.start()
+func reset():
+	idle_time = 0.0
+	isPlaying = false
+	streak = 0
+	foods_eaten = 0
+	
+func doWipe(onWipeCallback: Callable = func(): pass):
+	var w := wiper.instantiate()
+	get_tree().root.add_child(w)
+	await get_tree().create_timer(0.425).timeout
+	await onWipeCallback.call()
+	await get_tree().create_timer(0.4).timeout
+	w.queue_free()
+		

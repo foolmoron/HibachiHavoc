@@ -12,13 +12,10 @@ var use_camera_extension := true
 var image_file_web: FileAccessWeb
 var video_file_web: FileAccessWeb
 
-@onready var progress_bar: ProgressBar = $ProgressBar
-
 func _exit_tree() -> void:
 	camera_extension = null
 
 func _ready():
-	progress_bar.hide()
 	camera_helper.new_frame.connect(self._camera_frame)
 
 	for feed in CameraServer.feeds():
@@ -39,10 +36,8 @@ func _ready():
 
 func _process(_delta: float) -> void:
 	if request:
-		progress_bar.show()
 		var max_size := request.get_body_size()
 		var cur_size := request.get_downloaded_bytes()
-		progress_bar.value = round(float(cur_size) / float(max_size) * 100)
 
 func _reset() -> void:
 	if camera_feed:
@@ -52,7 +47,6 @@ func _reset() -> void:
 	camera_helper.close()
 
 func _get_model_asset(result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray, path: String) -> void:
-	progress_bar.hide()
 	if result != HTTPRequest.RESULT_SUCCESS:
 		return
 	if response_code != HTTPClient.RESPONSE_OK:
@@ -118,7 +112,6 @@ func get_model_asset(filename: String, generation: int = -1) -> FileAccess:
 		return file
 	request = MediaPipeExternalFiles.get_asset(filename, generation)
 	if request != null:
-		progress_bar.show()
 		var callback := _get_model_asset.bind(path)
 		request.request_completed.connect(callback)
 	return null

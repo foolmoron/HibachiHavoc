@@ -1,19 +1,15 @@
 extends VisionTask
-class_name FaceLandmarker
 
 var task: MediaPipeFaceLandmarker
 var task_file := "face_landmarker_v2_with_blendshapes.task"
 var task_file_generation := 1681322467931433
 
-@onready var meshContainer: Node3D = $MeshContainer
-@onready var meshInstanceClosed: MeshInstance3D = $MeshContainer/MeshClosed
-@onready var meshInstanceOpen: MeshInstance3D = $MeshContainer/MeshOpen
-@onready var meshInstanceMissing: MeshInstance3D = $MeshContainer/MeshMissing
-@onready var meshInstanceZ: float = meshInstanceClosed.position.z
+var dir_latest := Vector2(0.0, 0.0)
+var mouth_open_latest := false
+var player_detected_latest := false
 
-static var dir_latest := Vector2(0.0, 0.0)
-static var mouth_open_latest := false
-static var player_detected_latest := false
+var current_rot := Vector3(0.0, 0.0, 0.0)
+var current_mouth := 0.0
 
 func _result_callback(result: MediaPipeFaceLandmarkerResult, image: MediaPipeImage, timestamp_ms: int) -> void:
 	var img := image.get_image()
@@ -54,9 +50,6 @@ func draw_landmarks(image: Image, landmarks: MediaPipeNormalizedLandmarks) -> vo
 	# rect.fill(lerp(Color.GREEN, Color.RED, landmark.z*20.0))
 	# image.blit_rect(rect, rect.get_used_rect(), Vector2i(image_size * pos) - rect.get_size() / 2)
 
-var current_rot := Vector3(0.0, 0.0, 0.0)
-var current_mouth := 0.0
-
 func do_mesh_stuff(landmarks: MediaPipeNormalizedLandmarks, blendshapes: Array[MediaPipeClassifications]) -> void:
 	var diffH = landmarks.landmarks[356].z - (landmarks.landmarks[34].z + 0.030)
 	dir_latest.x = clamp(inverse_lerp(0.08, -0.08, diffH), 0.0, 1.0)
@@ -71,51 +64,3 @@ func do_mesh_stuff(landmarks: MediaPipeNormalizedLandmarks, blendshapes: Array[M
 			if category.has_category_name() and (category.category_name == "jawOpen" or category.category_name == "jawLeft" or category.category_name == "jawRight"):
 				current_mouth = max(current_mouth, category.score)
 	mouth_open_latest = current_mouth > 0.05
-
-func _process(delta: float) -> void:
-	meshInstanceOpen.visible = mouth_open_latest
-	meshInstanceClosed.visible = not mouth_open_latest
-
-	if player_detected_latest:
-		meshContainer.rotation_degrees = lerp(meshContainer.rotation_degrees, current_rot, 15 * delta)
-		meshInstanceOpen.position.z = lerp(meshInstanceOpen.position.z, meshInstanceZ, 10 * delta)
-		meshInstanceClosed.position.z = lerp(meshInstanceClosed.position.z, meshInstanceZ, 10 * delta)
-		meshInstanceMissing.position.z = lerp(meshInstanceMissing.position.z, meshInstanceZ + 200.0, 10 * delta)
-	else:
-		meshContainer.rotation_degrees = Vector3(90, 0, 0)
-		meshInstanceOpen.position.z = lerp(meshInstanceOpen.position.z, meshInstanceZ + 200.0, 10 * delta)
-		meshInstanceClosed.position.z = lerp(meshInstanceClosed.position.z, meshInstanceZ + 200.0, 10 * delta)
-		meshInstanceMissing.position.z = lerp(meshInstanceMissing.position.z, meshInstanceZ, 10 * delta)
-
-# var i := 0
-
-# func _input(event):
-# 	if event is InputEventKey and event.pressed:
-# 		match event.keycode:
-# 			KEY_U:
-# 				i += 1
-# 				if i >= 468:  # Assuming there are 468 landmarks
-# 					i = 0
-# 				print("Current landmark index: ", i)
-
-# # For dynamic rotation based on input or animation:
-# func _process(delta):
-# 	# Example: rotate based on mouse position
-# 	var mouse_pos = get_global_mouse_position()
-# 	var screen_center = get_viewport().get_visible_rect().size / 2
-# 	var offset = (mouse_pos - screen_center) / 100.0
-	
-# 	var forward = Vector3(-offset.x, -offset.y, -1).normalized()
-	
-# 	# Calculate 3D rotation angles
-# 	var pitch = asin(forward.y)  # Up/down tilt
-# 	var yaw = atan2(forward.x, -forward.z)  # Left/right turn
-	
-# 	# Convert to 2D transform effects
-# 	var scale_x = abs(cos(yaw))
-# 	var scale_y = abs(cos(pitch))
-# 	var skew_amount = sin(yaw) * cos(pitch) * 0.5
-	
-# 	# Apply transform directly
-# 	$Node2D.scale = Vector2(scale_x, scale_y)
-# 	$Node2D.skew = skew_amount
