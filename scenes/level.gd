@@ -14,7 +14,6 @@ signal levelEnd(message : String)
 @export var foodSpeedVariation := 1.1
 
 #SPAWNING FOOD
-@export var foodSprites : Array[Sprite2D]
 var spawnpoints : Array[Vector2] = [Vector2(-105,-112), Vector2(325,-220), Vector2(540,-220), Vector2(1595,-220), Vector2(2025,-112)]
 var foodItem : PackedScene = preload("res://scenes/FoodItem.tscn")
 var foodItems : Array

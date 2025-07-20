@@ -1,11 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://wpefkw1tk5ph"]
+[gd_scene load_steps=16 format=3 uid="uid://wpefkw1tk5ph"]
 
 [ext_resource type="Script" uid="uid://b4ohdwkxdqgk6" path="res://scenes/level.gd" id="1_2v7b3"]
 [ext_resource type="PackedScene" uid="uid://f7asg18dn30d" path="res://scenes/IdleOverlay.tscn" id="2_6k8qy"]
+[ext_resource type="Texture2D" uid="uid://bin0i2ouhu715" path="res://art/level1/brocollii.png" id="2_qurbw"]
 [ext_resource type="PackedScene" uid="uid://dq8kr1y6gj6vg" path="res://scenes/Transition.tscn" id="3_evabm"]
+[ext_resource type="Texture2D" uid="uid://cj6iwxr26tove" path="res://art/level1/rice.png" id="3_vm68j"]
 [ext_resource type="Texture2D" uid="uid://dnb6qgxl0lurc" path="res://art/level1/Hibachi bg.png" id="4_qurbw"]
 [ext_resource type="Texture2D" uid="uid://b156n4pjoliaq" path="res://art/level1/shrimp.png" id="5_vm68j"]
-[ext_resource type="PackedScene" uid="uid://c75boorltp1vc" path="res://scenes/Player.tscn" id="6_rth7s"]
 [ext_resource type="PackedScene" uid="uid://cjffoc1y34w1g" path="res://face/face_container.tscn" id="7_ngfo8"]
 [ext_resource type="Texture2D" uid="uid://beh7nxdp5hx14" path="res://art/level1/Hibachi fg.png" id="8_8t3pq"]
 [ext_resource type="Script" uid="uid://cbn375vedljsa" path="res://scenes/eating_area.gd" id="9_6k8qy"]
@@ -24,13 +25,21 @@ _data = [Vector2(0, 380), nan, 360.0, 1, 1, Vector2(0.5, 560), 0.0, 320.0, 0, 1,
 point_count = 3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vm68j"]
-size = Vector2(300, 880)
+size = Vector2(300, 300)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6k8qy"]
-size = Vector2(300, 880)
+size = Vector2(300, 300)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_2v7b3")
+win_message = null
+lose_message = null
+musicIdx = null
+foodBarMax = null
+healthBarMax = null
+spawn_timer_waittime = null
+foodSpeedVariation = null
+foodSprites = Array[Texture]([ExtResource("2_qurbw"), ExtResource("3_vm68j"), ExtResource("5_vm68j")])
 
 [node name="IdleOverlay" parent="." instance=ExtResource("2_6k8qy")]
 z_index = 50
@@ -42,16 +51,6 @@ visible = false
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("4_qurbw")
 centered = false
-
-[node name="PlayerAnchor" type="Node2D" parent="."]
-z_index = 1
-position = Vector2(960, 540)
-
-[node name="Body" type="Sprite2D" parent="PlayerAnchor"]
-position = Vector2(-69, -15)
-texture = ExtResource("5_vm68j")
-
-[node name="Player" parent="PlayerAnchor" instance=ExtResource("6_rth7s")]
 
 [node name="FaceContainer" parent="." instance=ExtResource("7_ngfo8")]
 anchors_preset = 8

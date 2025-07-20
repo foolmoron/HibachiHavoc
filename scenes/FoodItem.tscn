@@ -1,15 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://boklyx5l7v5gs"]
+[gd_scene load_steps=4 format=3 uid="uid://boklyx5l7v5gs"]
 
+[ext_resource type="Script" uid="uid://cctdk1gdilnym" path="res://scenes/food_item.gd" id="1_2pnc4"]
 [ext_resource type="Texture2D" uid="uid://cj6iwxr26tove" path="res://art/level1/rice.png" id="1_fbia8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r66ul"]
-radius = 94.0213
+radius = 83.87
 
 [node name="FoodItem" type="RigidBody2D" groups=["food"]]
 z_index = 500
+script = ExtResource("1_2pnc4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.615233, 0.615233)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("1_fbia8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
