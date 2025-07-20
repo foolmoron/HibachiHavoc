@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://t78hswf4clja"]
+[gd_scene load_steps=4 format=3 uid="uid://t78hswf4clja"]
 
 [ext_resource type="PackedScene" uid="uid://wpefkw1tk5ph" path="res://scenes/level_base.tscn" id="1_r8unp"]
+[ext_resource type="Texture2D" uid="uid://dxt0n16ui0b8f" path="res://art/level3/star.png" id="2_kvvkh"]
 
 [sub_resource type="FontVariation" id="FontVariation_r8unp"]
 resource_local_to_scene = true
@@ -11,6 +12,9 @@ spacing_bottom = 40
 
 [node name="Level3" instance=ExtResource("1_r8unp")]
 level = 3
+
+[node name="IdleOverlay" parent="." index="0"]
+idle_foodSprites = Array[Texture]([ExtResource("2_kvvkh"), ExtResource("2_kvvkh"), ExtResource("2_kvvkh")])
 
 [node name="Count" parent="CanvasLayer" index="0"]
 theme_override_fonts/normal_font = SubResource("FontVariation_r8unp")
