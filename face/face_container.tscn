@@ -11,6 +11,8 @@ resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
 albedo_texture = ExtResource("2_5gk4o")
+texture_filter = 1
+texture_repeat = false
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_iy6cr"]
 resource_local_to_scene = true
@@ -22,6 +24,8 @@ transparency = 1
 shading_mode = 0
 albedo_color = Color(1, 0.387955, 0.319725, 1)
 albedo_texture = ExtResource("2_5gk4o")
+texture_filter = 1
+texture_repeat = false
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_flqyb"]
 resource_local_to_scene = true
