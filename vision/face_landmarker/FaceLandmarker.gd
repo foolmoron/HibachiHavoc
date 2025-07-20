@@ -6,7 +6,8 @@ var task_file := "face_landmarker_v2_with_blendshapes.task"
 var task_file_generation := 1681322467931433
 
 @onready var meshContainer: Node3D = $MeshContainer
-@onready var meshInstance: MeshInstance3D = $MeshContainer/Mesh
+@onready var meshInstanceClosed: MeshInstance3D = $MeshContainer/MeshClosed
+@onready var meshInstanceOpen: MeshInstance3D = $MeshContainer/MeshOpen
 
 static var dir_latest := Vector2(0.0, 0.0)
 static var mouth_open_latest := false
@@ -69,8 +70,8 @@ func do_mesh_stuff(landmarks: MediaPipeNormalizedLandmarks, blendshapes: Array[M
 
 func _process(delta: float) -> void:
 	meshContainer.rotation_degrees = lerp(meshContainer.rotation_degrees, current_rot, 15 * delta)
-	# meshContainer.rotation_degrees.y = current_rot.y#lerp(meshContainer.rotation_degrees.y, , 0.2 * delta)
-	(meshInstance.mesh as PlaneMesh).material.albedo_color = lerp(Color.WHITE, Color.RED, 1.0 if mouth_open_latest else 0.0)
+	meshInstanceOpen.visible = mouth_open_latest
+	meshInstanceClosed.visible = not mouth_open_latest
 
 # var i := 0
 

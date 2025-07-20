@@ -1,20 +1,31 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjffoc1y34w1g"]
+[gd_scene load_steps=9 format=3 uid="uid://cjffoc1y34w1g"]
 
 [ext_resource type="Script" uid="uid://4tsamaaxt8ba" path="res://vision/face_landmarker/FaceLandmarker.gd" id="1_5gk4o"]
-[ext_resource type="Texture2D" uid="uid://dcxwcx6v3p0en" path="res://face/maskman.png" id="2_iy6cr"]
+[ext_resource type="Texture2D" uid="uid://5rn8b46r3nsw" path="res://art/maskman.png" id="2_5gk4o"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5gk4o"]
 light_mode = 1
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wn73w"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5gk4o"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = ExtResource("2_iy6cr")
+albedo_texture = ExtResource("2_5gk4o")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_hxqm2"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_iy6cr"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_wn73w")
+material = SubResource("StandardMaterial3D_5gk4o")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eq8ie"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 0.387955, 0.319725, 1)
+albedo_texture = ExtResource("2_5gk4o")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_flqyb"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_eq8ie")
 
 [sub_resource type="Environment" id="Environment_wn73w"]
 background_mode = 1
@@ -55,9 +66,13 @@ grow_vertical = 2
 [node name="MeshContainer" type="Node3D" parent="SubViewport/Face"]
 transform = Transform3D(0.997416, -0.0718456, 3.14047e-09, 0, -4.37114e-08, -1, 0.0718456, 0.997416, -4.35984e-08, 0, -45.6546, -163.296)
 
-[node name="Mesh" type="MeshInstance3D" parent="SubViewport/Face/MeshContainer"]
+[node name="MeshClosed" type="MeshInstance3D" parent="SubViewport/Face/MeshContainer"]
 transform = Transform3D(50, -7.15256e-07, 1.42109e-14, 7.15256e-07, 50, 2.27374e-13, -4.26326e-14, 0, 50, 0, -1.91131e-06, -43.7258)
-mesh = SubResource("PlaneMesh_hxqm2")
+mesh = SubResource("PlaneMesh_iy6cr")
+
+[node name="MeshOpen" type="MeshInstance3D" parent="SubViewport/Face/MeshContainer"]
+transform = Transform3D(50, -7.15256e-07, 1.42109e-14, 7.15256e-07, 50, 2.27374e-13, -4.26326e-14, 0, 50, 0, -1.91131e-06, -43.7258)
+mesh = SubResource("PlaneMesh_flqyb")
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport/Face"]
 environment = SubResource("Environment_wn73w")
