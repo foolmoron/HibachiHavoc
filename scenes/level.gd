@@ -10,20 +10,18 @@ signal levelEnd(message : String)
 @export var musicIdx := 0
 @export var foodBarMax : int = 15
 @export var healthBarMax : int = 20
-@export var spawn_timer_waittime := 3.0
-@export var foodSpeedVariation := 1.1
+@export_range(0.0, 5.0) var food_spawn_interval_min := 1.0
+@export_range(0.0, 5.0) var food_spawn_interval_max := 3.0
 
 #SPAWNING FOOD
-var spawnpoints : Array[Vector2] = [Vector2(-105,-112), Vector2(325,-220), Vector2(540,-220), Vector2(1595,-220), Vector2(2025,-112)]
+@export var spawnpoints : Array[Node2D] = []
 var foodItem : PackedScene = preload("res://scenes/FoodItem.tscn")
 var foodItems : Array
-@onready var spawnTimer := Timer.new()
+var foodTimeRemaining := 0.0
 
 func _ready() -> void:
 	$IdleOverlay.show()
 	$Transition.hide()
-	spawnTimer.wait_time = spawn_timer_waittime
-	spawnTimer.timeout.connect(_spawnFoodItems)
 	clearFood()
 	Global.switchMusic(musicIdx)
 
@@ -32,31 +30,38 @@ func clearFood():
 		item.queue_free()
 	foodItems.clear()
 
-func _spawnFoodItems():
-	if Global.isPlaying:
-		#spawn a food item at random location w/force
-		var new_food = foodItem.instantiate()
-		new_food.set_position(Global.randomItem(spawnpoints))
-		add_child(new_food)
-		
-		new_food.apply_impulse(Vector2(960 * foodSpeedVariation, 540 * foodSpeedVariation))
-		#start timer again
-		spawnTimer.start()
+func _spawnFoodItem():
+	if not Global.isPlaying:
+		return
+
+	var new_food = foodItem.instantiate() as RigidBody2D
+	new_food.global_position = Global.randomItem(spawnpoints).global_position
+	add_child(new_food)
+
+	var dir := (Vector2(960.0, 540.0) - new_food.global_position).normalized() as Vector2
+	new_food.apply_impulse(dir)
+	new_food.apply_torque_impulse(randf_range(-100.0, 100.0))
+
 
 func _physics_process(delta: float) -> void:
+	if not Global.isPlaying:
+		return
 	if currentFoodBar == 0:
 		winLevel()
 		clearFood()
 	elif currentHealthBar == 0:
 		loseLevel()
 		clearFood()
+	if foodTimeRemaining <= 0.0:
+		_spawnFoodItem()
+		foodTimeRemaining = randf_range(food_spawn_interval_min, food_spawn_interval_max)
 
 
 #GAME CONTROL
 func beginGame():
 	$IdleOverlay.hide()
 	Global.isPlaying = true
-	_spawnFoodItems()
+	_spawnFoodItem()
 
 func winLevel():
 	levelEnd.emit(win_message)

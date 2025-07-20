@@ -32,6 +32,7 @@ func _physics_process(delta: float) -> void:
 				ate_food.emit(item)
 				items_touching.erase(item)
 				item.queue_free()
+				Global.foods_eaten += 1
 				var particles = food_particles_scn.instantiate()
 				particles.connect("finished", particles.queue_free)
 				(particles as CPUParticles2D).emitting = true
