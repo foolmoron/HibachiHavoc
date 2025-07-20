@@ -132,7 +132,7 @@ script = ExtResource("11_qurbw")
 
 [node name="Instructions" type="AnimatedSprite2D" parent="."]
 z_index = 200
-position = Vector2(1622, 970)
+position = Vector2(98, 970)
 scale = Vector2(0.158796, 0.165278)
 sprite_frames = SubResource("SpriteFrames_3iqh6")
 autoplay = "default"

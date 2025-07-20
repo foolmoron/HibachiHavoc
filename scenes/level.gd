@@ -21,7 +21,6 @@ var foodItems : Array
 var foodTimeRemaining := 0.0
 
 func _ready() -> void:
-	$IdleOverlay.show()
 	$Transition.hide()
 	clearFood()
 	Global.switchMusic(musicIdx)
@@ -62,7 +61,6 @@ func _physics_process(delta: float) -> void:
 
 #GAME CONTROL
 func beginGame():
-	$IdleOverlay.hide()
 	Global.isPlaying = true
 	foodTimeRemaining = 0.0
 
