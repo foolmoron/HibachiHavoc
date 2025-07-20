@@ -8,9 +8,12 @@ var task_file_generation := 1681322467931433
 @onready var meshContainer: Node3D = $MeshContainer
 @onready var meshInstanceClosed: MeshInstance3D = $MeshContainer/MeshClosed
 @onready var meshInstanceOpen: MeshInstance3D = $MeshContainer/MeshOpen
+@onready var meshInstanceMissing: MeshInstance3D = $MeshContainer/MeshMissing
+@onready var meshInstanceZ: float = meshInstanceClosed.position.z
 
 static var dir_latest := Vector2(0.0, 0.0)
 static var mouth_open_latest := false
+static var player_detected_latest := false
 
 func _result_callback(result: MediaPipeFaceLandmarkerResult, image: MediaPipeImage, timestamp_ms: int) -> void:
 	var img := image.get_image()
@@ -33,6 +36,7 @@ func _process_camera(image: MediaPipeImage, timestamp_ms: int) -> void:
 		task.detect_async(image, timestamp_ms)
 
 func show_result(image: Image, result: MediaPipeFaceLandmarkerResult) -> void:
+	player_detected_latest = result.face_landmarks.size() > 0
 	for landmarks in result.face_landmarks:
 		# draw_landmarks(image, landmarks)
 		do_mesh_stuff(landmarks, result.face_blendshapes)
@@ -69,9 +73,19 @@ func do_mesh_stuff(landmarks: MediaPipeNormalizedLandmarks, blendshapes: Array[M
 	mouth_open_latest = current_mouth > 0.05
 
 func _process(delta: float) -> void:
-	meshContainer.rotation_degrees = lerp(meshContainer.rotation_degrees, current_rot, 15 * delta)
 	meshInstanceOpen.visible = mouth_open_latest
 	meshInstanceClosed.visible = not mouth_open_latest
+
+	if player_detected_latest:
+		meshContainer.rotation_degrees = lerp(meshContainer.rotation_degrees, current_rot, 15 * delta)
+		meshInstanceOpen.position.z = lerp(meshInstanceOpen.position.z, meshInstanceZ, 10 * delta)
+		meshInstanceClosed.position.z = lerp(meshInstanceClosed.position.z, meshInstanceZ, 10 * delta)
+		meshInstanceMissing.position.z = lerp(meshInstanceMissing.position.z, meshInstanceZ + 200.0, 10 * delta)
+	else:
+		meshContainer.rotation_degrees = Vector3(90, 0, 0)
+		meshInstanceOpen.position.z = lerp(meshInstanceOpen.position.z, meshInstanceZ + 200.0, 10 * delta)
+		meshInstanceClosed.position.z = lerp(meshInstanceClosed.position.z, meshInstanceZ + 200.0, 10 * delta)
+		meshInstanceMissing.position.z = lerp(meshInstanceMissing.position.z, meshInstanceZ, 10 * delta)
 
 # var i := 0
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cjffoc1y34w1g"]
+[gd_scene load_steps=12 format=3 uid="uid://cjffoc1y34w1g"]
 
 [ext_resource type="Script" uid="uid://4tsamaaxt8ba" path="res://vision/face_landmarker/FaceLandmarker.gd" id="1_5gk4o"]
 [ext_resource type="Texture2D" uid="uid://5rn8b46r3nsw" path="res://art/maskman.png" id="2_5gk4o"]
+[ext_resource type="Texture2D" uid="uid://clssdwld4y2jg" path="res://art/idleguy.png" id="3_iy6cr"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5gk4o"]
 light_mode = 1
@@ -30,6 +31,18 @@ texture_repeat = false
 [sub_resource type="PlaneMesh" id="PlaneMesh_flqyb"]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_eq8ie")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_flqyb"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("3_iy6cr")
+texture_filter = 1
+texture_repeat = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_o35vm"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_flqyb")
 
 [sub_resource type="Environment" id="Environment_wn73w"]
 background_mode = 1
@@ -77,6 +90,10 @@ mesh = SubResource("PlaneMesh_iy6cr")
 [node name="MeshOpen" type="MeshInstance3D" parent="SubViewport/Face/MeshContainer"]
 transform = Transform3D(50, -7.15256e-07, 1.42109e-14, 7.15256e-07, 50, 2.27374e-13, -4.26326e-14, 0, 50, 0, -1.91131e-06, -43.7258)
 mesh = SubResource("PlaneMesh_flqyb")
+
+[node name="MeshMissing" type="MeshInstance3D" parent="SubViewport/Face/MeshContainer"]
+transform = Transform3D(50, -9.53674e-07, 1.42109e-14, 9.53674e-07, 50, 2.27374e-13, -5.68434e-14, 0, 50, 0, 0, -43.7258)
+mesh = SubResource("PlaneMesh_o35vm")
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport/Face"]
 environment = SubResource("Environment_wn73w")
