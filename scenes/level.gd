@@ -36,7 +36,6 @@ func _spawnFoodItems():
 	if Global.isPlaying:
 		#spawn a food item at random location w/force
 		var new_food = foodItem.instantiate()
-		new_food.get_node("Sprite2D").texture = Global.randomItem(foodSprites)
 		new_food.set_position(Global.randomItem(spawnpoints))
 		add_child(new_food)
 		

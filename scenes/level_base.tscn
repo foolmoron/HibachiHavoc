@@ -1,16 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://wpefkw1tk5ph"]
+[gd_scene load_steps=12 format=3 uid="uid://wpefkw1tk5ph"]
 
 [ext_resource type="Script" uid="uid://b4ohdwkxdqgk6" path="res://scenes/level.gd" id="1_2v7b3"]
 [ext_resource type="PackedScene" uid="uid://f7asg18dn30d" path="res://scenes/IdleOverlay.tscn" id="2_6k8qy"]
-[ext_resource type="Texture2D" uid="uid://bin0i2ouhu715" path="res://art/level1/brocollii.png" id="2_qurbw"]
 [ext_resource type="PackedScene" uid="uid://dq8kr1y6gj6vg" path="res://scenes/Transition.tscn" id="3_evabm"]
-[ext_resource type="Texture2D" uid="uid://cj6iwxr26tove" path="res://art/level1/rice.png" id="3_vm68j"]
 [ext_resource type="Texture2D" uid="uid://dnb6qgxl0lurc" path="res://art/level1/Hibachi bg.png" id="4_qurbw"]
-[ext_resource type="Texture2D" uid="uid://b156n4pjoliaq" path="res://art/level1/shrimp.png" id="5_vm68j"]
 [ext_resource type="PackedScene" uid="uid://cjffoc1y34w1g" path="res://face/face_container.tscn" id="7_ngfo8"]
 [ext_resource type="Texture2D" uid="uid://beh7nxdp5hx14" path="res://art/level1/Hibachi fg.png" id="8_8t3pq"]
 [ext_resource type="Script" uid="uid://cbn375vedljsa" path="res://scenes/eating_area.gd" id="9_6k8qy"]
-[ext_resource type="PackedScene" uid="uid://boklyx5l7v5gs" path="res://scenes/FoodItem.tscn" id="10_evabm"]
 
 [sub_resource type="Curve" id="Curve_evabm"]
 _limits = [0.0, 2048.0, 0.0, 1.0]
@@ -30,16 +26,8 @@ size = Vector2(300, 300)
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6k8qy"]
 size = Vector2(300, 300)
 
-[node name="Level" type="Node2D"]
+[node name="LevelBase" type="Node2D"]
 script = ExtResource("1_2v7b3")
-win_message = null
-lose_message = null
-musicIdx = null
-foodBarMax = null
-healthBarMax = null
-spawn_timer_waittime = null
-foodSpeedVariation = null
-foodSprites = Array[Texture]([ExtResource("2_qurbw"), ExtResource("3_vm68j"), ExtResource("5_vm68j")])
 
 [node name="IdleOverlay" parent="." instance=ExtResource("2_6k8qy")]
 z_index = 50
@@ -50,6 +38,11 @@ visible = false
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("4_qurbw")
+centered = false
+
+[node name="Foreground" type="Sprite2D" parent="."]
+z_index = 100
+texture = ExtResource("8_8t3pq")
 centered = false
 
 [node name="FaceContainer" parent="." instance=ExtResource("7_ngfo8")]
@@ -65,11 +58,6 @@ offset_bottom = 1667.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Foreground" type="Sprite2D" parent="."]
-z_index = 100
-texture = ExtResource("8_8t3pq")
-centered = false
-
 [node name="EatingArea" type="Area2D" parent="."]
 z_index = 1000
 position = Vector2(957, 560)
@@ -83,21 +71,5 @@ shape = SubResource("RectangleShape2D_vm68j")
 [node name="Sprite2D" type="Sprite2D" parent="EatingArea/CollisionShape2D"]
 modulate = Color(1, 1, 1, 0.188235)
 texture = SubResource("PlaceholderTexture2D_6k8qy")
-
-[node name="FoodItem" parent="." instance=ExtResource("10_evabm")]
-position = Vector2(552, 95)
-gravity_scale = 0.02
-
-[node name="FoodItem2" parent="." instance=ExtResource("10_evabm")]
-position = Vector2(310, 487)
-gravity_scale = 0.02
-
-[node name="FoodItem3" parent="." instance=ExtResource("10_evabm")]
-position = Vector2(1632, 120)
-gravity_scale = 0.02
-
-[node name="FoodItem4" parent="." instance=ExtResource("10_evabm")]
-position = Vector2(1315, 136)
-gravity_scale = 0.02
 
 [connection signal="levelEnd" from="." to="Transition" method="_on_Level_End"]
