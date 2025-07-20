@@ -247,3 +247,4 @@ frame_progress = 0.226031
 
 [connection signal="levelEnd" from="." to="Transition" method="_on_Level_End"]
 [connection signal="startGame" from="IdleOverlay" to="." method="beginGame"]
+[connection signal="ate_food" from="EatingArea" to="." method="ateFood"]

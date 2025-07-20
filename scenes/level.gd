@@ -27,6 +27,9 @@ func _ready() -> void:
 	clearFood()
 	Global.switchMusic(musicIdx)
 
+func ateFood(_item : Node):
+	currentFoodBar -= 1
+
 func clearFood():
 	for item in foodItems:
 		item.queue_free()
