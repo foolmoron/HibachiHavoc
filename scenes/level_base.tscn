@@ -20,14 +20,14 @@
 
 [sub_resource type="Curve" id="Curve_evabm"]
 _limits = [0.0, 2048.0, 0.0, 1.0]
-_data = [Vector2(0, 476), 0.0, 384.0, 0, 1, Vector2(0.25, 572), 384.0, 1552.0, 1, 1, Vector2(0.5, 960), 1552.0, 1552.0, 1, 1, Vector2(0.75, 1348), 1552.0, 768.0, 1, 1, Vector2(1, 1540), 768.0, 0.0, 1, 0]
+_data = [Vector2(0, 356), 0.0, 384.0, 0, 1, Vector2(0.25, 452), 384.0, 2032.0, 1, 1, Vector2(0.5, 960), 2032.0, 2032.0, 1, 1, Vector2(0.75, 1468), 2032.0, 768.0, 1, 1, Vector2(1, 1660), 768.0, 0.0, 1, 0]
 point_count = 5
 metadata/_snap_enabled = true
 metadata/_snap_count = 64
 
 [sub_resource type="Curve" id="Curve_qurbw"]
 _limits = [0.0, 2048.0, 0.0, 1.0]
-_data = [Vector2(0, 380), nan, 360.0, 1, 1, Vector2(0.5, 560), 0.0, 320.0, 0, 1, Vector2(1, 720), 320.0, 0.0, 1, 0]
+_data = [Vector2(0, 204.8), nan, 710.4, 1, 1, Vector2(0.5, 560), 710.4, 520.0, 1, 1, Vector2(1, 820), 520.0, 0.0, 1, 0]
 point_count = 3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vm68j"]
