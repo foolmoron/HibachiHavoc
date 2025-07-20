@@ -72,4 +72,6 @@ shape = SubResource("RectangleShape2D_vm68j")
 modulate = Color(1, 1, 1, 0.188235)
 texture = SubResource("PlaceholderTexture2D_6k8qy")
 
+[node name="Instructions" type="AnimatedSprite2D" parent="."]
+
 [connection signal="levelEnd" from="." to="Transition" method="_on_Level_End"]
