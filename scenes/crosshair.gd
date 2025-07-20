@@ -1,4 +1,4 @@
 extends AnimatedSprite2D
 
-func _process(delta: float) -> void:
-    frame = 1 if FaceLandmarker.mouth_open_latest else 0
+func _physics_process(_delta: float) -> void:
+	frame = 1 if FaceLandmarker.mouth_open_latest else 0

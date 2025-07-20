@@ -1,8 +1,6 @@
 extends Node
 
-signal levelEnd(message : String)
-@export var win_message := "Plate Cleaned!"
-@export var lose_message := "Indigestion..."
+signal levelEnd(didWin : bool)
 @onready var currentFoodBar := foodBarMax
 @onready var currentHealthBar := healthBarMax
 
@@ -22,6 +20,7 @@ var foodTimeRemaining := 0.0
 
 func _ready() -> void:
 	$Transition.hide()
+	$CanvasLayer.hide()
 	clearFood()
 	Global.switchMusic(musicIdx)
 
@@ -62,12 +61,13 @@ func _physics_process(delta: float) -> void:
 #GAME CONTROL
 func beginGame():
 	Global.isPlaying = true
+	$CanvasLayer.show()
 	foodTimeRemaining = 0.0
 
 func winLevel():
-	levelEnd.emit(win_message)
+	levelEnd.emit(true)
 	$Transition.show()
 
 func loseLevel():
-	levelEnd.emit(lose_message)
+	levelEnd.emit(false)
 	$Transition.show()

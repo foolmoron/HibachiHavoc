@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://wpefkw1tk5ph"]
+[gd_scene load_steps=26 format=3 uid="uid://wpefkw1tk5ph"]
 
 [ext_resource type="Script" uid="uid://b4ohdwkxdqgk6" path="res://scenes/level.gd" id="1_2v7b3"]
 [ext_resource type="PackedScene" uid="uid://c7jnrip4qi2n4" path="res://scenes/IdleOverlay.tscn" id="2_6k8qy"]
@@ -10,12 +10,13 @@
 [ext_resource type="Script" uid="uid://cbn375vedljsa" path="res://scenes/eating_area.gd" id="9_6k8qy"]
 [ext_resource type="Texture2D" uid="uid://c6xhu3s8adsll" path="res://art/crosshair_mouth.png" id="9_evabm"]
 [ext_resource type="Texture2D" uid="uid://b2pdocriod5wj" path="res://art/tutorial guy/tutguy_open.png" id="11_2rdwc"]
-[ext_resource type="Script" path="res://scenes/crosshair.gd" id="11_qurbw"]
+[ext_resource type="Script" uid="uid://btmcn7lga5m65" path="res://scenes/crosshair.gd" id="11_qurbw"]
 [ext_resource type="Texture2D" uid="uid://dnv075et0tvgp" path="res://art/tutorial guy/tutguy.png" id="12_agxjp"]
 [ext_resource type="Texture2D" uid="uid://bdc3ba76wxld5" path="res://art/tutorial guy/left_open_tutguy.png" id="13_117i7"]
 [ext_resource type="Texture2D" uid="uid://6am866aypddl" path="res://art/tutorial guy/left_tutguy.png" id="14_copb0"]
 [ext_resource type="Texture2D" uid="uid://bw2nrmhyf712p" path="res://art/tutorial guy/right_open_tutguy.png" id="15_wj5ly"]
 [ext_resource type="Texture2D" uid="uid://yqhfoyl7rneh" path="res://art/tutorial guy/right_tutguy.png" id="16_g5705"]
+[ext_resource type="FontVariation" uid="uid://bwogxyta7k6b7" path="res://default_variation.tres" id="17_agxjp"]
 
 [sub_resource type="Curve" id="Curve_evabm"]
 _limits = [0.0, 2048.0, 0.0, 1.0]
@@ -45,6 +46,45 @@ animations = [{
 "name": &"default",
 "speed": 8.0
 }]
+
+[sub_resource type="Animation" id="Animation_02j7v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Message:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dlrf8"]
+resource_name = "pulse_text"
+length = 1.5
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Message:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_02j7v"]
+_data = {
+&"RESET": SubResource("Animation_02j7v"),
+&"pulse_text": SubResource("Animation_dlrf8")
+}
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3iqh6"]
 animations = [{
@@ -78,10 +118,8 @@ animations = [{
 "speed": 3.0
 }]
 
-[node name="LevelBase" type="Node2D" node_paths=PackedStringArray("spawnpoints", "aim_targets")]
+[node name="LevelBase" type="Node2D"]
 script = ExtResource("1_2v7b3")
-spawnpoints = [NodePath("Spawn1"), NodePath("Spawn2"), NodePath("Spawn3"), NodePath("Spawn4"), NodePath("Spawn5"), NodePath("Spawn6")]
-aim_targets = [NodePath("Aim1"), NodePath("Aim2")]
 
 [node name="IdleOverlay" parent="." instance=ExtResource("2_6k8qy")]
 z_index = 50
@@ -130,14 +168,6 @@ frame_progress = 0.677092
 speed_scale = 0.0
 script = ExtResource("11_qurbw")
 
-[node name="Instructions" type="AnimatedSprite2D" parent="."]
-z_index = 200
-position = Vector2(98, 970)
-scale = Vector2(0.158796, 0.165278)
-sprite_frames = SubResource("SpriteFrames_3iqh6")
-autoplay = "default"
-frame_progress = 0.226031
-
 [node name="Spawn1" type="Node2D" parent="."]
 position = Vector2(72, 1262)
 
@@ -161,6 +191,42 @@ position = Vector2(482, 327)
 
 [node name="Aim2" type="Node2D" parent="."]
 position = Vector2(1464, 328)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="Message" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.969
+anchor_top = 0.01
+anchor_right = 0.974
+anchor_bottom = 0.01
+offset_left = -516.0
+offset_right = 30.4
+offset_bottom = 73.0
+grow_horizontal = 0
+pivot_offset = Vector2(556, 0)
+theme_override_fonts/normal_font = ExtResource("17_agxjp")
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "[center][outline_size=20][outline_color=#331E1D]Eat all your food![/outline_color][/outline_size][/center]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="TextSizePulse" type="AnimationPlayer" parent="CanvasLayer"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_02j7v")
+}
+autoplay = "pulse_text"
+
+[node name="Instructions" type="AnimatedSprite2D" parent="CanvasLayer"]
+z_index = 200
+position = Vector2(98, 970)
+scale = Vector2(0.158796, 0.165278)
+sprite_frames = SubResource("SpriteFrames_3iqh6")
+autoplay = "default"
+frame_progress = 0.226031
 
 [connection signal="levelEnd" from="." to="Transition" method="_on_Level_End"]
 [connection signal="startGame" from="IdleOverlay" to="." method="beginGame"]

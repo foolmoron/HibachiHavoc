@@ -1,8 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7jnrip4qi2n4"]
+[gd_scene load_steps=14 format=3 uid="uid://c7jnrip4qi2n4"]
 
 [ext_resource type="Script" uid="uid://cpkcmunsqvkbu" path="res://scenes/idle_overlay.gd" id="1_v43c8"]
 [ext_resource type="FontVariation" uid="uid://bwogxyta7k6b7" path="res://default_variation.tres" id="3_dlrf8"]
 [ext_resource type="PackedScene" uid="uid://boklyx5l7v5gs" path="res://scenes/FoodItem.tscn" id="3_iw48v"]
+[ext_resource type="Texture2D" uid="uid://b2pdocriod5wj" path="res://art/tutorial guy/tutguy_open.png" id="4_e0rvp"]
+[ext_resource type="Texture2D" uid="uid://dnv075et0tvgp" path="res://art/tutorial guy/tutguy.png" id="5_g2f3c"]
+[ext_resource type="Texture2D" uid="uid://bdc3ba76wxld5" path="res://art/tutorial guy/left_open_tutguy.png" id="6_owke1"]
+[ext_resource type="Texture2D" uid="uid://6am866aypddl" path="res://art/tutorial guy/left_tutguy.png" id="7_enomx"]
+[ext_resource type="Texture2D" uid="uid://bw2nrmhyf712p" path="res://art/tutorial guy/right_open_tutguy.png" id="8_j625g"]
+[ext_resource type="Texture2D" uid="uid://yqhfoyl7rneh" path="res://art/tutorial guy/right_tutguy.png" id="9_k6rqe"]
 
 [sub_resource type="Animation" id="Animation_02j7v"]
 length = 0.001
@@ -43,6 +49,38 @@ _data = {
 &"pulse_text": SubResource("Animation_dlrf8")
 }
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_e0rvp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_e0rvp")
+}, {
+"duration": 2.0,
+"texture": ExtResource("5_g2f3c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_owke1")
+}, {
+"duration": 2.0,
+"texture": ExtResource("7_enomx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_e0rvp")
+}, {
+"duration": 2.0,
+"texture": ExtResource("5_g2f3c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_j625g")
+}, {
+"duration": 2.0,
+"texture": ExtResource("9_k6rqe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
 [node name="IdleOverlay" type="Node2D" node_paths=PackedStringArray("foodsToStart")]
 z_index = 1
 script = ExtResource("1_v43c8")
@@ -66,7 +104,7 @@ pivot_offset = Vector2(470, 95)
 theme_override_fonts/normal_font = ExtResource("3_dlrf8")
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
-text = "[center][outline_size=20][outline_color=#3A1918]Turn your head and 
+text = "[center][outline_size=20][outline_color=#331E1D]Turn your head and 
 use your mouth to bite!
 [/outline_color][/outline_size][/center]"
 fit_content = true
@@ -78,6 +116,13 @@ libraries = {
 &"": SubResource("AnimationLibrary_02j7v")
 }
 autoplay = "pulse_text"
+
+[node name="Instructions" type="AnimatedSprite2D" parent="CanvasLayer"]
+z_index = 200
+position = Vector2(1607, 966)
+scale = Vector2(0.158796, 0.165278)
+sprite_frames = SubResource("SpriteFrames_e0rvp")
+autoplay = "default"
 
 [node name="FoodItemLeft" parent="." instance=ExtResource("3_iw48v")]
 position = Vector2(415, 600)
