@@ -131,6 +131,7 @@ z_index = 50
 [node name="Transition" parent="." instance=ExtResource("3_evabm")]
 layer = 100
 visible = false
+delay_in_sec = 3.0
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("4_qurbw")
