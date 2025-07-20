@@ -118,8 +118,10 @@ animations = [{
 "speed": 3.0
 }]
 
-[node name="LevelBase" type="Node2D"]
+[node name="LevelBase" type="Node2D" node_paths=PackedStringArray("spawnpoints", "aim_targets")]
 script = ExtResource("1_2v7b3")
+spawnpoints = [NodePath("Spawn1"), NodePath("Spawn2"), NodePath("Spawn3"), NodePath("Spawn4"), NodePath("Spawn5"), NodePath("Spawn6")]
+aim_targets = [NodePath("Aim1"), NodePath("Aim2")]
 
 [node name="IdleOverlay" parent="." instance=ExtResource("2_6k8qy")]
 z_index = 50
@@ -222,7 +224,7 @@ autoplay = "pulse_text"
 
 [node name="Instructions" type="AnimatedSprite2D" parent="CanvasLayer"]
 z_index = 200
-position = Vector2(98, 970)
+position = Vector2(1798, 178)
 scale = Vector2(0.158796, 0.165278)
 sprite_frames = SubResource("SpriteFrames_3iqh6")
 autoplay = "default"
