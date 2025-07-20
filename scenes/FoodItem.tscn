@@ -11,6 +11,8 @@ radius = 83.87
 
 [node name="FoodItem" type="RigidBody2D" groups=["food"]]
 z_index = 500
+gravity_scale = 0.7
+inertia = 5.0
 script = ExtResource("1_2pnc4")
 foodSprites = Array[Texture]([ExtResource("2_r327d"), ExtResource("1_fbia8"), ExtResource("4_k5332")])
 
