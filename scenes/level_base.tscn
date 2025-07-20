@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://wpefkw1tk5ph"]
 
 [ext_resource type="Script" uid="uid://b4ohdwkxdqgk6" path="res://scenes/level.gd" id="1_2v7b3"]
-[ext_resource type="PackedScene" uid="uid://f7asg18dn30d" path="res://scenes/IdleOverlay.tscn" id="2_6k8qy"]
+[ext_resource type="PackedScene" uid="uid://c7jnrip4qi2n4" path="res://scenes/IdleOverlay.tscn" id="2_6k8qy"]
 [ext_resource type="PackedScene" uid="uid://dq8kr1y6gj6vg" path="res://scenes/Transition.tscn" id="3_evabm"]
 [ext_resource type="Texture2D" uid="uid://dnb6qgxl0lurc" path="res://art/level1/Hibachi bg.png" id="4_qurbw"]
 [ext_resource type="PackedScene" uid="uid://cjffoc1y34w1g" path="res://face/face_container.tscn" id="7_ngfo8"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ckar6ufmjxg3t"]
+[gd_scene load_steps=12 format=3 uid="uid://ckar6ufmjxg3t"]
 
 [ext_resource type="PackedScene" uid="uid://wpefkw1tk5ph" path="res://scenes/level_base.tscn" id="1_b3oru"]
 [ext_resource type="Texture2D" uid="uid://daxwhllj2hnci" path="res://art/level1/hibachi_frog.png" id="2_b3oru"]
@@ -8,10 +8,6 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_m7ahb"]
 atlas = ExtResource("3_61w3m")
 region = Rect2(0, 0, 300, 710)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dwgg1"]
-atlas = ExtResource("3_61w3m")
-region = Rect2(300, 0, 300, 710)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ru4tf"]
 atlas = ExtResource("3_61w3m")
@@ -24,14 +20,11 @@ animations = [{
 "texture": SubResource("AtlasTexture_m7ahb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dwgg1")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_ru4tf")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 2.0
 }]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_61w3m"]
@@ -59,7 +52,8 @@ material = SubResource("StandardMaterial3D_8hd6v")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Foreground" index="0"]
 position = Vector2(1810, 685)
 sprite_frames = SubResource("SpriteFrames_6sh32")
-frame_progress = 0.510927
+autoplay = "default"
+frame_progress = 0.0304227
 
 [node name="SubViewport" parent="FaceContainer" index="0"]
 size = Vector2i(2417, 2302)
