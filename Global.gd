@@ -15,8 +15,11 @@ var idle_time := 0.0
 
 #audio variables
 @onready var bgMusic = AudioController.get_node("BgMusic")
-@onready var eatSFX = AudioController.get_node("EatSFX")
-@onready var whooshSFX = AudioController.get_node("WhooshSFX")
+@onready var soundsToPlay = {
+	"eat": AudioController.get_node("EatSFX"),
+	"whoosh": AudioController.get_node("WhooshSFX"),
+	"level": AudioController.get_node("LevelSFX"),
+}
 
 
 func _ready() -> void:
@@ -53,14 +56,11 @@ func switchMusic(index : int):
 	bgMusic.stream = songs[index]
 	bgMusic.play()
 
-func eat():
-	if(eatSFX.playing):
-		eatSFX.stop()
-	eatSFX.play()
-
-func whoosh():
-	if(!whooshSFX.playing):
-		whooshSFX.play()
+func playSound(soundName : String):
+	if not soundsToPlay.has(soundName):
+		return
+	var sound = soundsToPlay[soundName]
+	sound.play()
 
 func _process(delta: float) -> void:
 	if isPlaying and not FaceLandmarker.player_detected_latest:
