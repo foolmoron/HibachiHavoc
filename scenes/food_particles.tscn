@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://brjlwguu7jayq"]
+
+[ext_resource type="Texture2D" uid="uid://dvdhtymr7p3c6" path="res://art/Circle.png" id="1_dj8ob"]
+
+[sub_resource type="Curve" id="Curve_x67iq"]
+_data = [Vector2(0, 1), 0.0, -0.0439448, 0, 0, Vector2(1, 0), -3.08989, 0.0, 0, 0]
+point_count = 2
+
+[node name="FoodParticles" type="CPUParticles2D"]
+z_index = 500
+emitting = false
+amount = 16
+texture = ExtResource("1_dj8ob")
+lifetime = 0.26
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.48
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 2000)
+initial_velocity_min = 266.21
+initial_velocity_max = 639.65
+scale_amount_min = 0.2
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_x67iq")

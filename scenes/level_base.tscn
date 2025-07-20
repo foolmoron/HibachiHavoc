@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://wpefkw1tk5ph"]
+[gd_scene load_steps=15 format=3 uid="uid://wpefkw1tk5ph"]
 
 [ext_resource type="Script" uid="uid://b4ohdwkxdqgk6" path="res://scenes/level.gd" id="1_2v7b3"]
 [ext_resource type="PackedScene" uid="uid://f7asg18dn30d" path="res://scenes/IdleOverlay.tscn" id="2_6k8qy"]
@@ -9,10 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://cjffoc1y34w1g" path="res://face/face_container.tscn" id="7_ngfo8"]
 [ext_resource type="Texture2D" uid="uid://beh7nxdp5hx14" path="res://art/level1/Hibachi fg.png" id="8_8t3pq"]
 [ext_resource type="Script" uid="uid://cbn375vedljsa" path="res://scenes/eating_area.gd" id="9_6k8qy"]
+[ext_resource type="PackedScene" uid="uid://boklyx5l7v5gs" path="res://scenes/FoodItem.tscn" id="10_evabm"]
 
 [sub_resource type="Curve" id="Curve_evabm"]
 _limits = [0.0, 2048.0, 0.0, 1.0]
-_data = [Vector2(0, 576), 0.0, 384.0, 0, 1, Vector2(0.25, 672), 384.0, 1152.0, 1, 1, Vector2(0.5, 960), 1152.0, 1152.0, 1, 1, Vector2(0.75, 1248), 1152.0, 768.0, 1, 1, Vector2(1, 1440), 768.0, 0.0, 1, 0]
+_data = [Vector2(0, 476), 0.0, 384.0, 0, 1, Vector2(0.25, 572), 384.0, 1552.0, 1, 1, Vector2(0.5, 960), 1552.0, 1552.0, 1, 1, Vector2(0.75, 1348), 1552.0, 768.0, 1, 1, Vector2(1, 1540), 768.0, 0.0, 1, 0]
 point_count = 5
 metadata/_snap_enabled = true
 metadata/_snap_count = 64
@@ -23,10 +24,10 @@ _data = [Vector2(0, 380), nan, 360.0, 1, 1, Vector2(0.5, 560), 0.0, 320.0, 0, 1,
 point_count = 3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vm68j"]
-size = Vector2(480, 880)
+size = Vector2(300, 880)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6k8qy"]
-size = Vector2(480, 880)
+size = Vector2(300, 880)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_2v7b3")
@@ -81,6 +82,23 @@ map_from_dir_to_y = SubResource("Curve_qurbw")
 shape = SubResource("RectangleShape2D_vm68j")
 
 [node name="Sprite2D" type="Sprite2D" parent="EatingArea/CollisionShape2D"]
+modulate = Color(1, 1, 1, 0.188235)
 texture = SubResource("PlaceholderTexture2D_6k8qy")
+
+[node name="FoodItem" parent="." instance=ExtResource("10_evabm")]
+position = Vector2(552, 95)
+gravity_scale = 0.02
+
+[node name="FoodItem2" parent="." instance=ExtResource("10_evabm")]
+position = Vector2(310, 487)
+gravity_scale = 0.02
+
+[node name="FoodItem3" parent="." instance=ExtResource("10_evabm")]
+position = Vector2(1632, 120)
+gravity_scale = 0.02
+
+[node name="FoodItem4" parent="." instance=ExtResource("10_evabm")]
+position = Vector2(1315, 136)
+gravity_scale = 0.02
 
 [connection signal="levelEnd" from="." to="Transition" method="_on_Level_End"]

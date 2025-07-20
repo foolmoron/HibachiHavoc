@@ -9,6 +9,7 @@ var task_file_generation := 1681322467931433
 @onready var meshInstance: MeshInstance3D = $MeshContainer/Mesh
 
 static var dir_latest := Vector2(0.0, 0.0)
+static var mouth_open_latest := false
 
 func _result_callback(result: MediaPipeFaceLandmarkerResult, image: MediaPipeImage, timestamp_ms: int) -> void:
 	var img := image.get_image()
@@ -64,11 +65,12 @@ func do_mesh_stuff(landmarks: MediaPipeNormalizedLandmarks, blendshapes: Array[M
 		for category in blendshape.categories:
 			if category.has_category_name() and (category.category_name == "jawOpen" or category.category_name == "jawLeft" or category.category_name == "jawRight"):
 				current_mouth = max(current_mouth, category.score)
+	mouth_open_latest = current_mouth > 0.05
 
 func _process(delta: float) -> void:
 	meshContainer.rotation_degrees = lerp(meshContainer.rotation_degrees, current_rot, 15 * delta)
 	# meshContainer.rotation_degrees.y = current_rot.y#lerp(meshContainer.rotation_degrees.y, , 0.2 * delta)
-	(meshInstance.mesh as PlaneMesh).material.albedo_color = lerp(Color.WHITE, Color.RED, 1.0 if current_mouth > 0.05 else 0.0)
+	(meshInstance.mesh as PlaneMesh).material.albedo_color = lerp(Color.WHITE, Color.RED, 1.0 if mouth_open_latest else 0.0)
 
 # var i := 0
 
