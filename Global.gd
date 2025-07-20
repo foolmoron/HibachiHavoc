@@ -2,6 +2,7 @@ extends Node
 
 static var isPlaying : bool
 @onready var streak : int = 0;
+@onready var foods_eaten : int = 0;
 @onready var currentScene : int = 0;
 var levels : Array[PackedScene] = [preload("res://levels/level1.tscn"), preload("res://levels/level2.tscn"), preload("res://levels/level3.tscn")]
 var songs : Array[AudioStream] = [preload("res://audio/music/Theme 2b.mp3")]

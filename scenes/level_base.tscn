@@ -40,8 +40,9 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="LevelBase" type="Node2D"]
+[node name="LevelBase" type="Node2D" node_paths=PackedStringArray("spawnpoints")]
 script = ExtResource("1_2v7b3")
+spawnpoints = [NodePath("Spawn1"), NodePath("Spawn2"), NodePath("Spawn3"), NodePath("Spawn4"), NodePath("Spawn5"), NodePath("Spawn6")]
 
 [node name="IdleOverlay" parent="." instance=ExtResource("2_6k8qy")]
 z_index = 50
@@ -91,6 +92,24 @@ speed_scale = 0.0
 script = ExtResource("11_qurbw")
 
 [node name="Instructions" type="AnimatedSprite2D" parent="."]
+
+[node name="Spawn1" type="Node2D" parent="."]
+position = Vector2(72, 1262)
+
+[node name="Spawn2" type="Node2D" parent="."]
+position = Vector2(-289, 686)
+
+[node name="Spawn3" type="Node2D" parent="."]
+position = Vector2(-207, 160)
+
+[node name="Spawn4" type="Node2D" parent="."]
+position = Vector2(1798, 1270)
+
+[node name="Spawn5" type="Node2D" parent="."]
+position = Vector2(2075, 740)
+
+[node name="Spawn6" type="Node2D" parent="."]
+position = Vector2(2083, 169)
 
 [connection signal="levelEnd" from="." to="Transition" method="_on_Level_End"]
 [connection signal="startGame" from="IdleOverlay" to="." method="beginGame"]
