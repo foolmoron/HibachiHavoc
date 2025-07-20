@@ -1,12 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://wpefkw1tk5ph"]
+[gd_scene load_steps=15 format=3 uid="uid://wpefkw1tk5ph"]
 
 [ext_resource type="Script" uid="uid://b4ohdwkxdqgk6" path="res://scenes/level.gd" id="1_2v7b3"]
 [ext_resource type="PackedScene" uid="uid://f7asg18dn30d" path="res://scenes/IdleOverlay.tscn" id="2_6k8qy"]
 [ext_resource type="PackedScene" uid="uid://dq8kr1y6gj6vg" path="res://scenes/Transition.tscn" id="3_evabm"]
 [ext_resource type="Texture2D" uid="uid://dnb6qgxl0lurc" path="res://art/level1/Hibachi bg.png" id="4_qurbw"]
 [ext_resource type="PackedScene" uid="uid://cjffoc1y34w1g" path="res://face/face_container.tscn" id="7_ngfo8"]
+[ext_resource type="Texture2D" uid="uid://bp0al02v0nb6h" path="res://art/crosshair_mouth_open.png" id="8_6k8qy"]
 [ext_resource type="Texture2D" uid="uid://beh7nxdp5hx14" path="res://art/level1/Hibachi fg.png" id="8_8t3pq"]
 [ext_resource type="Script" uid="uid://cbn375vedljsa" path="res://scenes/eating_area.gd" id="9_6k8qy"]
+[ext_resource type="Texture2D" uid="uid://c6xhu3s8adsll" path="res://art/crosshair_mouth.png" id="9_evabm"]
+[ext_resource type="Script" uid="uid://btmcn7lga5m65" path="res://scenes/crosshair.gd" id="11_qurbw"]
 
 [sub_resource type="Curve" id="Curve_evabm"]
 _limits = [0.0, 2048.0, 0.0, 1.0]
@@ -23,8 +26,19 @@ point_count = 3
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vm68j"]
 size = Vector2(300, 300)
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6k8qy"]
-size = Vector2(300, 300)
+[sub_resource type="SpriteFrames" id="SpriteFrames_qurbw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_evabm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_6k8qy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
 [node name="LevelBase" type="Node2D"]
 script = ExtResource("1_2v7b3")
@@ -68,8 +82,13 @@ map_from_dir_to_y = SubResource("Curve_qurbw")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EatingArea"]
 shape = SubResource("RectangleShape2D_vm68j")
 
-[node name="Sprite2D" type="Sprite2D" parent="EatingArea/CollisionShape2D"]
-modulate = Color(1, 1, 1, 0.188235)
-texture = SubResource("PlaceholderTexture2D_6k8qy")
+[node name="Anim" type="AnimatedSprite2D" parent="EatingArea/CollisionShape2D"]
+position = Vector2(0.999999, 31)
+scale = Vector2(0.378192, 0.378192)
+sprite_frames = SubResource("SpriteFrames_qurbw")
+frame_progress = 0.677092
+speed_scale = 0.0
+script = ExtResource("11_qurbw")
 
 [connection signal="levelEnd" from="." to="Transition" method="_on_Level_End"]
+[connection signal="startGame" from="IdleOverlay" to="." method="beginGame"]

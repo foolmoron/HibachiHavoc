@@ -39,10 +39,6 @@ func _spawnFoodItems():
 		new_food.set_position(Global.randomItem(spawnpoints))
 		add_child(new_food)
 		
-		# WHAT TO DO TO MAKE IT RECOGNIZE TOUCHING PLAYER AREA COLLIDER?
-		# OLD CODE:
-		#new_food.body_entered.connect(collision_detected)
-		
 		new_food.apply_impulse(Vector2(960 * foodSpeedVariation, 540 * foodSpeedVariation))
 		#start timer again
 		spawnTimer.start()

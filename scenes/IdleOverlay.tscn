@@ -1,62 +1,26 @@
-[gd_scene load_steps=7 format=3 uid="uid://f7asg18dn30d"]
+[gd_scene load_steps=3 format=3 uid="uid://f7asg18dn30d"]
 
 [ext_resource type="Script" uid="uid://cpkcmunsqvkbu" path="res://scenes/idle_overlay.gd" id="1_v43c8"]
-[ext_resource type="Texture2D" uid="uid://b156n4pjoliaq" path="res://art/level1/shrimp.png" id="2_22oun"]
 [ext_resource type="PackedScene" uid="uid://boklyx5l7v5gs" path="res://scenes/FoodItem.tscn" id="3_iw48v"]
 
-[sub_resource type="Animation" id="Animation_22oun"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FloatingFood:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(240, 540)]
-}
-
-[sub_resource type="Animation" id="Animation_iw48v"]
-resource_name = "floatingfood"
-length = 6.0
-loop_mode = 1
-step = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FloatingFood:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3, 6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(240, 540), Vector2(1680, 540), Vector2(240, 540)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_dlrf8"]
-_data = {
-&"RESET": SubResource("Animation_22oun"),
-&"floatingfood": SubResource("Animation_iw48v")
-}
-
-[node name="IdleOverlay" type="Node2D"]
+[node name="IdleOverlay" type="Node2D" node_paths=PackedStringArray("foodsToStart")]
 z_index = 1
 script = ExtResource("1_v43c8")
+foodsToStart = [NodePath("FoodItemLeft"), NodePath("FoodItemRight")]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_dlrf8")
-}
-autoplay = "floatingfood"
+[node name="FoodItemLeft" parent="." instance=ExtResource("3_iw48v")]
+position = Vector2(415, 600)
+gravity_scale = 0.0
+sleeping = true
+freeze_mode = 1
+script = null
 
-[node name="FloatingFood" type="Sprite2D" parent="."]
-position = Vector2(240, 540)
-scale = Vector2(0.35, 0.35)
-texture = ExtResource("2_22oun")
+[node name="FoodItemRight" parent="." instance=ExtResource("3_iw48v")]
+position = Vector2(1533, 600)
+gravity_scale = 0.0
+sleeping = true
+freeze_mode = 1
+script = null
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -74,19 +38,3 @@ theme_override_font_sizes/normal_font_size = 106
 text = "EAT TO START"
 fit_content = true
 autowrap_mode = 0
-
-[node name="FoodItem" parent="." instance=ExtResource("3_iw48v")]
-position = Vector2(552, 95)
-gravity_scale = 0.02
-
-[node name="FoodItem2" parent="." instance=ExtResource("3_iw48v")]
-position = Vector2(310, 487)
-gravity_scale = 0.02
-
-[node name="FoodItem3" parent="." instance=ExtResource("3_iw48v")]
-position = Vector2(1632, 120)
-gravity_scale = 0.02
-
-[node name="FoodItem4" parent="." instance=ExtResource("3_iw48v")]
-position = Vector2(1315, 136)
-gravity_scale = 0.02
