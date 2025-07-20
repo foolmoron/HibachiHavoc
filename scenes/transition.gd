@@ -27,8 +27,12 @@ func _on_Level_End(didWin : bool):
 	if didWin:
 		Global.streak += 1;
 		print("WON! Win streak: " + str(Global.streak))
-		Global.switchScene(Global.currentScene + 1)
+		Global.doWipe(func():
+			Global.switchScene(Global.currentScene + 1)
+		)
 	else:
 		Global.streak = 0
 		print("LOST... Streak: " + str(Global.streak))
-		Global.switchScene(-1)
+		Global.doWipe(func():
+			Global.switchScene(-1)
+		)

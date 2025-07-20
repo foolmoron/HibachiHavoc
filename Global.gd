@@ -1,7 +1,6 @@
 extends Node
 
 static var isPlaying : bool
-static var onWipe : Callable
 
 @onready var streak : int = 0;
 @onready var foods_eaten : int = 0;
@@ -68,9 +67,9 @@ func _process(delta: float) -> void:
 		idle_time += delta
 		if idle_time >= idle_delay:
 			reset()
-			Global.onWipe = func():
+			Global.doWipe(func():
 				await switchScene(-1)
-			Global.doWipe()
+			)
 
 func reset():
 	idle_time = 0.0
@@ -78,12 +77,11 @@ func reset():
 	streak = 0
 	foods_eaten = 0
 	
-func doWipe():
+func doWipe(onWipeCallback: Callable = func(): pass):
 	var w := wiper.instantiate()
 	get_tree().root.add_child(w)
 	await get_tree().create_timer(0.425).timeout
-	if onWipe:
-		await onWipe.call()
+	await onWipeCallback.call()
 	await get_tree().create_timer(0.4).timeout
 	w.queue_free()
 		
