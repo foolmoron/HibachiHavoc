@@ -34,7 +34,6 @@ func show_result(image: Image, result: MediaPipeFaceLandmarkerResult) -> void:
 	if result.has_face_blendshapes():
 		for blendshape in result.face_blendshapes:
 			pass # HANDLE BLENDSHAPES
-	update_image(image)
 
 func draw_landmarks(image: Image, landmarks: MediaPipeNormalizedLandmarks) -> void:
 	var color := Color.GREEN

@@ -13,7 +13,6 @@ var image_file_web: FileAccessWeb
 var video_file_web: FileAccessWeb
 
 @onready var progress_bar: ProgressBar = $ProgressBar
-@onready var image_view: TextureRect = $Image
 
 func _exit_tree() -> void:
 	camera_extension = null
@@ -54,7 +53,6 @@ func _reset() -> void:
 
 func _get_model_asset(result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray, path: String) -> void:
 	progress_bar.hide()
-	image_view.show()
 	if result != HTTPRequest.RESULT_SUCCESS:
 		return
 	if response_code != HTTPClient.RESPONSE_OK:
@@ -120,16 +118,7 @@ func get_model_asset(filename: String, generation: int = -1) -> FileAccess:
 		return file
 	request = MediaPipeExternalFiles.get_asset(filename, generation)
 	if request != null:
-		image_view.hide()
 		progress_bar.show()
 		var callback := _get_model_asset.bind(path)
 		request.request_completed.connect(callback)
 	return null
-
-func update_image(image: Image) -> void:
-	if image == null or image.is_empty():
-		return
-	if Vector2i(image_view.texture.get_size()) == image.get_size():
-		image_view.texture.call_deferred("update", image)
-	else:
-		image_view.texture.call_deferred("set_image", image)
