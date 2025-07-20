@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cjffoc1y34w1g"]
+[gd_scene load_steps=7 format=3 uid="uid://cjffoc1y34w1g"]
 
 [ext_resource type="Script" uid="uid://4tsamaaxt8ba" path="res://vision/face_landmarker/FaceLandmarker.gd" id="1_5gk4o"]
 [ext_resource type="Texture2D" uid="uid://dcxwcx6v3p0en" path="res://face/maskman.png" id="2_iy6cr"]
@@ -6,15 +6,14 @@
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5gk4o"]
 light_mode = 1
 
-[sub_resource type="ImageTexture" id="ImageTexture_eq8ie"]
-resource_local_to_scene = true
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wn73w"]
+resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
 albedo_texture = ExtResource("2_iy6cr")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hxqm2"]
+resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_wn73w")
 
 [sub_resource type="Environment" id="Environment_wn73w"]
@@ -53,28 +52,11 @@ offset_bottom = 509.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Image" type="TextureRect" parent="SubViewport/Face"]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -433.0
-offset_top = -433.0
-offset_right = 433.0
-offset_bottom = 433.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("ImageTexture_eq8ie")
-expand_mode = 2
-stretch_mode = 4
-
 [node name="MeshContainer" type="Node3D" parent="SubViewport/Face"]
-transform = Transform3D(0.997416, -0.0718456, 3.14047e-09, 0, -4.37114e-08, -1, 0.0718456, 0.997416, -4.35984e-08, 0, 0, -97.9913)
+transform = Transform3D(0.997416, -0.0718456, 3.14047e-09, 0, -4.37114e-08, -1, 0.0718456, 0.997416, -4.35984e-08, 0, -45.6546, -163.296)
 
 [node name="Mesh" type="MeshInstance3D" parent="SubViewport/Face/MeshContainer"]
-transform = Transform3D(50, 0, 1.42109e-14, 0, 50, 2.27374e-13, -1.42109e-14, 0, 50, 0, 0, -17.6197)
+transform = Transform3D(50, -7.15256e-07, 1.42109e-14, 7.15256e-07, 50, 2.27374e-13, -4.26326e-14, 0, 50, 0, -1.91131e-06, -43.7258)
 mesh = SubResource("PlaneMesh_hxqm2")
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport/Face"]

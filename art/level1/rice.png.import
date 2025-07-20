@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b156n4pjoliaq"
-path="res://.godot/imported/shrimp.png-be66237837eb1e8d7133511ddce36f57.ctex"
+uid="uid://cj6iwxr26tove"
+path="res://.godot/imported/rice.png-9ea24c375441b6665e8ad886535531be.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/level1/food/shrimp.png"
-dest_files=["res://.godot/imported/shrimp.png-be66237837eb1e8d7133511ddce36f57.ctex"]
+source_file="res://art/level1/rice.png"
+dest_files=["res://.godot/imported/rice.png-9ea24c375441b6665e8ad886535531be.ctex"]
 
 [params]
 

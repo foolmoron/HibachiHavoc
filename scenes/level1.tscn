@@ -1,57 +1,59 @@
-[gd_scene load_steps=9 format=3 uid="uid://wpefkw1tk5ph"]
+[gd_scene load_steps=10 format=3 uid="uid://ckar6ufmjxg3t"]
 
-[ext_resource type="PackedScene" uid="uid://f7asg18dn30d" path="res://scenes/IdleOverlay.tscn" id="1_dwgg1"]
-[ext_resource type="Script" uid="uid://b4ohdwkxdqgk6" path="res://scenes/level.gd" id="1_ru4tf"]
-[ext_resource type="Texture2D" uid="uid://b156n4pjoliaq" path="res://art/level1/food/shrimp.png" id="2_dwgg1"]
-[ext_resource type="PackedScene" uid="uid://dq8kr1y6gj6vg" path="res://scenes/Transition.tscn" id="3_6sh32"]
-[ext_resource type="Texture2D" uid="uid://djgplnu6orsxg" path="res://art/placeholderimage.png" id="3_ru4tf"]
-[ext_resource type="Texture2D" uid="uid://ct72nshuyko3g" path="res://art/placeholderimage1.png" id="4_dwgg1"]
-[ext_resource type="PackedScene" uid="uid://c75boorltp1vc" path="res://scenes/Player.tscn" id="6_ejswk"]
-[ext_resource type="PackedScene" uid="uid://cjffoc1y34w1g" path="res://face/face_container.tscn" id="7_bbk5w"]
+[ext_resource type="PackedScene" uid="uid://wpefkw1tk5ph" path="res://scenes/level_base.tscn" id="1_g2h75"]
+[ext_resource type="Texture2D" uid="uid://rdn5ku3bhwe3" path="res://art/level1/frogdad.png" id="2_m7ahb"]
+[ext_resource type="Texture2D" uid="uid://c8lrbfp6giigl" path="res://art/level1/Tea sprite sheet.png" id="2_wwpf4"]
 
-[node name="Level" type="Node2D"]
-script = ExtResource("1_ru4tf")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dwgg1"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("2_m7ahb")
 
-[node name="IdleOverlay" parent="." instance=ExtResource("1_dwgg1")]
-z_index = 50
+[sub_resource type="PlaneMesh" id="PlaneMesh_ru4tf"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_dwgg1")
 
-[node name="Transition" parent="." instance=ExtResource("3_6sh32")]
-layer = 100
-visible = false
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7ahb"]
+atlas = ExtResource("2_wwpf4")
+region = Rect2(0, 0, 300, 710)
 
-[node name="Background" type="Sprite2D" parent="."]
-scale = Vector2(2.10231, 1.88021)
-texture = ExtResource("3_ru4tf")
-centered = false
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwgg1"]
+atlas = ExtResource("2_wwpf4")
+region = Rect2(300, 0, 300, 710)
 
-[node name="PlayerAnchor" type="Node2D" parent="."]
-z_index = 1
-position = Vector2(960, 540)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ru4tf"]
+atlas = ExtResource("2_wwpf4")
+region = Rect2(600, 0, 300, 710)
 
-[node name="Body" type="Sprite2D" parent="PlayerAnchor"]
-position = Vector2(-69, -15)
-texture = ExtResource("2_dwgg1")
+[sub_resource type="SpriteFrames" id="SpriteFrames_6sh32"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7ahb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dwgg1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ru4tf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
-[node name="Player" parent="PlayerAnchor" instance=ExtResource("6_ejswk")]
+[node name="Level" instance=ExtResource("1_g2h75")]
 
-[node name="FaceContainer" parent="." instance=ExtResource("7_bbk5w")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 294.0
-offset_top = 16.0
-offset_right = 1594.0
-offset_bottom = 1254.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="SubViewport" parent="FaceContainer" index="0"]
+size = Vector2i(2417, 2302)
 
-[node name="Foreground" type="Sprite2D" parent="."]
-z_index = 100
-position = Vector2(0, 756)
-scale = Vector2(2.10781, 2.11321)
-texture = ExtResource("4_dwgg1")
-centered = false
+[node name="Mesh" parent="FaceContainer/SubViewport/Face/MeshContainer" index="0"]
+mesh = SubResource("PlaneMesh_ru4tf")
 
-[connection signal="levelEnd" from="." to="Transition" method="_on_Level_End"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Foreground" index="0"]
+position = Vector2(1810, 685)
+sprite_frames = SubResource("SpriteFrames_6sh32")
+frame_progress = 0.510927
+
+[editable path="FaceContainer"]

@@ -5,7 +5,7 @@ static var isPlaying : bool
 @onready var currentScene : int = 0;
 var levels : Array[PackedScene] = [preload("res://scenes/level1.tscn")]
 #var levels : Array[PackedScene] = [preload("res://scenes/level1.tscn"), preload("res://scenes/level2.tscn"), preload("res://scenes/level3.tscn")]
-var songs : Array[AudioStream] = [preload("res://audio/music/menu.mp3")]
+var songs : Array[AudioStream] = [preload("res://audio/music/Theme 2b.mp3")]
 
 #variables to return to titlescreen after no user interaction for a while
 var idleTimer : Timer

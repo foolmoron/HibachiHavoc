@@ -23,7 +23,6 @@ var foodItems : Array
 func _ready() -> void:
 	$IdleOverlay.show()
 	$Transition.hide()
-	$Foreground.hide()
 	spawnTimer.wait_time = spawn_timer_waittime
 	spawnTimer.timeout.connect(_spawnFoodItems)
 	clearFood()
@@ -62,7 +61,6 @@ func _physics_process(delta: float) -> void:
 #GAME CONTROL
 func beginGame():
 	$IdleOverlay.hide()
-	$Foreground.show()
 	Global.isPlaying = true
 	_spawnFoodItems()
 
