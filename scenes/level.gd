@@ -53,7 +53,8 @@ func _spawnFoodItem():
 			new_food = foodItem3.instantiate() as RigidBody2D
 	new_food.global_position = Global.randomItem(spawnpoints).global_position
 	add_child(new_food)
-
+	Global.whoosh()
+	
 	var target := (Global.randomItem(aim_targets) as Node2D).global_position
 	var dir := (target - new_food.global_position).normalized() as Vector2
 	new_food.apply_impulse(dir * 1500.0)
