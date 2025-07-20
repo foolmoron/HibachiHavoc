@@ -15,6 +15,7 @@ signal levelEnd(message : String)
 
 #SPAWNING FOOD
 @export var spawnpoints : Array[Node2D] = []
+@export var aim_targets : Array[Node2D] = []
 var foodItem : PackedScene = preload("res://scenes/FoodItem.tscn")
 var foodItems : Array
 var foodTimeRemaining := 0.0
@@ -38,9 +39,10 @@ func _spawnFoodItem():
 	new_food.global_position = Global.randomItem(spawnpoints).global_position
 	add_child(new_food)
 
-	var dir := (Vector2(960.0, 540.0) - new_food.global_position).normalized() as Vector2
-	new_food.apply_impulse(dir)
-	new_food.apply_torque_impulse(randf_range(-100.0, 100.0))
+	var target := (Global.randomItem(aim_targets) as Node2D).global_position
+	var dir := (target - new_food.global_position).normalized() as Vector2
+	new_food.apply_impulse(dir * 1500.0)
+	new_food.apply_torque_impulse(randf_range(50.0, 150.0) * (-1 if randf() < 0.5 else 1))
 
 
 func _physics_process(delta: float) -> void:
@@ -52,6 +54,7 @@ func _physics_process(delta: float) -> void:
 	elif currentHealthBar == 0:
 		loseLevel()
 		clearFood()
+	foodTimeRemaining -= delta
 	if foodTimeRemaining <= 0.0:
 		_spawnFoodItem()
 		foodTimeRemaining = randf_range(food_spawn_interval_min, food_spawn_interval_max)
@@ -61,7 +64,7 @@ func _physics_process(delta: float) -> void:
 func beginGame():
 	$IdleOverlay.hide()
 	Global.isPlaying = true
-	_spawnFoodItem()
+	foodTimeRemaining = 0.0
 
 func winLevel():
 	levelEnd.emit(win_message)
