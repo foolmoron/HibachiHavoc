@@ -53,7 +53,7 @@ spacing_space = 7
 spacing_top = 25
 spacing_bottom = 40
 
-[node name="Level" instance=ExtResource("1_y0xe8")]
+[node name="Level2" instance=ExtResource("1_y0xe8")]
 level = 2
 
 [node name="IdleOverlay" parent="." index="0"]

@@ -12,12 +12,14 @@ Programming
 - Momin Khan
 - Ray Scott
 
-Design & Additional Programming
-- Jane Rinaldi
-
-2D Art
+Backgrounds
 - Sophie Figueroa
+
+Food Items
 - Blyth Feuzeu
+
+2D Characters
+- Jane Rinaldi
 
 Sound
 - Taylor Seward
