@@ -37,6 +37,10 @@ enabled=PackedStringArray("res://addons/CameraServerExtension/plugin.cfg", "res:
 
 food=""
 
+[gui]
+
+theme/custom_font="uid://d3mpxchgmvq2w"
+
 [input]
 
 TempInput={

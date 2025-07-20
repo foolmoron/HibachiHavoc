@@ -5,26 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://c8lrbfp6giigl" path="res://art/level1/Tea sprite sheet.png" id="3_61w3m"]
 [ext_resource type="Texture2D" uid="uid://cdhqhws387nph" path="res://art/level1/hibachi_frog_open.png" id="3_ua5ty"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_61w3m"]
-resource_local_to_scene = true
-transparency = 1
-shading_mode = 0
-albedo_texture = ExtResource("2_b3oru")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_pdpul"]
-resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_61w3m")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8hd6v"]
-resource_local_to_scene = true
-transparency = 1
-shading_mode = 0
-albedo_texture = ExtResource("3_ua5ty")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_045es"]
-resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_8hd6v")
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_m7ahb"]
 atlas = ExtResource("3_61w3m")
 region = Rect2(0, 0, 300, 710)
@@ -54,7 +34,32 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_61w3m"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("2_b3oru")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pdpul"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_61w3m")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8hd6v"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("3_ua5ty")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_045es"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_8hd6v")
+
 [node name="Level" instance=ExtResource("1_b3oru")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Foreground" index="0"]
+position = Vector2(1810, 685)
+sprite_frames = SubResource("SpriteFrames_6sh32")
+frame_progress = 0.510927
 
 [node name="SubViewport" parent="FaceContainer" index="0"]
 size = Vector2i(2417, 2302)
@@ -64,10 +69,5 @@ mesh = SubResource("PlaneMesh_pdpul")
 
 [node name="MeshOpen" parent="FaceContainer/SubViewport/Face/MeshContainer" index="1"]
 mesh = SubResource("PlaneMesh_045es")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Foreground" index="0"]
-position = Vector2(1810, 685)
-sprite_frames = SubResource("SpriteFrames_6sh32")
-frame_progress = 0.510927
 
 [editable path="FaceContainer"]
