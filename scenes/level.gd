@@ -15,9 +15,12 @@ const suffix := "[/outline_color][/outline_size][/center]"
 @export_range(0.0, 5.0) var food_spawn_interval_max := 3.0
 
 #SPAWNING FOOD
+@export var level := 1
 @export var spawnpoints : Array[Node2D] = []
 @export var aim_targets : Array[Node2D] = []
-var foodItem : PackedScene = preload("res://scenes/FoodItem.tscn")
+var foodItem1 : PackedScene = preload("res://levels/hibachi_foodItem.tscn")
+var foodItem2 : PackedScene = preload("res://levels/bakery_foodItem.tscn")
+var foodItem3 : PackedScene = preload("res://levels/space_foodItem.tscn")
 var foodItems : Array
 var foodTimeRemaining := 0.0
 
@@ -38,8 +41,15 @@ func clearFood():
 func _spawnFoodItem():
 	if not Global.isPlaying:
 		return
-
-	var new_food = foodItem.instantiate() as RigidBody2D
+	
+	var new_food
+	match level:
+		1:
+			new_food = foodItem1.instantiate() as RigidBody2D
+		2:
+			new_food = foodItem2.instantiate() as RigidBody2D
+		3:
+			new_food = foodItem3.instantiate() as RigidBody2D
 	new_food.global_position = Global.randomItem(spawnpoints).global_position
 	add_child(new_food)
 

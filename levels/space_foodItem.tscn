@@ -1,5 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4udfytjvdxo6"]
+[gd_scene load_steps=3 format=3 uid="uid://b4udfytjvdxo6"]
 
 [ext_resource type="PackedScene" uid="uid://boklyx5l7v5gs" path="res://scenes/FoodItem.tscn" id="1_yusm8"]
+[ext_resource type="Texture2D" uid="uid://dxt0n16ui0b8f" path="res://art/level3/star.png" id="2_3pepi"]
 
 [node name="Space_FoodItem" instance=ExtResource("1_yusm8")]
+foodSprites = Array[Texture]([ExtResource("2_3pepi"), ExtResource("2_3pepi"), ExtResource("2_3pepi")])

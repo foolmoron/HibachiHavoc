@@ -1,8 +1,7 @@
 [gd_resource type="FontVariation" format=3 uid="uid://bwogxyta7k6b7"]
 
 [resource]
-resource_local_to_scene = true
 spacing_glyph = 4
 spacing_space = 7
-spacing_top = 25
-spacing_bottom = 40
+spacing_top = 10
+spacing_bottom = 10

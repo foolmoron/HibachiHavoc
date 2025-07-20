@@ -1,5 +1,33 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqcwlhjtwwstw"]
+[gd_scene load_steps=8 format=3 uid="uid://cqcwlhjtwwstw"]
 
 [ext_resource type="PackedScene" uid="uid://wpefkw1tk5ph" path="res://scenes/level_base.tscn" id="1_y0xe8"]
+[ext_resource type="Texture2D" uid="uid://buqwao8pmjw72" path="res://art/level2/coffee.png" id="2_py88r"]
+[ext_resource type="Texture2D" uid="uid://ylhfwwqk0bp6" path="res://art/level2/croissant.png" id="3_g1dg4"]
+[ext_resource type="Texture2D" uid="uid://co7m3wk7hkbts" path="res://art/level2/muffin.png" id="4_s1bpp"]
+[ext_resource type="Texture2D" uid="uid://cb0h1bvjww7nu" path="res://art/level2/bakery_BG.PNG" id="5_s1bpp"]
+[ext_resource type="Texture2D" uid="uid://b48kiwwb11qnq" path="res://art/level2/bakery_FG.PNG" id="6_76ugp"]
+
+[sub_resource type="FontVariation" id="FontVariation_76ugp"]
+resource_local_to_scene = true
+spacing_glyph = 4
+spacing_space = 7
+spacing_top = 25
+spacing_bottom = 40
 
 [node name="Level" instance=ExtResource("1_y0xe8")]
+level = 2
+
+[node name="IdleOverlay" parent="." index="0"]
+idle_foodSprites = Array[Texture]([ExtResource("2_py88r"), ExtResource("3_g1dg4"), ExtResource("4_s1bpp")])
+
+[node name="Background" parent="." index="2"]
+texture = ExtResource("5_s1bpp")
+
+[node name="Foreground" parent="." index="3"]
+texture = ExtResource("6_76ugp")
+
+[node name="Count" parent="CanvasLayer" index="0"]
+theme_override_fonts/normal_font = SubResource("FontVariation_76ugp")
+
+[node name="Message" parent="CanvasLayer" index="1"]
+theme_override_fonts/normal_font = SubResource("FontVariation_76ugp")
