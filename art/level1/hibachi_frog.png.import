@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5rn8b46r3nsw"
-path.s3tc="res://.godot/imported/maskman.png-dc56c3582e4c6a18d586fe3aa6cf7121.s3tc.ctex"
+uid="uid://daxwhllj2hnci"
+path.s3tc="res://.godot/imported/hibachi_frog.png-55df26c87f7f324f76a31c45360ded4c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://art/maskman.png"
-dest_files=["res://.godot/imported/maskman.png-dc56c3582e4c6a18d586fe3aa6cf7121.s3tc.ctex"]
+source_file="res://art/level1/hibachi_frog.png"
+dest_files=["res://.godot/imported/hibachi_frog.png-55df26c87f7f324f76a31c45360ded4c.s3tc.ctex"]
 
 [params]
 
