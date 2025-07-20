@@ -1,4 +1,5 @@
 extends VisionTask
+class_name FaceLandmarker
 
 var task: MediaPipeFaceLandmarker
 var task_file := "face_landmarker_v2_with_blendshapes.task"
@@ -6,6 +7,8 @@ var task_file_generation := 1681322467931433
 
 @onready var meshContainer: Node3D = $MeshContainer
 @onready var meshInstance: MeshInstance3D = $MeshContainer/Mesh
+
+static var dir_latest := Vector2(0.0, 0.0)
 
 func _result_callback(result: MediaPipeFaceLandmarkerResult, image: MediaPipeImage, timestamp_ms: int) -> void:
 	var img := image.get_image()
@@ -50,11 +53,11 @@ var current_mouth := 0.0
 
 func do_mesh_stuff(landmarks: MediaPipeNormalizedLandmarks, blendshapes: Array[MediaPipeClassifications]) -> void:
 	var diffH = landmarks.landmarks[356].z - (landmarks.landmarks[34].z + 0.030)
-	var dirH = clamp(inverse_lerp(0.08, -0.08, diffH), 0.0, 1.0)
-	current_rot.y = lerp(-45, 45, dirH)
+	dir_latest.x = clamp(inverse_lerp(0.08, -0.08, diffH), 0.0, 1.0)
+	current_rot.y = lerp(-45, 45, dir_latest.x)
 	var diffV = landmarks.landmarks[10].z - (landmarks.landmarks[18].z + 0.035)
-	var dirV = clamp(inverse_lerp(0.08, -0.08, diffV), 0.0, 1.0)
-	current_rot.x = 90.0 + lerp(-45, 45, dirV)
+	dir_latest.y = clamp(inverse_lerp(0.08, -0.08, diffV), 0.0, 1.0)
+	current_rot.x = 90.0 + lerp(-45, 45, dir_latest.y)
 
 	current_mouth = 0.0
 	for blendshape in blendshapes:

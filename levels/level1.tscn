@@ -1,29 +1,29 @@
 [gd_scene load_steps=10 format=3 uid="uid://ckar6ufmjxg3t"]
 
-[ext_resource type="PackedScene" uid="uid://wpefkw1tk5ph" path="res://scenes/level_base.tscn" id="1_g2h75"]
-[ext_resource type="Texture2D" uid="uid://rdn5ku3bhwe3" path="res://art/level1/frogdad.png" id="2_m7ahb"]
-[ext_resource type="Texture2D" uid="uid://c8lrbfp6giigl" path="res://art/level1/Tea sprite sheet.png" id="2_wwpf4"]
+[ext_resource type="PackedScene" uid="uid://wpefkw1tk5ph" path="res://scenes/level_base.tscn" id="1_b3oru"]
+[ext_resource type="Texture2D" uid="uid://rdn5ku3bhwe3" path="res://art/level1/frogdad.png" id="2_ua5ty"]
+[ext_resource type="Texture2D" uid="uid://c8lrbfp6giigl" path="res://art/level1/Tea sprite sheet.png" id="3_61w3m"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dwgg1"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = ExtResource("2_m7ahb")
+albedo_texture = ExtResource("2_ua5ty")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ru4tf"]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_dwgg1")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m7ahb"]
-atlas = ExtResource("2_wwpf4")
+atlas = ExtResource("3_61w3m")
 region = Rect2(0, 0, 300, 710)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dwgg1"]
-atlas = ExtResource("2_wwpf4")
+atlas = ExtResource("3_61w3m")
 region = Rect2(300, 0, 300, 710)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ru4tf"]
-atlas = ExtResource("2_wwpf4")
+atlas = ExtResource("3_61w3m")
 region = Rect2(600, 0, 300, 710)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6sh32"]
@@ -43,7 +43,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Level" instance=ExtResource("1_g2h75")]
+[node name="Level" instance=ExtResource("1_b3oru")]
 
 [node name="SubViewport" parent="FaceContainer" index="0"]
 size = Vector2i(2417, 2302)
