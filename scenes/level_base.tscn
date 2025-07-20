@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://wpefkw1tk5ph"]
+[gd_scene load_steps=22 format=3 uid="uid://wpefkw1tk5ph"]
 
 [ext_resource type="Script" uid="uid://b4ohdwkxdqgk6" path="res://scenes/level.gd" id="1_2v7b3"]
 [ext_resource type="PackedScene" uid="uid://c7jnrip4qi2n4" path="res://scenes/IdleOverlay.tscn" id="2_6k8qy"]
@@ -9,7 +9,13 @@
 [ext_resource type="Texture2D" uid="uid://beh7nxdp5hx14" path="res://art/level1/Hibachi fg.png" id="8_8t3pq"]
 [ext_resource type="Script" uid="uid://cbn375vedljsa" path="res://scenes/eating_area.gd" id="9_6k8qy"]
 [ext_resource type="Texture2D" uid="uid://c6xhu3s8adsll" path="res://art/crosshair_mouth.png" id="9_evabm"]
-[ext_resource type="Script" uid="uid://btmcn7lga5m65" path="res://scenes/crosshair.gd" id="11_qurbw"]
+[ext_resource type="Texture2D" uid="uid://b2pdocriod5wj" path="res://art/tutorial guy/tutguy_open.png" id="11_2rdwc"]
+[ext_resource type="Script" path="res://scenes/crosshair.gd" id="11_qurbw"]
+[ext_resource type="Texture2D" uid="uid://dnv075et0tvgp" path="res://art/tutorial guy/tutguy.png" id="12_agxjp"]
+[ext_resource type="Texture2D" uid="uid://bdc3ba76wxld5" path="res://art/tutorial guy/left_open_tutguy.png" id="13_117i7"]
+[ext_resource type="Texture2D" uid="uid://6am866aypddl" path="res://art/tutorial guy/left_tutguy.png" id="14_copb0"]
+[ext_resource type="Texture2D" uid="uid://bw2nrmhyf712p" path="res://art/tutorial guy/right_open_tutguy.png" id="15_wj5ly"]
+[ext_resource type="Texture2D" uid="uid://yqhfoyl7rneh" path="res://art/tutorial guy/right_tutguy.png" id="16_g5705"]
 
 [sub_resource type="Curve" id="Curve_evabm"]
 _limits = [0.0, 2048.0, 0.0, 1.0]
@@ -38,6 +44,38 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 8.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3iqh6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_2rdwc")
+}, {
+"duration": 2.0,
+"texture": ExtResource("12_agxjp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_117i7")
+}, {
+"duration": 2.0,
+"texture": ExtResource("14_copb0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_2rdwc")
+}, {
+"duration": 2.0,
+"texture": ExtResource("12_agxjp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_wj5ly")
+}, {
+"duration": 2.0,
+"texture": ExtResource("16_g5705")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
 }]
 
 [node name="LevelBase" type="Node2D" node_paths=PackedStringArray("spawnpoints")]
@@ -92,6 +130,12 @@ speed_scale = 0.0
 script = ExtResource("11_qurbw")
 
 [node name="Instructions" type="AnimatedSprite2D" parent="."]
+z_index = 200
+position = Vector2(1622, 970)
+scale = Vector2(0.158796, 0.165278)
+sprite_frames = SubResource("SpriteFrames_3iqh6")
+autoplay = "default"
+frame_progress = 0.226031
 
 [node name="Spawn1" type="Node2D" parent="."]
 position = Vector2(72, 1262)
