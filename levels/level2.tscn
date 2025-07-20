@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cqcwlhjtwwstw"]
+[gd_scene load_steps=17 format=3 uid="uid://cqcwlhjtwwstw"]
 
 [ext_resource type="PackedScene" uid="uid://wpefkw1tk5ph" path="res://scenes/level_base.tscn" id="1_y0xe8"]
 [ext_resource type="Texture2D" uid="uid://buqwao8pmjw72" path="res://art/level2/coffee.png" id="2_py88r"]
@@ -6,6 +6,45 @@
 [ext_resource type="Texture2D" uid="uid://co7m3wk7hkbts" path="res://art/level2/muffin.png" id="4_s1bpp"]
 [ext_resource type="Texture2D" uid="uid://cb0h1bvjww7nu" path="res://art/level2/bakery_BG.PNG" id="5_s1bpp"]
 [ext_resource type="Texture2D" uid="uid://b48kiwwb11qnq" path="res://art/level2/bakery_FG.PNG" id="6_76ugp"]
+[ext_resource type="Texture2D" uid="uid://c1exbr7keqb3n" path="res://art/level2/bakerybunny.png" id="7_55gdq"]
+[ext_resource type="Texture2D" uid="uid://bmivbthcnxn6c" path="res://art/level2/bakerybunny_open.png" id="8_crte6"]
+[ext_resource type="Texture2D" uid="uid://clssdwld4y2jg" path="res://art/idleguy.png" id="9_hq01p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjysh"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("7_55gdq")
+texture_filter = 1
+texture_repeat = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_bcewn"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_fjysh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6mfmt"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("8_crte6")
+texture_filter = 1
+texture_repeat = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qegch"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_6mfmt")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jai45"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("9_hq01p")
+texture_filter = 1
+texture_repeat = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jj0ry"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_jai45")
 
 [sub_resource type="FontVariation" id="FontVariation_76ugp"]
 resource_local_to_scene = true
@@ -26,8 +65,22 @@ texture = ExtResource("5_s1bpp")
 [node name="Foreground" parent="." index="3"]
 texture = ExtResource("6_76ugp")
 
+[node name="SubViewport" parent="FaceContainer" index="0"]
+size = Vector2i(2417, 2302)
+
+[node name="MeshClosed" parent="FaceContainer/SubViewport/Face/MeshContainer" index="0"]
+mesh = SubResource("PlaneMesh_bcewn")
+
+[node name="MeshOpen" parent="FaceContainer/SubViewport/Face/MeshContainer" index="1"]
+mesh = SubResource("PlaneMesh_qegch")
+
+[node name="MeshMissing" parent="FaceContainer/SubViewport/Face/MeshContainer" index="2"]
+mesh = SubResource("PlaneMesh_jj0ry")
+
 [node name="Count" parent="CanvasLayer" index="0"]
 theme_override_fonts/normal_font = SubResource("FontVariation_76ugp")
 
 [node name="Message" parent="CanvasLayer" index="1"]
 theme_override_fonts/normal_font = SubResource("FontVariation_76ugp")
+
+[editable path="FaceContainer"]
