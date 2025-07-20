@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cj6iwxr26tove" path="res://art/level1/rice.png" id="1_fbia8"]
 [ext_resource type="Texture2D" uid="uid://bin0i2ouhu715" path="res://art/level1/brocollii.png" id="2_r327d"]
 [ext_resource type="Texture2D" uid="uid://b156n4pjoliaq" path="res://art/level1/shrimp.png" id="4_k5332"]
-[ext_resource type="Script" uid="uid://d0sadra5f5lo3" path="res://float_around.gd" id="5_k5332"]
+[ext_resource type="Script" path="res://float_around.gd" id="5_k5332"]
 [ext_resource type="Texture2D" uid="uid://ild8gxkobjh2" path="res://art/CircleFaded.png" id="6_tj4bn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r66ul"]
