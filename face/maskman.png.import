@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dcxwcx6v3p0en"
 path.s3tc="res://.godot/imported/maskman.png-78b0dfebb350be171807f73a502405c7.s3tc.ctex"
+path.etc2="res://.godot/imported/maskman.png-78b0dfebb350be171807f73a502405c7.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://face/maskman.png"
-dest_files=["res://.godot/imported/maskman.png-78b0dfebb350be171807f73a502405c7.s3tc.ctex"]
+dest_files=["res://.godot/imported/maskman.png-78b0dfebb350be171807f73a502405c7.s3tc.ctex", "res://.godot/imported/maskman.png-78b0dfebb350be171807f73a502405c7.etc2.ctex"]
 
 [params]
 

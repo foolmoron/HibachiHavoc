@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://clssdwld4y2jg"
 path.s3tc="res://.godot/imported/idleguy.png-37520fa3d4f726b4bcd3cf78bce27af5.s3tc.ctex"
+path.etc2="res://.godot/imported/idleguy.png-37520fa3d4f726b4bcd3cf78bce27af5.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://art/idleguy.png"
-dest_files=["res://.godot/imported/idleguy.png-37520fa3d4f726b4bcd3cf78bce27af5.s3tc.ctex"]
+dest_files=["res://.godot/imported/idleguy.png-37520fa3d4f726b4bcd3cf78bce27af5.s3tc.ctex", "res://.godot/imported/idleguy.png-37520fa3d4f726b4bcd3cf78bce27af5.etc2.ctex"]
 
 [params]
 

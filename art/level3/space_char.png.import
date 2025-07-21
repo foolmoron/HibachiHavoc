@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ilit0jbr7yc"
 path.s3tc="res://.godot/imported/space_char.png-21029658ddb68da5df8a17b031ec567b.s3tc.ctex"
+path.etc2="res://.godot/imported/space_char.png-21029658ddb68da5df8a17b031ec567b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://art/level3/space_char.png"
-dest_files=["res://.godot/imported/space_char.png-21029658ddb68da5df8a17b031ec567b.s3tc.ctex"]
+dest_files=["res://.godot/imported/space_char.png-21029658ddb68da5df8a17b031ec567b.s3tc.ctex", "res://.godot/imported/space_char.png-21029658ddb68da5df8a17b031ec567b.etc2.ctex"]
 
 [params]
 

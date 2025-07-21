@@ -21,6 +21,7 @@ MediaPipeExternalFiles="*res://addons/GDMP/MediaPipeExternalFiles.gd"
 Global="*res://Global.gd"
 AudioController="*res://scenes/AudioController.tscn"
 FaceLandmarker="*res://vision/face_landmarker/FaceLandmarker.gd"
+GDMPAndroid="*res://addons/GDMP/GDMPAndroid.gd"
 
 [display]
 
@@ -53,3 +54,4 @@ TempInput={
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

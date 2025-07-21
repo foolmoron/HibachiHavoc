@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://daxwhllj2hnci"
 path.s3tc="res://.godot/imported/hibachi_frog.png-55df26c87f7f324f76a31c45360ded4c.s3tc.ctex"
+path.etc2="res://.godot/imported/hibachi_frog.png-55df26c87f7f324f76a31c45360ded4c.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://art/level1/hibachi_frog.png"
-dest_files=["res://.godot/imported/hibachi_frog.png-55df26c87f7f324f76a31c45360ded4c.s3tc.ctex"]
+dest_files=["res://.godot/imported/hibachi_frog.png-55df26c87f7f324f76a31c45360ded4c.s3tc.ctex", "res://.godot/imported/hibachi_frog.png-55df26c87f7f324f76a31c45360ded4c.etc2.ctex"]
 
 [params]
 

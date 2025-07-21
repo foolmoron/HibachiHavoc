@@ -23,7 +23,7 @@ func _init_task() -> void:
 	base_options.delegate = delegate
 	base_options.model_asset_buffer = file.get_buffer(file.get_length())
 	task = MediaPipeFaceLandmarker.new()
-	task.initialize(base_options, MediaPipeTask.VisionRunningMode.RUNNING_MODE_LIVE_STREAM, 1, 0.5, 0.5, 0.5, true)
+	task.initialize(base_options, MediaPipeVisionTask.RUNNING_MODE_LIVE_STREAM, 1, 0.5, 0.5, 0.5, true)
 	task.result_callback.connect(self._result_callback)
 	super()
 

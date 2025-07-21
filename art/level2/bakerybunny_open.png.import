@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bmivbthcnxn6c"
 path.s3tc="res://.godot/imported/bakerybunny_open.png-f4567409cbf7c60dc4807e360c43073d.s3tc.ctex"
+path.etc2="res://.godot/imported/bakerybunny_open.png-f4567409cbf7c60dc4807e360c43073d.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://art/level2/bakerybunny_open.png"
-dest_files=["res://.godot/imported/bakerybunny_open.png-f4567409cbf7c60dc4807e360c43073d.s3tc.ctex"]
+dest_files=["res://.godot/imported/bakerybunny_open.png-f4567409cbf7c60dc4807e360c43073d.s3tc.ctex", "res://.godot/imported/bakerybunny_open.png-f4567409cbf7c60dc4807e360c43073d.etc2.ctex"]
 
 [params]
 
