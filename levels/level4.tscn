@@ -1,0 +1,179 @@
+[gd_scene load_steps=30 format=3 uid="uid://binu8e6bnxa84"]
+
+[ext_resource type="PackedScene" uid="uid://wpefkw1tk5ph" path="res://scenes/level_base.tscn" id="1_8s3b3"]
+[ext_resource type="Texture2D" uid="uid://dxt0n16ui0b8f" path="res://art/level4/star.png" id="2_cc5tm"]
+[ext_resource type="Texture2D" uid="uid://dfvdcf4ow1wsy" path="res://art/level4/earth.png" id="2_mdw0g"]
+[ext_resource type="Texture2D" uid="uid://bc47hym4gn6ap" path="res://art/level4/mars.png" id="3_naavy"]
+[ext_resource type="Texture2D" uid="uid://boqci8evthrrn" path="res://art/level4/saturn.png" id="4_gh4cy"]
+[ext_resource type="Texture2D" uid="uid://ilit0jbr7yc" path="res://art/level4/space_char.png" id="4_mdw0g"]
+[ext_resource type="Texture2D" uid="uid://c8iehxyw5enof" path="res://art/level4/space_char_open.png" id="5_naavy"]
+[ext_resource type="Texture2D" uid="uid://clssdwld4y2jg" path="res://art/idleguy.png" id="6_gh4cy"]
+[ext_resource type="Texture2D" uid="uid://csdqwtajmvgee" path="res://art/level4/Space Base BG.PNG" id="6_mdw0g"]
+[ext_resource type="Texture2D" uid="uid://c8rgxm8fbqq0h" path="res://art/level4/space bg anim/Frame 2.png" id="7_0halg"]
+[ext_resource type="Texture2D" uid="uid://bgdx3w62kmfbx" path="res://art/level4/space bg anim/Frame 1.png" id="7_naavy"]
+[ext_resource type="Texture2D" uid="uid://dfrwxix4vfuow" path="res://art/level4/space bg anim/Frame 3.png" id="8_21lkn"]
+[ext_resource type="Texture2D" uid="uid://25vxkife3giq" path="res://art/level4/space bg anim/Frame 4.png" id="9_im0iu"]
+[ext_resource type="Texture2D" uid="uid://tajaqv7yqlq3" path="res://art/level4/space bg anim/Frame 5.png" id="10_efk67"]
+[ext_resource type="Texture2D" uid="uid://b0xltvskculbt" path="res://art/level4/space bg anim/Frame 6.png" id="11_ok0nw"]
+[ext_resource type="Texture2D" uid="uid://bu58ds6m1md26" path="res://art/level4/space bg anim/Frame 7.png" id="12_g2luv"]
+[ext_resource type="Texture2D" uid="uid://lvtcrwgd72uc" path="res://art/level4/space bg anim/Frame 8.png" id="13_um8t4"]
+[ext_resource type="Texture2D" uid="uid://nlp2as2jh5kr" path="res://art/level4/space bg anim/Frame 9.png" id="14_jyx7s"]
+[ext_resource type="Texture2D" uid="uid://c4upm2pkb2su2" path="res://art/level4/space bg anim/Frame 10.png" id="15_kxe21"]
+
+[sub_resource type="Animation" id="Animation_naavy"]
+resource_name = "space bg scroll"
+length = 10.0
+loop_mode = 1
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Rect2(0, 0, 2770, 1080), Rect2(2770, 0, 2770, 1080)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../BackgroundStars:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Rect2(0, 0, 2770, 1080), Rect2(2770, 0, 2770, 1080)]
+}
+
+[sub_resource type="Animation" id="Animation_gh4cy"]
+length = 0.833342
+loop_mode = 1
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../BackgroundStars:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("7_naavy"), ExtResource("7_0halg"), ExtResource("8_21lkn"), ExtResource("9_im0iu"), ExtResource("10_efk67"), ExtResource("11_ok0nw"), ExtResource("12_g2luv"), ExtResource("13_um8t4"), ExtResource("14_jyx7s"), ExtResource("15_kxe21"), ExtResource("7_naavy")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qi51e"]
+_data = {
+&"RESET": SubResource("Animation_gh4cy"),
+&"space bg scroll": SubResource("Animation_naavy")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_udvx3"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("4_mdw0g")
+texture_filter = 1
+texture_repeat = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1xfnq"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_udvx3")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6uckl"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("5_naavy")
+texture_filter = 1
+texture_repeat = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_d6jip"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_6uckl")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kkm8t"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("6_gh4cy")
+texture_filter = 1
+texture_repeat = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cpuyl"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_kkm8t")
+
+[sub_resource type="FontVariation" id="FontVariation_r8unp"]
+resource_local_to_scene = true
+spacing_glyph = 4
+spacing_space = 7
+spacing_top = 25
+spacing_bottom = 40
+
+[node name="Level4" instance=ExtResource("1_8s3b3")]
+level = 4
+
+[node name="IdleOverlay" parent="." index="0"]
+idle_foodSprites = Array[Texture]([ExtResource("2_mdw0g"), ExtResource("3_naavy"), ExtResource("4_gh4cy"), ExtResource("2_cc5tm")])
+
+[node name="bg scroll" type="AnimationPlayer" parent="." index="2"]
+root_node = NodePath("../Background")
+libraries = {
+&"": SubResource("AnimationLibrary_qi51e")
+}
+autoplay = "space bg scroll"
+speed_scale = 0.109
+
+[node name="stars" type="AnimationPlayer" parent="." index="3"]
+root_node = NodePath("../Background")
+libraries = {
+&"": SubResource("AnimationLibrary_qi51e")
+}
+autoplay = "RESET"
+
+[node name="Background" parent="." index="4"]
+texture_repeat = 2
+texture = ExtResource("6_mdw0g")
+region_enabled = true
+region_rect = Rect2(0, 0, 2770, 1080)
+
+[node name="BackgroundStars" type="Sprite2D" parent="." index="5"]
+texture_repeat = 2
+texture = ExtResource("7_naavy")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 2770, 1080)
+
+[node name="Foreground" parent="." index="6"]
+visible = false
+
+[node name="SubViewport" parent="FaceContainer" index="0"]
+size = Vector2i(2417, 2302)
+
+[node name="MeshClosed" parent="FaceContainer/SubViewport/Face/MeshContainer" index="0"]
+mesh = SubResource("PlaneMesh_1xfnq")
+
+[node name="MeshOpen" parent="FaceContainer/SubViewport/Face/MeshContainer" index="1"]
+mesh = SubResource("PlaneMesh_d6jip")
+
+[node name="MeshMissing" parent="FaceContainer/SubViewport/Face/MeshContainer" index="2"]
+mesh = SubResource("PlaneMesh_cpuyl")
+
+[node name="Count" parent="CanvasLayer" index="0"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -110.0
+offset_bottom = 0.0
+theme_override_fonts/normal_font = SubResource("FontVariation_r8unp")
+
+[node name="Message" parent="CanvasLayer" index="1"]
+theme_override_fonts/normal_font = SubResource("FontVariation_r8unp")
+
+[editable path="FaceContainer"]

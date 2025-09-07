@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxt0n16ui0b8f"
-path="res://.godot/imported/star.png-18f26c86dfebcf20e0ae75f746ec6ee2.ctex"
+uid="uid://25vxkife3giq"
+path="res://.godot/imported/Frame 4.png-b345fd85981b7ccc0a8224b8649b600c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/level3/star.png"
-dest_files=["res://.godot/imported/star.png-18f26c86dfebcf20e0ae75f746ec6ee2.ctex"]
+source_file="res://art/level4/space bg anim/Frame 4.png"
+dest_files=["res://.godot/imported/Frame 4.png-b345fd85981b7ccc0a8224b8649b600c.ctex"]
 
 [params]
 

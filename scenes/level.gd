@@ -20,7 +20,8 @@ const suffix := "[/outline_color][/outline_size][/center]"
 @export var aim_targets : Array[Node2D] = []
 var foodItem1 : PackedScene = preload("res://levels/hibachi_foodItem.tscn")
 var foodItem2 : PackedScene = preload("res://levels/bakery_foodItem.tscn")
-var foodItem3 : PackedScene = preload("res://levels/space_foodItem.tscn")
+var foodItem3 : PackedScene = preload("res://levels/diner_foodItem.tscn")
+var foodItem4 : PackedScene = preload("res://levels/space_foodItem.tscn")
 var foodItems : Array
 var foodTimeRemaining := 0.0
 
@@ -51,6 +52,8 @@ func _spawnFoodItem():
 			new_food = foodItem2.instantiate() as RigidBody2D
 		3:
 			new_food = foodItem3.instantiate() as RigidBody2D
+		4:
+			new_food = foodItem4.instantiate() as RigidBody2D
 	new_food.global_position = Global.randomItem(spawnpoints).global_position
 	add_child(new_food)
 	Global.playSound("whoosh")
