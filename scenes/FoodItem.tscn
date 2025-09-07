@@ -29,7 +29,7 @@ cos_frequency = 3.2
 
 [node name="Glow" type="Sprite2D" parent="Sprite2D"]
 z_index = -1
-scale = Vector2(2.40853, 2.40853)
+scale = Vector2(2.74919, 2.74919)
 texture = ExtResource("6_tj4bn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
