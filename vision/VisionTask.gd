@@ -18,18 +18,23 @@ func _exit_tree() -> void:
 func _ready():
 	camera_helper.new_frame.connect(self._camera_frame)
 
+	print("VISION TASK: ", CameraServer.feeds().size())
+	var x := 0
 	for feed in CameraServer.feeds():
 		camera_feed = feed
 		var formats := camera_feed.get_formats()
+		print("\tFORMATS: ", formats.size()) 
 		for i in range(formats.size()):
 			var format: Dictionary = formats[i]
 			if format.has("frame_numerator") and format.has("frame_denominator"):
 				format["fps"] = round(format["frame_denominator"] / format["frame_numerator"])
 			if format.has("framerate_numerator") and format.has("framerate_denominator"):
 				format["fps"] = round(format["framerate_numerator"] / format["framerate_denominator"])
-			if format["fps"] == 15:
+			print("feed: ", x, " format: ", i, " fps: ", format["fps"])
+			if format["fps"] >= 15 and format["fps"] <= 30:
 				camera_feed.set_format(i, {})
 				break
+		x += 1
 
 	_init_task()
 	_open_camera()
