@@ -159,8 +159,8 @@ grow_horizontal = 2
 theme_override_fonts/normal_font = ExtResource("3_dlrf8")
 theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
-text = "[center][outline_size=20][outline_color=#331E1D]Total Food Eaten Overall: 
-0[/outline_color][/outline_size][/center]"
+text = "[center][outline_size=20][outline_color=#331E1D]Total Food Eaten By Everyone At Art Works: 
+{NUM}[/outline_color][/outline_size][/center]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0

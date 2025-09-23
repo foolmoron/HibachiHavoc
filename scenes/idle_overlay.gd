@@ -7,8 +7,11 @@ signal resetFood(newFoods : Array[Texture])
 @export var idle_foodSprites : Array[Texture]
 @export var TOTAL_text := "Total Food Eaten During Exhibit"
 
+@onready var totalCountLabel: RichTextLabel = $"CanvasLayer/TOTAL total Count"
+@onready var totalCountTemplate: String = totalCountLabel.text
+
 func _ready() -> void:
-	$"CanvasLayer/TOTAL total Count".text = "[center][outline_size=20][outline_color=#331E1D]" + TOTAL_text + ": \n" + str(Global.total_food_over_lifespan + Global.food_eaten_in_session) + "[/outline_color][/outline_size][/center]"
+	totalCountLabel.text = totalCountTemplate.replace("{NUM}", str(Global.total_food_over_lifespan + Global.food_eaten_in_session))
 	$CanvasLayer.show()
 	resetFood.emit(idle_foodSprites)
 	for food in foodsToStart:

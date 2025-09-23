@@ -4,9 +4,8 @@ signal levelEnd(didWin : bool, color : Color)
 signal setMealAmount(amountFood : int)
 var currentFoodBar : int
 @onready var currentHealthBar := healthBarMax
-@onready var local_count := $CanvasLayer/Count
-const prefix := "[center][outline_size=20][outline_color=#331E1D]Your Food Eaten: "
-const suffix := "[/outline_color][/outline_size][/center]"
+@onready var localCount: RichTextLabel = $CanvasLayer/Count
+@onready var localCountTemplate := localCount.text
 
 #VARIABLES TO ADJUST IN INSPECTOR FOR GAMEPLAY OPTIMIZATION
 @export var musicIdx := 0
@@ -87,7 +86,7 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	#PLAYING GAME
-	local_count.text = prefix + str(Global.food_eaten_in_session) + suffix
+	localCount.text = localCountTemplate.replace("{NUM}", str(Global.food_eaten_in_session))
 	if currentFoodBar == 0:
 		winLevel()
 	elif currentHealthBar == 0:

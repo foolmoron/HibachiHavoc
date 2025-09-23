@@ -22,12 +22,17 @@ func _on_idle_overlay_reset_food(newFoods: Array[Texture]) -> void:
 		print("Should be making food: ", foodTexturesToUse)
 		for tex in foodTexturesToUse:
 			var new_meal_item := mealItem.instantiate()
-			new_meal_item.global_position = Vector2(970.0 + randf_range(-171.0, 171.0), 919.0 + randf_range(-1.0, 80.0))
+			new_meal_item.global_position = Vector2(970, 975) + _random_inside_unit_circle() * Vector2(151, 35)
+			new_meal_item.rotation_degrees = randf_range(-15, 15)
 			print("Food appearing on screen at " + str(new_meal_item.global_position))
 			new_meal_item.texture = tex
 			get_tree().root.add_child(new_meal_item)
 			mealItems.append(new_meal_item)
 			mealItemsAvailable.append(true)
+
+func _random_inside_unit_circle() -> Vector2:
+	var theta : float = randf() * 2 * PI
+	return Vector2(cos(theta), sin(theta)) * sqrt(randf())
 
 func deleteFromMeal(i: int):
 	mealItemsAvailable[i] = false

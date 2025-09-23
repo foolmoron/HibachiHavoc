@@ -227,7 +227,7 @@ grow_vertical = 0
 theme_override_fonts/normal_font = ExtResource("17_agxjp")
 theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
-text = "[center][outline_size=20][outline_color=#331E1D]Total Food Eaten: 0[/outline_color][/outline_size][/center]"
+text = "[center][outline_size=20][outline_color=#331E1D]Your Food Eaten: {NUM}[/outline_color][/outline_size][/center]"
 fit_content = true
 autowrap_mode = 0
 

@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cj6iwxr26tove" path="res://art/level1/rice.png" id="1_8aaju"]
 
 [node name="MealItem" type="Sprite2D"]
+modulate = Color(0.88, 0.88, 0.88, 1)
 z_index = 101
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.23, 0.23)
 texture = ExtResource("1_8aaju")
