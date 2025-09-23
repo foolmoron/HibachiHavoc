@@ -18,6 +18,8 @@ func _ready() -> void:
 		food.tree_exited.connect(_on_Food_Ate.bind(food))
 
 func _on_Food_Ate(node: Node):
+	if not get_tree():
+		return
 	foodsToStart.erase(node)
 	if foodsToStart.size() == 0:
 		startGame.emit()

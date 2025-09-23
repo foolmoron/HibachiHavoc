@@ -10,6 +10,7 @@ var player_detected_latest := false
 
 var current_rot := Vector3(0.0, 0.0, 0.0)
 var current_mouth := 0.0
+var current_mouth_smooth := 0.0
 
 func _result_callback(result: MediaPipeFaceLandmarkerResult, image: MediaPipeImage, timestamp_ms: int) -> void:
 	var img := image.get_image()
@@ -63,4 +64,10 @@ func do_mesh_stuff(landmarks: MediaPipeNormalizedLandmarks, blendshapes: Array[M
 		for category in blendshape.categories:
 			if category.has_category_name() and (category.category_name == "jawOpen" or category.category_name == "jawLeft" or category.category_name == "jawRight"):
 				current_mouth = max(current_mouth, category.score)
-	mouth_open_latest = current_mouth > 0.05
+
+	current_mouth_smooth = lerp(current_mouth_smooth, current_mouth, 1.0)
+	print("m: ", mouth_open_latest, " cm: ", current_mouth, " cms: ", current_mouth_smooth)
+	if mouth_open_latest:
+		mouth_open_latest = current_mouth_smooth > 0.03
+	else:
+		mouth_open_latest = current_mouth_smooth > 0.18

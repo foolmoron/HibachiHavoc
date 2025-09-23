@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://wpefkw1tk5ph"]
+[gd_scene load_steps=31 format=3 uid="uid://wpefkw1tk5ph"]
 
 [ext_resource type="Script" uid="uid://b4ohdwkxdqgk6" path="res://scenes/level.gd" id="1_2v7b3"]
 [ext_resource type="PackedScene" uid="uid://c7jnrip4qi2n4" path="res://scenes/IdleOverlay.tscn" id="2_6k8qy"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dnv075et0tvgp" path="res://art/tutorial guy/tutguy.png" id="12_agxjp"]
 [ext_resource type="Texture2D" uid="uid://bdc3ba76wxld5" path="res://art/tutorial guy/left_open_tutguy.png" id="13_117i7"]
 [ext_resource type="Texture2D" uid="uid://6am866aypddl" path="res://art/tutorial guy/left_tutguy.png" id="14_copb0"]
+[ext_resource type="Texture2D" uid="uid://ild8gxkobjh2" path="res://art/CircleFaded.png" id="14_g5705"]
 [ext_resource type="Texture2D" uid="uid://bw2nrmhyf712p" path="res://art/tutorial guy/right_open_tutguy.png" id="15_wj5ly"]
 [ext_resource type="Texture2D" uid="uid://yqhfoyl7rneh" path="res://art/tutorial guy/right_tutguy.png" id="16_g5705"]
 [ext_resource type="FontVariation" uid="uid://bwogxyta7k6b7" path="res://default_variation.tres" id="17_agxjp"]
@@ -49,6 +50,10 @@ animations = [{
 "name": &"default",
 "speed": 8.0
 }]
+
+[sub_resource type="Curve" id="Curve_3iqh6"]
+_data = [Vector2(0, 1), 0.0, -0.981396, 0, 0, Vector2(1, 0), -2.03114, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="Animation" id="Animation_02j7v"]
 length = 0.001
@@ -188,6 +193,20 @@ scale = Vector2(0.378192, 0.378192)
 sprite_frames = SubResource("SpriteFrames_qurbw")
 speed_scale = 0.0
 script = ExtResource("11_qurbw")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="EatingArea/CollisionShape2D/Anim"]
+z_index = 100
+z_as_relative = false
+position = Vector2(-5.28833, -89.9014)
+amount = 50
+texture = ExtResource("14_g5705")
+lifetime = 0.18
+lifetime_randomness = 0.15
+gravity = Vector2(0, 0)
+scale_amount_min = 0.45
+scale_amount_max = 0.6
+scale_amount_curve = SubResource("Curve_3iqh6")
+color = Color(1, 1, 1, 0.662745)
 
 [node name="Spawn1" type="Node2D" parent="."]
 position = Vector2(72, 1262)
