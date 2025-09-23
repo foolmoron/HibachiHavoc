@@ -10,6 +10,7 @@ signal resetFood(newFoods : Array[Texture])
 func _ready() -> void:
 	$"CanvasLayer/TOTAL total Count".text = "[center][outline_size=20][outline_color=#331E1D]" + TOTAL_text + ": \n" + str(Global.total_food_over_lifespan + Global.food_eaten_in_session) + "[/outline_color][/outline_size][/center]"
 	$CanvasLayer.show()
+	resetFood.emit(idle_foodSprites)
 	for food in foodsToStart:
 		food.tree_exited.connect(_on_Food_Ate.bind(food))
 
