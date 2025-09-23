@@ -1,21 +1,22 @@
-[gd_scene load_steps=18 format=3 uid="uid://gywcari1ht8c"]
+[gd_scene load_steps=19 format=3 uid="uid://gywcari1ht8c"]
 
 [ext_resource type="PackedScene" uid="uid://wpefkw1tk5ph" path="res://scenes/level_base.tscn" id="1_r8unp"]
-[ext_resource type="Texture2D" uid="uid://buqwao8pmjw72" path="res://art/level2/coffee.png" id="2_kkm8t"]
-[ext_resource type="Texture2D" uid="uid://ylhfwwqk0bp6" path="res://art/level2/croissant.png" id="3_cpuyl"]
+[ext_resource type="Texture2D" uid="uid://bb50uwaui8t1j" path="res://art/level3/bacon.png" id="2_cpuyl"]
+[ext_resource type="Texture2D" uid="uid://g36c3k1le1a7" path="res://art/level3/biscuit.png" id="3_mf7v1"]
+[ext_resource type="Texture2D" uid="uid://cbtoh35f7hljy" path="res://art/level3/egg.png" id="4_7trqu"]
 [ext_resource type="Texture2D" uid="uid://clssdwld4y2jg" path="res://art/idleguy.png" id="4_cpie4"]
-[ext_resource type="Texture2D" uid="uid://co7m3wk7hkbts" path="res://art/level2/muffin.png" id="4_mf7v1"]
 [ext_resource type="Texture2D" uid="uid://u7lqjwwnroc8" path="res://art/level3/diner_bg.PNG" id="5_kkm8t"]
 [ext_resource type="Texture2D" uid="uid://ffy3xybfvqsv" path="res://art/level3/diner_fg.PNG" id="6_cpuyl"]
-[ext_resource type="Texture2D" uid="uid://b0uv4j1jtk0d2" path="res://art/level2/bakery plate.png" id="7_nq7ub"]
-[ext_resource type="Texture2D" uid="uid://daxwhllj2hnci" path="res://art/level1/hibachi_frog.png" id="8_mf7v1"]
-[ext_resource type="Texture2D" uid="uid://cdhqhws387nph" path="res://art/level1/hibachi_frog_open.png" id="9_7trqu"]
+[ext_resource type="Texture2D" uid="uid://dxvfflqf2ojkf" path="res://art/level3/diner plate.png" id="7_kkm8t"]
+[ext_resource type="Texture2D" uid="uid://cvq75bvi76xs7" path="res://art/level3/dinermeal.png" id="8_cpuyl"]
+[ext_resource type="Texture2D" uid="uid://bp4h6agev646e" path="res://art/level3/clowndog_closed.PNG" id="8_kkm8t"]
+[ext_resource type="Texture2D" uid="uid://67c0r8mc261" path="res://art/level3/clowndog_open.PNG" id="9_cpuyl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o0ax4"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = ExtResource("8_mf7v1")
+albedo_texture = ExtResource("8_kkm8t")
 texture_filter = 1
 texture_repeat = false
 
@@ -27,7 +28,7 @@ material = SubResource("StandardMaterial3D_o0ax4")
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = ExtResource("9_7trqu")
+albedo_texture = ExtResource("9_cpuyl")
 texture_filter = 1
 texture_repeat = false
 
@@ -58,7 +59,7 @@ spacing_bottom = 40
 level = 3
 
 [node name="IdleOverlay" parent="." index="0"]
-idle_foodSprites = Array[Texture]([ExtResource("2_kkm8t"), ExtResource("3_cpuyl"), ExtResource("4_mf7v1")])
+idle_foodSprites = Array[Texture]([ExtResource("2_cpuyl"), ExtResource("3_mf7v1"), ExtResource("4_7trqu")])
 
 [node name="Background" parent="." index="2"]
 texture = ExtResource("5_kkm8t")
@@ -66,9 +67,11 @@ texture = ExtResource("5_kkm8t")
 [node name="Foreground" parent="." index="3"]
 texture = ExtResource("6_cpuyl")
 
-[node name="BakeryPlate" type="Sprite2D" parent="Foreground" index="0"]
-position = Vector2(937, 917)
-texture = ExtResource("7_nq7ub")
+[node name="Plate" parent="Foreground" index="0"]
+texture = ExtResource("7_kkm8t")
+
+[node name="Meal" parent="Foreground" index="1"]
+texture = ExtResource("8_cpuyl")
 
 [node name="SubViewport" parent="FaceContainer" index="0"]
 size = Vector2i(2417, 2302)

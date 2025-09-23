@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://cjffoc1y34w1g"]
 
 [ext_resource type="Script" uid="uid://b1wsycjk66ogp" path="res://scenes/face.gd" id="1_iy6cr"]
-[ext_resource type="Texture2D" uid="uid://5rn8b46r3nsw" path="res://art/maskman.png" id="2_5gk4o"]
+[ext_resource type="Texture2D" uid="uid://5rn8b46r3nsw" path="res://art/OLD maskman.png" id="2_5gk4o"]
 [ext_resource type="Texture2D" uid="uid://clssdwld4y2jg" path="res://art/idleguy.png" id="3_iy6cr"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5gk4o"]

@@ -1,12 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://binu8e6bnxa84"]
+[gd_scene load_steps=31 format=3 uid="uid://binu8e6bnxa84"]
 
 [ext_resource type="PackedScene" uid="uid://wpefkw1tk5ph" path="res://scenes/level_base.tscn" id="1_8s3b3"]
 [ext_resource type="Texture2D" uid="uid://dxt0n16ui0b8f" path="res://art/level4/star.png" id="2_cc5tm"]
 [ext_resource type="Texture2D" uid="uid://dfvdcf4ow1wsy" path="res://art/level4/earth.png" id="2_mdw0g"]
 [ext_resource type="Texture2D" uid="uid://bc47hym4gn6ap" path="res://art/level4/mars.png" id="3_naavy"]
 [ext_resource type="Texture2D" uid="uid://boqci8evthrrn" path="res://art/level4/saturn.png" id="4_gh4cy"]
-[ext_resource type="Texture2D" uid="uid://ilit0jbr7yc" path="res://art/level4/space_char.png" id="4_mdw0g"]
-[ext_resource type="Texture2D" uid="uid://c8iehxyw5enof" path="res://art/level4/space_char_open.png" id="5_naavy"]
 [ext_resource type="Texture2D" uid="uid://clssdwld4y2jg" path="res://art/idleguy.png" id="6_gh4cy"]
 [ext_resource type="Texture2D" uid="uid://csdqwtajmvgee" path="res://art/level4/Space Base BG.PNG" id="6_mdw0g"]
 [ext_resource type="Texture2D" uid="uid://c8rgxm8fbqq0h" path="res://art/level4/space bg anim/Frame 2.png" id="7_0halg"]
@@ -19,6 +17,26 @@
 [ext_resource type="Texture2D" uid="uid://lvtcrwgd72uc" path="res://art/level4/space bg anim/Frame 8.png" id="13_um8t4"]
 [ext_resource type="Texture2D" uid="uid://nlp2as2jh5kr" path="res://art/level4/space bg anim/Frame 9.png" id="14_jyx7s"]
 [ext_resource type="Texture2D" uid="uid://c4upm2pkb2su2" path="res://art/level4/space bg anim/Frame 10.png" id="15_kxe21"]
+[ext_resource type="Texture2D" uid="uid://t5dw047qqfd5" path="res://art/level4/cosmic_closed.png" id="17_0halg"]
+[ext_resource type="Texture2D" uid="uid://bpg0cwsy0k8t5" path="res://art/level4/space plate.png" id="17_21lkn"]
+[ext_resource type="Texture2D" uid="uid://vs3sgmpey30a" path="res://art/level4/cosmic_open.png" id="18_21lkn"]
+
+[sub_resource type="Animation" id="Animation_gh4cy"]
+length = 0.833342
+loop_mode = 1
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../BackgroundStars:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("7_naavy"), ExtResource("7_0halg"), ExtResource("8_21lkn"), ExtResource("9_im0iu"), ExtResource("10_efk67"), ExtResource("11_ok0nw"), ExtResource("12_g2luv"), ExtResource("13_um8t4"), ExtResource("14_jyx7s"), ExtResource("15_kxe21"), ExtResource("7_naavy")]
+}
 
 [sub_resource type="Animation" id="Animation_naavy"]
 resource_name = "space bg scroll"
@@ -50,23 +68,6 @@ tracks/1/keys = {
 "values": [Rect2(0, 0, 2770, 1080), Rect2(2770, 0, 2770, 1080)]
 }
 
-[sub_resource type="Animation" id="Animation_gh4cy"]
-length = 0.833342
-loop_mode = 1
-step = 0.0833333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../BackgroundStars:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("7_naavy"), ExtResource("7_0halg"), ExtResource("8_21lkn"), ExtResource("9_im0iu"), ExtResource("10_efk67"), ExtResource("11_ok0nw"), ExtResource("12_g2luv"), ExtResource("13_um8t4"), ExtResource("14_jyx7s"), ExtResource("15_kxe21"), ExtResource("7_naavy")]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qi51e"]
 _data = {
 &"RESET": SubResource("Animation_gh4cy"),
@@ -77,7 +78,7 @@ _data = {
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = ExtResource("4_mdw0g")
+albedo_texture = ExtResource("17_0halg")
 texture_filter = 1
 texture_repeat = false
 
@@ -89,7 +90,7 @@ material = SubResource("StandardMaterial3D_udvx3")
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = ExtResource("5_naavy")
+albedo_texture = ExtResource("18_21lkn")
 texture_filter = 1
 texture_repeat = false
 
@@ -151,7 +152,15 @@ region_enabled = true
 region_rect = Rect2(0, 0, 2770, 1080)
 
 [node name="Foreground" parent="." index="6"]
+self_modulate = Color(1, 1, 1, 0)
+
+[node name="Plate" parent="Foreground" index="0"]
 visible = false
+texture = ExtResource("17_21lkn")
+
+[node name="Meal" parent="Foreground" index="1"]
+position = Vector2(956, 931.97)
+texture = ExtResource("17_21lkn")
 
 [node name="SubViewport" parent="FaceContainer" index="0"]
 size = Vector2i(2417, 2302)

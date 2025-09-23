@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8iehxyw5enof"
-path.s3tc="res://.godot/imported/space_char_open.png-fbb4f29b8e6221b7edb1870338218d9b.s3tc.ctex"
-path.etc2="res://.godot/imported/space_char_open.png-fbb4f29b8e6221b7edb1870338218d9b.etc2.ctex"
+uid="uid://t5dw047qqfd5"
+path.s3tc="res://.godot/imported/cosmic_closed.png-25fac204b428717abb3b732a051c82e3.s3tc.ctex"
+path.etc2="res://.godot/imported/cosmic_closed.png-25fac204b428717abb3b732a051c82e3.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://art/level4/space_char_open.png"
-dest_files=["res://.godot/imported/space_char_open.png-fbb4f29b8e6221b7edb1870338218d9b.s3tc.ctex", "res://.godot/imported/space_char_open.png-fbb4f29b8e6221b7edb1870338218d9b.etc2.ctex"]
+source_file="res://art/level4/cosmic_closed.png"
+dest_files=["res://.godot/imported/cosmic_closed.png-25fac204b428717abb3b732a051c82e3.s3tc.ctex", "res://.godot/imported/cosmic_closed.png-25fac204b428717abb3b732a051c82e3.etc2.ctex"]
 
 [params]
 

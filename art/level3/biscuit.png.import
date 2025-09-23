@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dndk77a6x0vkv"
-path="res://.godot/imported/spacebg.png-940115761f4bf3e6f339a12bf0a5b43d.ctex"
+uid="uid://g36c3k1le1a7"
+path="res://.godot/imported/biscuit.png-49a2b5b7ac0af89ecf9d4b76c23400a8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/level4/spacebg.png"
-dest_files=["res://.godot/imported/spacebg.png-940115761f4bf3e6f339a12bf0a5b43d.ctex"]
+source_file="res://art/level3/biscuit.png"
+dest_files=["res://.godot/imported/biscuit.png-49a2b5b7ac0af89ecf9d4b76c23400a8.ctex"]
 
 [params]
 
