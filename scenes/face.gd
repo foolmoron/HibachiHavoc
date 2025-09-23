@@ -1,11 +1,16 @@
 extends Node
 class_name Face
 
+@export var flipXClosed: bool = false
+@export var flipXOpen: bool = false
+
 @onready var meshContainer: Node3D = $MeshContainer
 @onready var meshInstanceClosed: MeshInstance3D = $MeshContainer/MeshClosed
 @onready var meshInstanceOpen: MeshInstance3D = $MeshContainer/MeshOpen
 @onready var meshInstanceMissing: MeshInstance3D = $MeshContainer/MeshMissing
 @onready var meshInstanceZ: float = meshInstanceClosed.position.z
+@onready var meshInstanceOpenInitialScale: Vector3 = meshInstanceOpen.scale
+@onready var meshInstanceClosedInitialScale: Vector3 = meshInstanceClosed.scale
 
 func _process(delta: float) -> void:
 	meshInstanceOpen.visible = FaceLandmarker.mouth_open_latest
@@ -16,6 +21,10 @@ func _process(delta: float) -> void:
 		meshInstanceOpen.position.z = lerp(meshInstanceOpen.position.z, meshInstanceZ, 10 * delta)
 		meshInstanceClosed.position.z = lerp(meshInstanceClosed.position.z, meshInstanceZ, 10 * delta)
 		meshInstanceMissing.position.z = lerp(meshInstanceMissing.position.z, meshInstanceZ + 200.0, 10 * delta)
+		if flipXOpen:
+			meshInstanceOpen.scale.x = meshInstanceOpenInitialScale.x * sign(FaceLandmarker.current_rot.y)
+		if flipXClosed:
+			meshInstanceClosed.scale.x = meshInstanceClosedInitialScale.x * sign(FaceLandmarker.current_rot.y)
 	else:
 		meshContainer.rotation_degrees = Vector3(90, 0, 0)
 		meshInstanceOpen.position.z = lerp(meshInstanceOpen.position.z, meshInstanceZ + 200.0, 10 * delta)
