@@ -171,4 +171,4 @@ environment = SubResource("Environment_wn73w")
 libraries = {
 &"": SubResource("AnimationLibrary_eq8ie")
 }
-autoplay = "RESET"
+autoplay = "IdleMesh"
