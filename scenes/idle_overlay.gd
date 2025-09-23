@@ -17,6 +17,6 @@ func _ready() -> void:
 func _on_Food_Ate(node: Node):
 	foodsToStart.erase(node)
 	if foodsToStart.size() == 0:
+		startGame.emit()
 		resetFood.emit(idle_foodSprites)
 		$CanvasLayer.hide()
-		startGame.emit()

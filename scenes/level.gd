@@ -2,7 +2,6 @@ extends Node
 
 signal levelEnd(didWin : bool, color : Color)
 signal setMealAmount(amountFood : int)
-signal subtractFood()
 var currentFoodBar : int
 @onready var currentHealthBar := healthBarMax
 @onready var local_count := $CanvasLayer/Count
@@ -27,6 +26,10 @@ var foodItem3 : PackedScene = preload("res://levels/diner_foodItem.tscn")
 var foodItem4 : PackedScene = preload("res://levels/space_foodItem.tscn")
 var foodTimeRemaining := 0.0
 
+@export var plate : Plate = null
+var m := 0
+var foodToMealIndex : Dictionary[Node, int]	= {}
+
 func _ready() -> void:
 	$Transition.hide()
 	$CanvasLayer.hide()
@@ -37,13 +40,14 @@ func _ready() -> void:
 func ateFood(_item : Node):
 	if Global.isPlaying:
 		currentFoodBar -= 1
-		subtractFood.emit()
+		var mealIndex = foodToMealIndex.get(_item, -1)
+		plate.deleteFromMeal(mealIndex)
 
 func _spawnFoodItem():
 	if not Global.isPlaying:
 		return
 	
-	var new_food
+	var new_food: RigidBody2D
 	match level:
 		1:
 			new_food = foodItem1.instantiate() as RigidBody2D
@@ -53,6 +57,21 @@ func _spawnFoodItem():
 			new_food = foodItem3.instantiate() as RigidBody2D
 		4:
 			new_food = foodItem4.instantiate() as RigidBody2D
+	
+	var spawned := false
+	m = (m + 1) % plate.mealItems.size()
+	for _i in plate.mealItemsAvailable.size():
+		var i = (_i + m) % plate.mealItemsAvailable.size()
+		if plate.mealItemsAvailable[i]:
+			new_food.find_child("Sprite2D").texture = plate.mealItems[i].texture
+			foodToMealIndex[new_food] = i
+			spawned = true
+			break
+
+	if not spawned:
+		new_food.queue_free()
+		return
+
 	new_food.global_position = Global.randomItem(spawnpoints).global_position
 	add_child(new_food)
 	Global.playSound("whoosh")
@@ -83,7 +102,7 @@ func _physics_process(delta: float) -> void:
 func beginGame():
 	Global.isPlaying = true
 	$CanvasLayer.show()
-	foodTimeRemaining = 0.0
+	foodTimeRemaining = 1.0
 
 func winLevel():
 	var transition_color : Color
