@@ -34,7 +34,7 @@ func _physics_process(delta: float) -> void:
 				item.queue_free()
 				Global.playSound("eat")
 				if Global.isPlaying:
-					Global.foods_eaten += 1
+					Global.food_eaten_in_session += 1
 				var particles = food_particles_scn.instantiate()
 				particles.connect("finished", particles.queue_free)
 				(particles as CPUParticles2D).emitting = true

@@ -61,6 +61,10 @@ level = 3
 [node name="IdleOverlay" parent="." index="0"]
 idle_foodSprites = Array[Texture]([ExtResource("2_cpuyl"), ExtResource("3_mf7v1"), ExtResource("4_7trqu")])
 
+[node name="Transition" parent="." index="1"]
+win_message = "Plate Cleaned, Woof!"
+lose_message = "Indigestion, awoo..."
+
 [node name="Background" parent="." index="2"]
 texture = ExtResource("5_kkm8t")
 

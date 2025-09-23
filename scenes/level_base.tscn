@@ -1,10 +1,11 @@
-[gd_scene load_steps=28 format=3 uid="uid://wpefkw1tk5ph"]
+[gd_scene load_steps=29 format=3 uid="uid://wpefkw1tk5ph"]
 
 [ext_resource type="Script" uid="uid://b4ohdwkxdqgk6" path="res://scenes/level.gd" id="1_2v7b3"]
 [ext_resource type="PackedScene" uid="uid://c7jnrip4qi2n4" path="res://scenes/IdleOverlay.tscn" id="2_6k8qy"]
 [ext_resource type="PackedScene" uid="uid://dq8kr1y6gj6vg" path="res://scenes/Transition.tscn" id="3_evabm"]
 [ext_resource type="Texture2D" uid="uid://dnb6qgxl0lurc" path="res://art/level1/Hibachi bg.png" id="4_qurbw"]
 [ext_resource type="Texture2D" uid="uid://br50y1n7mswjv" path="res://art/level1/hibatchi plate.png" id="6_copb0"]
+[ext_resource type="Script" uid="uid://b7m8bximj3qlt" path="res://scenes/plate.gd" id="7_g5705"]
 [ext_resource type="PackedScene" uid="uid://cjffoc1y34w1g" path="res://face/face_container.tscn" id="7_ngfo8"]
 [ext_resource type="Texture2D" uid="uid://dsyn3iav12bhq" path="res://art/level1/hibatchimeal.png" id="7_wj5ly"]
 [ext_resource type="Texture2D" uid="uid://bp0al02v0nb6h" path="res://art/crosshair_mouth_open.png" id="8_6k8qy"]
@@ -124,6 +125,8 @@ animations = [{
 [node name="LevelBase" type="Node2D" node_paths=PackedStringArray("spawnpoints", "aim_targets")]
 script = ExtResource("1_2v7b3")
 foodBarMax = 5
+foodSpeedMultiplier = 0.88
+food_spawn_interval_min = 1.25
 spawnpoints = [NodePath("Spawn1"), NodePath("Spawn2"), NodePath("Spawn3"), NodePath("Spawn4"), NodePath("Spawn5"), NodePath("Spawn6")]
 aim_targets = [NodePath("Aim1"), NodePath("Aim2")]
 
@@ -147,8 +150,10 @@ centered = false
 [node name="Plate" type="Sprite2D" parent="Foreground"]
 position = Vector2(970, 919)
 texture = ExtResource("6_copb0")
+script = ExtResource("7_g5705")
 
 [node name="Meal" type="Sprite2D" parent="Foreground"]
+visible = false
 position = Vector2(956, 889)
 texture = ExtResource("7_wj5ly")
 
@@ -256,8 +261,12 @@ position = Vector2(1798, 178)
 scale = Vector2(0.158796, 0.165278)
 sprite_frames = SubResource("SpriteFrames_3iqh6")
 autoplay = "default"
-frame_progress = 0.226031
+frame = 3
+frame_progress = 0.283174
 
 [connection signal="levelEnd" from="." to="Transition" method="_on_Level_End"]
+[connection signal="setMealAmount" from="." to="Foreground/Plate" method="_on_start"]
+[connection signal="subtractFood" from="." to="Foreground/Plate" method="subtractFromMeal"]
+[connection signal="resetFood" from="IdleOverlay" to="Foreground/Plate" method="_on_idle_overlay_reset_food"]
 [connection signal="startGame" from="IdleOverlay" to="." method="beginGame"]
 [connection signal="ate_food" from="EatingArea" to="." method="ateFood"]

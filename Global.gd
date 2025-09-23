@@ -1,9 +1,10 @@
 extends Node
 
 static var isPlaying : bool
+static var total_food_over_lifespan : int;
 
 @onready var streak : int = 0;
-@onready var foods_eaten : int = 0;
+@onready var food_eaten_in_session : int = 0;
 @onready var currentScene : int = 0;
 var levels : Array[PackedScene] = [preload("res://levels/level1.tscn"), preload("res://levels/level2.tscn"), preload("res://levels/level3.tscn"), preload("res://levels/level4.tscn")]
 var songs : Array[AudioStream] = [preload("res://audio/music/Theme 2b.mp3")]
@@ -21,12 +22,13 @@ var idle_time := 0.0
 	"level": AudioController.get_node("LevelSFX"),
 }
 
-
 func _ready() -> void:
 	isPlaying = false
+	load_data()
 
 #switch to next scene and change music to that scene's music; 
 func switchScene(nextScene : int):
+	save_data()
 	if nextScene == -1:
 		nextScene = currentScene
 	elif nextScene >= levels.size():
@@ -67,22 +69,53 @@ func _process(delta: float) -> void:
 		idle_time += delta
 		if idle_time >= idle_delay:
 			reset()
-			Global.doWipe(func():
+			Global.doWipe(Color(0.14, 0.05, 0.3), func():
 				await switchScene(-1)
 			)
 
 func reset():
 	print("reset")
+	save_data()
 	idle_time = 0.0
 	isPlaying = false
 	streak = 0
-	foods_eaten = 0
-	
-func doWipe(onWipeCallback: Callable = func(): pass):
+	food_eaten_in_session = 0
+	load_data()
+
+func doWipe(color : Color, onWipeCallback: Callable = func(): pass):
 	var w := wiper.instantiate()
+	w.get_node("Sprite2D").modulate = color
 	get_tree().root.add_child(w)
 	await get_tree().create_timer(0.425).timeout
 	await onWipeCallback.call()
 	await get_tree().create_timer(0.4).timeout
 	w.queue_free()
+
+
+#PERSISTENT DATA ACROSS SESSIONS
+func save_data():
+	var save_file = FileAccess.open("user://hibachihavoc.save", FileAccess.WRITE)
+	var node_data = { "total" : total_food_over_lifespan + food_eaten_in_session }
+	# JSON provides a static method to serialized JSON string.
+	var json_string = JSON.stringify(node_data)
+	# Store the save dictionary as a new line in the save file.
+	save_file.store_line(json_string)
+
+func load_data():
+	if not FileAccess.file_exists("user://hibachihavoc.save"):
+		total_food_over_lifespan = 0
+		return # Error! We don't have a save to load.
 	
+	var save_file = FileAccess.open("user://hibachihavoc.save", FileAccess.READ)
+	var json_string = save_file.get_line()
+	var json = JSON.new()
+	
+	# Check if there is any error while parsing the JSON string
+	var parse_result = json.parse(json_string)
+	if not parse_result == OK:
+		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+		return
+	
+	# Get the data from the JSON object.
+	var node_data = json.data
+	total_food_over_lifespan = node_data["total"]

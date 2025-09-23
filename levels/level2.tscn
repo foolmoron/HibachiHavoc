@@ -61,6 +61,10 @@ level = 2
 [node name="IdleOverlay" parent="." index="0"]
 idle_foodSprites = Array[Texture]([ExtResource("2_py88r"), ExtResource("3_g1dg4"), ExtResource("4_s1bpp")])
 
+[node name="Transition" parent="." index="1"]
+win_message = "Plate Cleaned, Rock on!"
+lose_message = "Indigestion, not rad..."
+
 [node name="Background" parent="." index="2"]
 texture = ExtResource("5_s1bpp")
 

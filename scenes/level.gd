@@ -1,16 +1,19 @@
 extends Node
 
-signal levelEnd(didWin : bool)
-@onready var currentFoodBar := foodBarMax
+signal levelEnd(didWin : bool, color : Color)
+signal setMealAmount(amountFood : int)
+signal subtractFood()
+var currentFoodBar : int
 @onready var currentHealthBar := healthBarMax
 @onready var local_count := $CanvasLayer/Count
-const prefix := "[center][outline_size=20][outline_color=#331E1D]Total Food Eaten: "
+const prefix := "[center][outline_size=20][outline_color=#331E1D]Your Food Eaten: "
 const suffix := "[/outline_color][/outline_size][/center]"
 
 #VARIABLES TO ADJUST IN INSPECTOR FOR GAMEPLAY OPTIMIZATION
 @export var musicIdx := 0
 @export var foodBarMax : int = 15
 @export var healthBarMax : int = 20
+@export var foodSpeedMultiplier : float = 1.0
 @export_range(0.0, 5.0) var food_spawn_interval_min := 1.0
 @export_range(0.0, 5.0) var food_spawn_interval_max := 3.0
 
@@ -22,23 +25,19 @@ var foodItem1 : PackedScene = preload("res://levels/hibachi_foodItem.tscn")
 var foodItem2 : PackedScene = preload("res://levels/bakery_foodItem.tscn")
 var foodItem3 : PackedScene = preload("res://levels/diner_foodItem.tscn")
 var foodItem4 : PackedScene = preload("res://levels/space_foodItem.tscn")
-var foodItems : Array
 var foodTimeRemaining := 0.0
 
 func _ready() -> void:
 	$Transition.hide()
 	$CanvasLayer.hide()
-	clearFood()
+	currentFoodBar = foodBarMax + randi_range(0, int(foodBarMax*0.75))
+	setMealAmount.emit(currentFoodBar)
 	Global.switchMusic(musicIdx)
 
 func ateFood(_item : Node):
 	if Global.isPlaying:
 		currentFoodBar -= 1
-
-func clearFood():
-	for item in foodItems:
-		item.queue_free()
-	foodItems.clear()
+		subtractFood.emit()
 
 func _spawnFoodItem():
 	if not Global.isPlaying:
@@ -60,7 +59,7 @@ func _spawnFoodItem():
 	
 	var target := (Global.randomItem(aim_targets) as Node2D).global_position
 	var dir := (target - new_food.global_position).normalized() as Vector2
-	new_food.apply_impulse(dir * 1500.0)
+	new_food.apply_impulse(dir * 1500.0 * foodSpeedMultiplier)
 	new_food.apply_torque_impulse(randf_range(20.0, 60.0) * (-1 if randf() < 0.5 else 1))
 
 
@@ -69,13 +68,11 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	#PLAYING GAME
-	local_count.text = prefix + str(Global.foods_eaten) + suffix
+	local_count.text = prefix + str(Global.food_eaten_in_session) + suffix
 	if currentFoodBar == 0:
 		winLevel()
-		clearFood()
 	elif currentHealthBar == 0:
 		loseLevel()
-		clearFood()
 	foodTimeRemaining -= delta
 	if foodTimeRemaining <= 0.0:
 		_spawnFoodItem()
@@ -89,11 +86,21 @@ func beginGame():
 	foodTimeRemaining = 0.0
 
 func winLevel():
-	levelEnd.emit(true)
+	var transition_color : Color
+	match level:
+		1:
+			transition_color = Color(0.08, 0.14 ,0.02 )
+		2:
+			transition_color = Color(0.03, 0.13, 0.19)
+		3:
+			transition_color = Color(0.25, 0.03, 0.00)
+		4:
+			transition_color = Color(0.14, 0.05, 0.3)
+	levelEnd.emit(true, transition_color)
 	$Transition.show()
 	$CanvasLayer.hide()
 
 func loseLevel():
-	levelEnd.emit(false)
+	levelEnd.emit(false, Color(0.14, 0.12, 0.11))
 	$Transition.show()
 	$CanvasLayer.hide()

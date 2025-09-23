@@ -1,8 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://cjffoc1y34w1g"]
+[gd_scene load_steps=21 format=3 uid="uid://cjffoc1y34w1g"]
 
 [ext_resource type="Script" uid="uid://b1wsycjk66ogp" path="res://scenes/face.gd" id="1_iy6cr"]
 [ext_resource type="Texture2D" uid="uid://5rn8b46r3nsw" path="res://art/OLD maskman.png" id="2_5gk4o"]
 [ext_resource type="Texture2D" uid="uid://clssdwld4y2jg" path="res://art/idleguy.png" id="3_iy6cr"]
+[ext_resource type="Texture2D" uid="uid://b2pdocriod5wj" path="res://art/tutorial guy/tutguy_open.png" id="4_eq8ie"]
+[ext_resource type="Texture2D" uid="uid://dnv075et0tvgp" path="res://art/tutorial guy/tutguy.png" id="5_k2gr6"]
+[ext_resource type="Texture2D" uid="uid://bdc3ba76wxld5" path="res://art/tutorial guy/left_open_tutguy.png" id="6_o4hxt"]
+[ext_resource type="Texture2D" uid="uid://6am866aypddl" path="res://art/tutorial guy/left_tutguy.png" id="7_p6poi"]
+[ext_resource type="Texture2D" uid="uid://bw2nrmhyf712p" path="res://art/tutorial guy/right_open_tutguy.png" id="8_n1qik"]
+[ext_resource type="Texture2D" uid="uid://yqhfoyl7rneh" path="res://art/tutorial guy/right_tutguy.png" id="9_uiek3"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5gk4o"]
 light_mode = 1
@@ -47,6 +53,69 @@ material = SubResource("StandardMaterial3D_flqyb")
 [sub_resource type="Environment" id="Environment_wn73w"]
 background_mode = 1
 background_color = Color(0, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_iy6cr"]
+resource_name = "IdleMesh"
+length = 4.0
+loop_mode = 1
+step = 0.33
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/Face/MeshContainer/MeshMissing:mesh:material:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.839216)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SubViewport/Face/MeshContainer/MeshMissing:mesh:material:albedo_texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.333333, 1, 1.33333, 2, 2.33333, 3, 3.33333, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("4_eq8ie"), ExtResource("5_k2gr6"), ExtResource("6_o4hxt"), ExtResource("7_p6poi"), ExtResource("4_eq8ie"), ExtResource("5_k2gr6"), ExtResource("8_n1qik"), ExtResource("9_uiek3"), ExtResource("4_eq8ie")]
+}
+
+[sub_resource type="Animation" id="Animation_eq8ie"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/Face/MeshContainer/MeshMissing:mesh:material:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SubViewport/Face/MeshContainer/MeshMissing:mesh:material:albedo_texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_iy6cr")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eq8ie"]
+_data = {
+&"IdleMesh": SubResource("Animation_iy6cr"),
+&"RESET": SubResource("Animation_eq8ie")
+}
 
 [node name="FaceContainer" type="SubViewportContainer"]
 z_index = 10
@@ -97,3 +166,9 @@ mesh = SubResource("PlaneMesh_o35vm")
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport/Face"]
 environment = SubResource("Environment_wn73w")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_eq8ie")
+}
+autoplay = "RESET"

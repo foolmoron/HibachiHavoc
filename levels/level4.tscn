@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://binu8e6bnxa84"]
+[gd_scene load_steps=32 format=3 uid="uid://binu8e6bnxa84"]
 
 [ext_resource type="PackedScene" uid="uid://wpefkw1tk5ph" path="res://scenes/level_base.tscn" id="1_8s3b3"]
 [ext_resource type="Texture2D" uid="uid://dxt0n16ui0b8f" path="res://art/level4/star.png" id="2_cc5tm"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://t5dw047qqfd5" path="res://art/level4/cosmic_closed.png" id="17_0halg"]
 [ext_resource type="Texture2D" uid="uid://bpg0cwsy0k8t5" path="res://art/level4/space plate.png" id="17_21lkn"]
 [ext_resource type="Texture2D" uid="uid://vs3sgmpey30a" path="res://art/level4/cosmic_open.png" id="18_21lkn"]
+[ext_resource type="Texture2D" uid="uid://cdcgvc181u5qb" path="res://art/level4/space meal.png" id="18_im0iu"]
 
 [sub_resource type="Animation" id="Animation_gh4cy"]
 length = 0.833342
@@ -123,6 +124,10 @@ level = 4
 [node name="IdleOverlay" parent="." index="0"]
 idle_foodSprites = Array[Texture]([ExtResource("2_mdw0g"), ExtResource("3_naavy"), ExtResource("4_gh4cy"), ExtResource("2_cc5tm")])
 
+[node name="Transition" parent="." index="1"]
+win_message = "Universe Consumed!"
+lose_message = "Too much dark matter..."
+
 [node name="bg scroll" type="AnimationPlayer" parent="." index="2"]
 root_node = NodePath("../Background")
 libraries = {
@@ -157,10 +162,11 @@ self_modulate = Color(1, 1, 1, 0)
 [node name="Plate" parent="Foreground" index="0"]
 visible = false
 texture = ExtResource("17_21lkn")
+hasPlate = false
 
 [node name="Meal" parent="Foreground" index="1"]
 position = Vector2(956, 931.97)
-texture = ExtResource("17_21lkn")
+texture = ExtResource("18_im0iu")
 
 [node name="SubViewport" parent="FaceContainer" index="0"]
 size = Vector2i(2417, 2302)

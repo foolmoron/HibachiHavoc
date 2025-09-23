@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c7jnrip4qi2n4"]
+[gd_scene load_steps=21 format=3 uid="uid://c7jnrip4qi2n4"]
 
 [ext_resource type="Script" uid="uid://cpkcmunsqvkbu" path="res://scenes/idle_overlay.gd" id="1_v43c8"]
 [ext_resource type="Texture2D" uid="uid://b156n4pjoliaq" path="res://art/level1/shrimp.png" id="2_22oun"]
@@ -12,6 +12,24 @@
 [ext_resource type="Texture2D" uid="uid://6am866aypddl" path="res://art/tutorial guy/left_tutguy.png" id="7_enomx"]
 [ext_resource type="Texture2D" uid="uid://bw2nrmhyf712p" path="res://art/tutorial guy/right_open_tutguy.png" id="8_j625g"]
 [ext_resource type="Texture2D" uid="uid://yqhfoyl7rneh" path="res://art/tutorial guy/right_tutguy.png" id="9_k6rqe"]
+
+[sub_resource type="Gradient" id="Gradient_j625g"]
+offsets = PackedFloat32Array(0, 0.911175)
+colors = PackedColorArray(0, 0, 0, 0.65098, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_k6rqe"]
+gradient = SubResource("Gradient_j625g")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(1, 0.764957)
+
+[sub_resource type="Gradient" id="Gradient_enomx"]
+offsets = PackedFloat32Array(0.0888252, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.65098)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_j625g"]
+gradient = SubResource("Gradient_enomx")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(1, 0.764957)
 
 [sub_resource type="Animation" id="Animation_02j7v"]
 length = 0.001
@@ -94,6 +112,16 @@ idle_foodSprites = Array[Texture]([ExtResource("2_enomx"), ExtResource("3_j625g"
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
+[node name="Top Fade" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(963, 100)
+scale = Vector2(31.4688, 5.46875)
+texture = SubResource("GradientTexture2D_k6rqe")
+
+[node name="Bottom Fade" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(970, 1021)
+scale = Vector2(31.4688, 5.46875)
+texture = SubResource("GradientTexture2D_j625g")
+
 [node name="Message" type="RichTextLabel" parent="CanvasLayer"]
 anchors_preset = -1
 anchor_left = 0.5
@@ -110,8 +138,33 @@ pivot_offset = Vector2(550, 95)
 theme_override_fonts/normal_font = ExtResource("3_dlrf8")
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
-text = "[center][outline_size=20][outline_color=#331E1D]bite with your mouth to eat the food!
+text = "[center][outline_size=20][outline_color=#331E1D]bite with your mouth
+to eat the food!
 [/outline_color][/outline_size][/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="TOTAL total Count" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.016
+anchor_right = 0.5
+anchor_bottom = 0.016
+offset_left = -387.0
+offset_right = 387.0
+offset_bottom = 116.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("3_dlrf8")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "[center][outline_size=20][outline_color=#331E1D]Total Food Eaten Overall: 
+0[/outline_color][/outline_size][/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
 
 [node name="TextSizePulse" type="AnimationPlayer" parent="CanvasLayer"]
 root_node = NodePath("../..")

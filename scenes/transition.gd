@@ -15,7 +15,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	countdown.text = prefix + str(timer.time_left).pad_decimals(0) + suffix
 
-func _on_Level_End(didWin : bool):
+func _on_Level_End(didWin : bool, color := Color(0.14, 0.05, 0.3)):
 	print("Level end")
 	Global.isPlaying = false
 	if didWin:
@@ -27,12 +27,12 @@ func _on_Level_End(didWin : bool):
 	if didWin:
 		Global.streak += 1;
 		print("WON! Win streak: " + str(Global.streak))
-		Global.doWipe(func():
+		Global.doWipe(color, func():
 			Global.switchScene(Global.currentScene + 1)
 		)
 	else:
 		Global.streak = 0
 		print("LOST... Streak: " + str(Global.streak))
-		Global.doWipe(func():
+		Global.doWipe(color, func():
 			Global.switchScene(-1)
 		)
