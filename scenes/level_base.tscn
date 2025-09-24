@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://wpefkw1tk5ph"]
+[gd_scene load_steps=32 format=3 uid="uid://wpefkw1tk5ph"]
 
 [ext_resource type="Script" uid="uid://b4ohdwkxdqgk6" path="res://scenes/level.gd" id="1_2v7b3"]
 [ext_resource type="PackedScene" uid="uid://c7jnrip4qi2n4" path="res://scenes/IdleOverlay.tscn" id="2_6k8qy"]
@@ -34,8 +34,9 @@ _limits = [0.0, 2048.0, 0.0, 1.0]
 _data = [Vector2(0, 204.8), nan, 710.4, 1, 1, Vector2(0.5, 560), 710.4, 520.0, 1, 1, Vector2(1, 820), 520.0, 0.0, 1, 0]
 point_count = 3
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vm68j"]
-size = Vector2(350, 350)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g5705"]
+radius = 94.0
+height = 256.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qurbw"]
 animations = [{
@@ -54,6 +55,9 @@ animations = [{
 [sub_resource type="Curve" id="Curve_3iqh6"]
 _data = [Vector2(0, 1), 0.0, -0.981396, 0, 0, Vector2(1, 0), -2.03114, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g5705"]
+radius = 200.0
 
 [sub_resource type="Animation" id="Animation_02j7v"]
 length = 0.001
@@ -129,8 +133,8 @@ animations = [{
 
 [node name="LevelBase" type="Node2D" node_paths=PackedStringArray("spawnpoints", "aim_targets", "plate")]
 script = ExtResource("1_2v7b3")
-foodBarMax = 5
-foodSpeedMultiplier = 0.88
+foodBarMax = 8
+foodSlowAmount = 0.5
 food_spawn_interval_min = 1.25
 spawnpoints = [NodePath("Spawn1"), NodePath("Spawn2"), NodePath("Spawn3"), NodePath("Spawn4"), NodePath("Spawn5"), NodePath("Spawn6")]
 aim_targets = [NodePath("Aim1"), NodePath("Aim2")]
@@ -185,10 +189,12 @@ map_from_dir_to_x = SubResource("Curve_evabm")
 map_from_dir_to_y = SubResource("Curve_qurbw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EatingArea"]
-shape = SubResource("RectangleShape2D_vm68j")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_g5705")
 
 [node name="Anim" type="AnimatedSprite2D" parent="EatingArea/CollisionShape2D"]
-position = Vector2(0.999999, 31)
+position = Vector2(11, -4.80825e-07)
+rotation = -1.5708
 scale = Vector2(0.378192, 0.378192)
 sprite_frames = SubResource("SpriteFrames_qurbw")
 speed_scale = 0.0
@@ -207,6 +213,22 @@ scale_amount_min = 0.45
 scale_amount_max = 0.6
 scale_amount_curve = SubResource("Curve_3iqh6")
 color = Color(1, 1, 1, 0.662745)
+
+[node name="Slowdown1" type="Area2D" parent="."]
+position = Vector2(946, 555)
+scale = Vector2(3.84626, 2.15033)
+linear_damp_space_override = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slowdown1"]
+shape = SubResource("CircleShape2D_g5705")
+
+[node name="Slowdown2" type="Area2D" parent="."]
+position = Vector2(946, 555)
+scale = Vector2(1.67648, 0.937271)
+linear_damp_space_override = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slowdown2"]
+shape = SubResource("CircleShape2D_g5705")
 
 [node name="Spawn1" type="Node2D" parent="."]
 position = Vector2(72, 1262)
@@ -227,10 +249,10 @@ position = Vector2(2075, 740)
 position = Vector2(2083, 169)
 
 [node name="Aim1" type="Node2D" parent="."]
-position = Vector2(482, 327)
+position = Vector2(482, 222)
 
 [node name="Aim2" type="Node2D" parent="."]
-position = Vector2(1464, 328)
+position = Vector2(1464, 223)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true

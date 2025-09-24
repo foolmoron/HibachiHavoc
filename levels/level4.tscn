@@ -119,6 +119,7 @@ spacing_top = 25
 spacing_bottom = 40
 
 [node name="Level4" instance=ExtResource("1_8s3b3")]
+foodSlowAmount = 0.4
 level = 4
 
 [node name="IdleOverlay" parent="." index="0"]
@@ -160,9 +161,8 @@ region_rect = Rect2(0, 0, 2770, 1080)
 self_modulate = Color(1, 1, 1, 0)
 
 [node name="Plate" parent="Foreground" index="0"]
-visible = false
+position = Vector2(970, 951)
 texture = ExtResource("17_21lkn")
-hasPlate = false
 
 [node name="Meal" parent="Foreground" index="1"]
 position = Vector2(956, 931.97)

@@ -56,6 +56,7 @@ spacing_top = 25
 spacing_bottom = 40
 
 [node name="Level2" instance=ExtResource("1_y0xe8")]
+foodSlowAmount = 0.69
 level = 2
 
 [node name="IdleOverlay" parent="." index="0"]

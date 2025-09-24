@@ -11,7 +11,7 @@ var currentFoodBar : int
 @export var musicIdx := 0
 @export var foodBarMax : int = 15
 @export var healthBarMax : int = 20
-@export var foodSpeedMultiplier : float = 1.0
+@export var foodSlowAmount : float = 1.0
 @export_range(0.0, 5.0) var food_spawn_interval_min := 1.0
 @export_range(0.0, 5.0) var food_spawn_interval_max := 3.0
 
@@ -32,6 +32,8 @@ var foodToMealIndex : Dictionary[Node, int]	= {}
 func _ready() -> void:
 	$Transition.hide()
 	$CanvasLayer.hide()
+	$Slowdown1.linear_damp = foodSlowAmount
+	$Slowdown2.linear_damp = foodSlowAmount
 	currentFoodBar = foodBarMax + randi_range(0, int(foodBarMax*0.75))
 	setMealAmount.emit(currentFoodBar)
 	Global.switchMusic(musicIdx)
@@ -77,9 +79,8 @@ func _spawnFoodItem():
 	
 	var target := (Global.randomItem(aim_targets) as Node2D).global_position
 	var dir := (target - new_food.global_position).normalized() as Vector2
-	new_food.apply_impulse(dir * 1500.0 * foodSpeedMultiplier)
+	new_food.apply_impulse(dir * 2000.0)
 	new_food.apply_torque_impulse(randf_range(20.0, 60.0) * (-1 if randf() < 0.5 else 1))
-
 
 func _physics_process(delta: float) -> void:
 	if not Global.isPlaying:

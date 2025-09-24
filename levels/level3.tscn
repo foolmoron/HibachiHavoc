@@ -56,6 +56,7 @@ spacing_top = 25
 spacing_bottom = 40
 
 [node name="Level3" instance=ExtResource("1_r8unp")]
+foodSlowAmount = 0.55
 level = 3
 
 [node name="IdleOverlay" parent="." index="0"]
@@ -82,9 +83,6 @@ size = Vector2i(2417, 2302)
 
 [node name="Face" parent="FaceContainer/SubViewport" index="0"]
 flipXOpen = true
-
-[node name="MeshContainer" parent="FaceContainer/SubViewport/Face" index="1"]
-transform = Transform3D(0.997416, -0.0718456, 3.14047e-09, 0, -4.37114e-08, -1, 0.0718456, 0.997416, -4.35984e-08, 0, -45.6546, -163.296)
 
 [node name="MeshClosed" parent="FaceContainer/SubViewport/Face/MeshContainer" index="0"]
 mesh = SubResource("PlaneMesh_nq7ub")
