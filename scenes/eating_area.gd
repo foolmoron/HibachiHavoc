@@ -4,6 +4,8 @@ var food_particles_scn : PackedScene = preload("res://scenes/food_particles.tscn
 
 signal ate_food(food_item: Node)
 
+@export var idle_overlay: IdleOverlay = null
+
 @export var map_from_dir_to_x: Curve
 @export var map_from_dir_to_y: Curve
 
@@ -33,8 +35,9 @@ func _physics_process(delta: float) -> void:
 				items_touching.erase(item)
 				item.queue_free()
 				Global.playSound("eat")
-				if Global.isPlaying:
-					Global.food_eaten_in_session += 1
+				Global.food_eaten_in_session += 1
+				Global.didEat = true
+				idle_overlay.reportFoodWasEaten(item)
 				var particles = food_particles_scn.instantiate()
 				particles.connect("finished", particles.queue_free)
 				(particles as CPUParticles2D).emitting = true

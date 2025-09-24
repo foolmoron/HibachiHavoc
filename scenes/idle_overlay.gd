@@ -1,3 +1,4 @@
+class_name IdleOverlay
 extends Node2D
 
 signal startGame()
@@ -14,14 +15,11 @@ func _ready() -> void:
 	totalCountLabel.text = totalCountTemplate.replace("{NUM}", str(Global.total_food_over_lifespan + Global.food_eaten_in_session))
 	$CanvasLayer.show()
 	resetFood.emit(idle_foodSprites)
-	for food in foodsToStart:
-		food.tree_exited.connect(_on_Food_Ate.bind(food))
 
-func _on_Food_Ate(node: Node):
-	if not get_tree():
-		return
-	foodsToStart.erase(node)
-	if foodsToStart.size() == 0:
-		startGame.emit()
-		resetFood.emit(idle_foodSprites)
-		$CanvasLayer.hide()
+func reportFoodWasEaten(node: Node):
+	if foodsToStart.has(node):
+		foodsToStart.erase(node)
+		if foodsToStart.size() == 0:
+			startGame.emit()
+			resetFood.emit(idle_foodSprites)
+			$CanvasLayer.hide()

@@ -29,6 +29,8 @@ var foodTimeRemaining := 0.0
 var m := 0
 var foodToMealIndex : Dictionary[Node, int]	= {}
 
+var food_eaten_label_prev := -1
+
 func _ready() -> void:
 	$Transition.hide()
 	$CanvasLayer.hide()
@@ -87,7 +89,9 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	#PLAYING GAME
-	localCount.text = localCountTemplate.replace("{NUM}", str(Global.food_eaten_in_session))
+	if food_eaten_label_prev != Global.food_eaten_in_session:
+		localCount.text = localCountTemplate.replace("{NUM}", str(Global.food_eaten_in_session))
+		food_eaten_label_prev = Global.food_eaten_in_session
 	if currentFoodBar == 0:
 		winLevel()
 	elif currentHealthBar == 0:

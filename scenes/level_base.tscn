@@ -181,10 +181,11 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch = false
 
-[node name="EatingArea" type="Area2D" parent="."]
+[node name="EatingArea" type="Area2D" parent="." node_paths=PackedStringArray("idle_overlay")]
 z_index = 1000
 position = Vector2(957, 560)
 script = ExtResource("9_6k8qy")
+idle_overlay = NodePath("../IdleOverlay")
 map_from_dir_to_x = SubResource("Curve_evabm")
 map_from_dir_to_y = SubResource("Curve_qurbw")
 

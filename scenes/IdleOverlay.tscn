@@ -186,6 +186,7 @@ gravity_scale = 0.0
 inertia = 0.0
 sleeping = true
 freeze_mode = 1
+autoKillSecs = -1.0
 
 [node name="FoodItemRight" parent="." instance=ExtResource("3_iw48v")]
 position = Vector2(1533, 600)
@@ -193,6 +194,7 @@ gravity_scale = 0.0
 inertia = 0.0
 sleeping = true
 freeze_mode = 1
+autoKillSecs = -1.0
 
 [connection signal="resetFood" from="." to="FoodItemLeft" method="_on_resetFoodSprites"]
 [connection signal="resetFood" from="." to="FoodItemRight" method="_on_resetFoodSprites"]

@@ -1,6 +1,7 @@
 extends Node
 
 static var isPlaying : bool
+static var didEat : bool
 static var total_food_over_lifespan : int;
 
 @onready var streak : int = 0;
@@ -11,7 +12,7 @@ var songs : Array[AudioStream] = [preload("res://audio/music/Theme 2b.mp3")]
 var wiper : PackedScene = preload("res://scenes/wiper.tscn")
 
 #variables to return to titlescreen after no user interaction for a while
-var idle_delay := 5.0
+var idle_delay := 3.0
 var idle_time := 0.0
 
 #audio variables
@@ -24,6 +25,7 @@ var idle_time := 0.0
 
 func _ready() -> void:
 	isPlaying = false
+	didEat = false
 	load_data()
 
 #switch to next scene and change music to that scene's music; 
@@ -65,19 +67,23 @@ func playSound(soundName : String):
 	sound.play()
 
 func _process(delta: float) -> void:
-	if isPlaying and not FaceLandmarker.player_detected_latest:
+	if didEat and not FaceLandmarker.player_detected_latest:
 		idle_time += delta
 		if idle_time >= idle_delay:
-			reset()
+			idle_time = 0.0
 			Global.doWipe(Color(0.14, 0.05, 0.3), func():
+				reset()
 				await switchScene(-1)
 			)
+	else:
+		idle_time = 0.0
 
 func reset():
 	print("reset")
 	save_data()
 	idle_time = 0.0
 	isPlaying = false
+	didEat = false
 	streak = 0
 	food_eaten_in_session = 0
 	load_data()
