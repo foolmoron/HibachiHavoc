@@ -72,7 +72,8 @@ spacing_top = 25
 spacing_bottom = 40
 
 [node name="Level" instance=ExtResource("1_b3oru")]
-foodSlowAmount = 0.85
+foodBarMax = 4
+foodSlowAmount = 1.04
 
 [node name="Transition" parent="." index="1"]
 win_message = "Plate Cleaned, Ribbit!"

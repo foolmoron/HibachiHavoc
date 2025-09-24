@@ -36,7 +36,7 @@ func _ready() -> void:
 	$CanvasLayer.hide()
 	$Slowdown1.linear_damp = foodSlowAmount
 	$Slowdown2.linear_damp = foodSlowAmount
-	currentFoodBar = foodBarMax + randi_range(0, int(foodBarMax*0.75))
+	currentFoodBar = randi_range(foodBarMax, foodBarMax + int(foodBarMax*0.35))
 	setMealAmount.emit(currentFoodBar)
 	Global.switchMusic(musicIdx)
 
