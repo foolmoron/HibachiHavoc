@@ -25,6 +25,7 @@ var songs : Array[AudioStream] = [preload("res://audio/music/Theme 2b.mp3")]
 }
 
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	isPlaying = false
 	didEat = false
 	load_data()
