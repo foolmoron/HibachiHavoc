@@ -64,7 +64,7 @@ func _process(delta: float) -> void:
 			idle_time = 0.0
 			Global.doWipe(func():
 				reset()
-				await switchScene(-1)
+				await switchScene(0)
 			)
 	else:
 		idle_time = 0.0
