@@ -1,6 +1,6 @@
 extends Node
 
-signal levelEnd(didWin : bool, color : Color)
+signal levelEnd(didWin : bool)
 signal setMealAmount(amountFood : int)
 var currentFoodBar : int
 @onready var currentHealthBar := healthBarMax
@@ -39,6 +39,7 @@ func _ready() -> void:
 	currentFoodBar = randi_range(foodBarMax, foodBarMax + int(foodBarMax*0.35))
 	setMealAmount.emit(currentFoodBar)
 	Global.switchMusic(musicIdx)
+	Global.setTransitionColor()
 
 func ateFood(_item : Node):
 	if Global.isPlaying:
@@ -109,21 +110,11 @@ func beginGame():
 	foodTimeRemaining = 1.0
 
 func winLevel():
-	var transition_color : Color
-	match level:
-		1:
-			transition_color = Color(0.08, 0.14 ,0.02 )
-		2:
-			transition_color = Color(0.03, 0.13, 0.19)
-		3:
-			transition_color = Color(0.25, 0.03, 0.00)
-		4:
-			transition_color = Color(0.14, 0.05, 0.3)
-	levelEnd.emit(true, transition_color)
+	levelEnd.emit(true)
 	$Transition.show()
 	$CanvasLayer.hide()
 
 func loseLevel():
-	levelEnd.emit(false, Color(0.14, 0.12, 0.11))
+	levelEnd.emit(false)
 	$Transition.show()
 	$CanvasLayer.hide()

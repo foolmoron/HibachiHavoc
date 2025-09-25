@@ -108,10 +108,10 @@ animations = [{
 "duration": 2.0,
 "texture": ExtResource("12_agxjp")
 }, {
-"duration": 1.0,
+"duration": 1.5,
 "texture": ExtResource("13_117i7")
 }, {
-"duration": 2.0,
+"duration": 2.5,
 "texture": ExtResource("14_copb0")
 }, {
 "duration": 1.0,
@@ -120,10 +120,10 @@ animations = [{
 "duration": 2.0,
 "texture": ExtResource("12_agxjp")
 }, {
-"duration": 1.0,
+"duration": 1.5,
 "texture": ExtResource("15_wj5ly")
 }, {
-"duration": 2.0,
+"duration": 2.5,
 "texture": ExtResource("16_g5705")
 }],
 "loop": true,

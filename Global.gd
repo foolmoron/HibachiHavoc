@@ -7,8 +7,8 @@ static var total_food_over_lifespan : int;
 @onready var streak : int = 0;
 @onready var food_eaten_in_session : int = 0;
 @onready var currentScene : int = 0;
+@onready var transitionColor : Color = Color( 0.08, 0.14 ,0.02 );
 var levels : Array[PackedScene] = [preload("res://levels/level1.tscn"), preload("res://levels/level2.tscn"), preload("res://levels/level3.tscn"), preload("res://levels/level4.tscn")]
-var songs : Array[AudioStream] = [preload("res://audio/music/Theme 2b.mp3")]
 var wiper : PackedScene = preload("res://scenes/wiper.tscn")
 
 #variables to return to titlescreen after no user interaction for a while
@@ -16,6 +16,7 @@ var idle_delay := 3.0
 var idle_time := 0.0
 
 #audio variables
+var songs : Array[AudioStream] = [preload("res://audio/music/Theme 2b.mp3")]
 @onready var bgMusic = AudioController.get_node("BgMusic")
 @onready var soundsToPlay = {
 	"eat": AudioController.get_node("EatSFX"),
@@ -39,17 +40,6 @@ func switchScene(nextScene : int):
 		currentScene = nextScene
 	get_tree().change_scene_to_packed.bind(levels[currentScene]).call_deferred()
 
-func whichScene(num : int) -> String:
-	var level : String = ""
-	match num:
-		0:
-			level = "level1"
-		1:
-			level = "level2"
-		2:
-			level = "level3"
-	return level
-
 func randomItem(list : Array):
 	var index : int = randi() % list.size()
 	return list[index]
@@ -71,7 +61,7 @@ func _process(delta: float) -> void:
 		idle_time += delta
 		if idle_time >= idle_delay:
 			idle_time = 0.0
-			Global.doWipe(Color(0.14, 0.05, 0.3), func():
+			Global.doWipe(func():
 				reset()
 				await switchScene(-1)
 			)
@@ -88,14 +78,25 @@ func reset():
 	food_eaten_in_session = 0
 	load_data()
 
-func doWipe(color : Color, onWipeCallback: Callable = func(): pass):
+func doWipe(onWipeCallback: Callable = func(): pass):
 	var w := wiper.instantiate()
-	w.get_node("Sprite2D").modulate = color
+	w.get_node("Sprite2D").modulate = transitionColor
 	get_tree().root.add_child(w)
 	await get_tree().create_timer(0.425).timeout
 	await onWipeCallback.call()
 	await get_tree().create_timer(0.4).timeout
 	w.queue_free()
+
+func setTransitionColor():
+	match currentScene:
+		0:
+			transitionColor = Color(0.08, 0.14 ,0.02 )
+		1:
+			transitionColor = Color(0.03, 0.13, 0.19)
+		2:
+			transitionColor = Color(0.25, 0.03, 0.00)
+		3:
+			transitionColor = Color(0.21, 0.01, 0.23)
 
 
 #PERSISTENT DATA ACROSS SESSIONS
