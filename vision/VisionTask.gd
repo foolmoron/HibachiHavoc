@@ -37,8 +37,8 @@ func _ready():
 					camera_feed.set_format(i, {})
 					break
 		x += 1
-		print("Did not find camera feed (try #", x, "). Trying again in 5 seconds...")
-		await get_tree().create_timer(5).timeout
+		print("Did not find camera feed (try #", x, "). Trying again in 3 seconds...")
+		await get_tree().create_timer(3).timeout
 
 	_init_task()
 	_open_camera()

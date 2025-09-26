@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dq8kr1y6gj6vg" path="res://scenes/Transition.tscn" id="3_evabm"]
 [ext_resource type="Texture2D" uid="uid://dnb6qgxl0lurc" path="res://art/level1/Hibachi bg.png" id="4_qurbw"]
 [ext_resource type="Texture2D" uid="uid://br50y1n7mswjv" path="res://art/level1/hibatchi plate.png" id="6_copb0"]
-[ext_resource type="Script" uid="uid://b7m8bximj3qlt" path="res://scenes/plate.gd" id="7_g5705"]
+[ext_resource type="Script" path="res://scenes/plate.gd" id="7_g5705"]
 [ext_resource type="PackedScene" uid="uid://cjffoc1y34w1g" path="res://face/face_container.tscn" id="7_ngfo8"]
 [ext_resource type="Texture2D" uid="uid://dsyn3iav12bhq" path="res://art/level1/hibatchimeal.png" id="7_wj5ly"]
 [ext_resource type="Texture2D" uid="uid://bp0al02v0nb6h" path="res://art/crosshair_mouth_open.png" id="8_6k8qy"]
@@ -35,8 +35,8 @@ _data = [Vector2(0, 204.8), nan, 710.4, 1, 1, Vector2(0.5, 560), 710.4, 520.0, 1
 point_count = 3
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g5705"]
-radius = 94.0
-height = 256.0
+radius = 137.76
+height = 336.79
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qurbw"]
 animations = [{
