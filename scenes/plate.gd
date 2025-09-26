@@ -35,5 +35,7 @@ func _random_inside_unit_circle() -> Vector2:
 	return Vector2(cos(theta), sin(theta)) * sqrt(randf())
 
 func deleteFromMeal(i: int):
+	if i >= len(mealItems):
+		return
 	mealItemsAvailable[i] = false
 	mealItems[i].queue_free()
