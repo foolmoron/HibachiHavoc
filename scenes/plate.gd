@@ -50,3 +50,4 @@ func clearPlate():
 		if is_instance_valid(item):
 			item.queue_free()
 	mealItems.clear()
+	mealItemsAvailable.clear()
