@@ -7,18 +7,22 @@ var mealItem : PackedScene = preload("res://scenes/meal_item.tscn")
 var mealItems : Array[Node] = []
 var mealItemsAvailable : Array[bool] = []
 
+func _ready() -> void:
+	clearPlate()
+
 func _on_start(amountFood: int) -> void:
 	if hasPlate:
 		totalFood = amountFood
 	print("total food on plate: ", totalFood)
 
 func _on_idle_overlay_reset_food(newFoods: Array[Texture]) -> void:
+	clearPlate()
 	if Global.isPlaying:
 		var foodTexturesToUse := newFoods.duplicate()
 		while foodTexturesToUse.size() < totalFood:
 			foodTexturesToUse.append(Global.randomItem(newFoods))
 		foodTexturesToUse.shuffle()
-
+		
 		print("Should be making food: ", foodTexturesToUse)
 		for tex in foodTexturesToUse:
 			var new_meal_item := mealItem.instantiate()
@@ -40,3 +44,9 @@ func deleteFromMeal(i: int):
 	mealItemsAvailable[i] = false
 	if is_instance_valid(mealItems[i]):
 		mealItems[i].queue_free()
+
+func clearPlate():
+	for item in mealItems:
+		if is_instance_valid(item):
+			item.queue_free()
+	mealItems.clear()

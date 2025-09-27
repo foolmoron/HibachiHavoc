@@ -12,8 +12,8 @@ var levels : Array[PackedScene] = [preload("res://levels/level1.tscn"), preload(
 var wiper : PackedScene = preload("res://scenes/wiper.tscn")
 
 #variables to return to titlescreen after no user interaction for a while
-var idle_delay := 3.0
-var idle_time := 0.0
+static var idle_delay := 3.0
+static var idle_time := 0.0
 
 #audio variables
 var songs : Array[AudioStream] = [preload("res://audio/music/Theme 2b.mp3")]

@@ -311,4 +311,5 @@ frame_progress = 0.283174
 [connection signal="setMealAmount" from="." to="Foreground/Plate" method="_on_start"]
 [connection signal="resetFood" from="IdleOverlay" to="Foreground/Plate" method="_on_idle_overlay_reset_food"]
 [connection signal="startGame" from="IdleOverlay" to="." method="beginGame"]
+[connection signal="clearBuggedPlate" from="Transition" to="Foreground/Plate" method="clearPlate"]
 [connection signal="ate_food" from="EatingArea" to="." method="ateFood"]

@@ -71,11 +71,11 @@ func _spawnFoodItem():
 			foodToMealIndex[new_food] = i
 			spawned = true
 			break
-
+	
 	if not spawned:
 		new_food.queue_free()
 		return
-
+	
 	new_food.global_position = Global.randomItem(spawnpoints).global_position
 	add_child(new_food)
 	Global.playSound("whoosh")
