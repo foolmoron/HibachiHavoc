@@ -180,6 +180,21 @@ scale = Vector2(0.158796, 0.165278)
 sprite_frames = SubResource("SpriteFrames_e0rvp")
 autoplay = "default"
 
+[node name="CameraStatus" type="ColorRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+
 [node name="FoodItemLeft" parent="." instance=ExtResource("3_iw48v")]
 position = Vector2(415, 600)
 gravity_scale = 0.0

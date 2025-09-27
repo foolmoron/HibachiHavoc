@@ -23,3 +23,9 @@ func reportFoodWasEaten(node: Node):
 			startGame.emit()
 			resetFood.emit(idle_foodSprites)
 			$CanvasLayer.hide()
+
+func _process(delta: float) -> void:
+	if FaceLandmarker.camera_feed != null:
+		%CameraStatus.color = Color.DARK_GREEN
+	else:
+		%CameraStatus.color = Color.DARK_RED
