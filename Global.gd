@@ -58,16 +58,7 @@ func playSound(soundName : String):
 	sound.play()
 
 func _process(delta: float) -> void:
-	if didEat and not FaceLandmarker.player_detected_latest:
-		idle_time += delta
-		if idle_time >= idle_delay:
-			idle_time = 0.0
-			Global.doWipe(func():
-				reset()
-				await switchScene(0)
-			)
-	else:
-		idle_time = 0.0
+	pass
 
 func reset():
 	print("reset")
