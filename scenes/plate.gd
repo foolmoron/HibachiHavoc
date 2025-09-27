@@ -38,4 +38,5 @@ func deleteFromMeal(i: int):
 	if i >= len(mealItems):
 		return
 	mealItemsAvailable[i] = false
-	mealItems[i].queue_free()
+	if is_instance_valid(mealItems[i]):
+		mealItems[i].queue_free()

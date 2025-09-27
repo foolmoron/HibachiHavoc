@@ -68,6 +68,6 @@ func do_mesh_stuff(landmarks: MediaPipeNormalizedLandmarks, blendshapes: Array[M
 	current_mouth_smooth = lerp(current_mouth_smooth, current_mouth, 1.0)
 	print("m: ", mouth_open_latest, " cm: ", current_mouth, " cms: ", current_mouth_smooth)
 	if mouth_open_latest:
-		mouth_open_latest = current_mouth_smooth > 0.03
+		mouth_open_latest = current_mouth_smooth > 0.06
 	else:
 		mouth_open_latest = current_mouth_smooth > 0.18
