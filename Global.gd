@@ -58,7 +58,8 @@ func playSound(soundName : String):
 	sound.play()
 
 func _process(delta: float) -> void:
-	pass
+	if Input.is_key_pressed(KEY_ESCAPE):
+		get_tree().quit()
 
 func reset():
 	print("reset")
