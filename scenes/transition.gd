@@ -23,7 +23,7 @@ func _physics_process(delta: float) -> void:
 			Global.doWipe(func():
 				Global.reset()
 				clearBuggedPlate.emit()
-				Global.switchScene(0)
+				Global.switchScene(-1)
 			)
 	else:
 		Global.idle_time = 0.0
