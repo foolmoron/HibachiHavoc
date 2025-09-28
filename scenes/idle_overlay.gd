@@ -25,7 +25,7 @@ func reportFoodWasEaten(node: Node):
 			$CanvasLayer.hide()
 
 func _process(delta: float) -> void:
-	if FaceLandmarker.camera_feed != null:
+	if FaceLandmarker.camera_feed != null and (Time.get_ticks_msec() - FaceLandmarker._last_camera_frame_timestamp_ms) < 500:
 		%CameraStatus.color = Color.DARK_GREEN
 	else:
 		%CameraStatus.color = Color.DARK_RED

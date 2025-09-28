@@ -11,6 +11,7 @@ var camera_texture := CameraTexture.new()
 var use_camera_extension := true
 var image_file_web: FileAccessWeb
 var video_file_web: FileAccessWeb
+var _last_camera_frame_timestamp_ms := 0
 
 func _exit_tree() -> void:
 	camera_extension = null
@@ -104,6 +105,7 @@ func _camera_feed_frame() -> void:
 func _camera_frame(image: MediaPipeImage) -> void:
 	if delegate == MediaPipeTaskBaseOptions.DELEGATE_CPU and image.is_gpu_image():
 		image.convert_to_cpu()
+	_last_camera_frame_timestamp_ms = Time.get_ticks_msec()
 	_process_camera(image, Time.get_ticks_msec())
 
 func _process_image(_image: Image) -> void:
