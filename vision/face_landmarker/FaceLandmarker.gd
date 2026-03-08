@@ -52,10 +52,10 @@ func draw_landmarks(image: Image, landmarks: MediaPipeNormalizedLandmarks) -> vo
 	# image.blit_rect(rect, rect.get_used_rect(), Vector2i(image_size * pos) - rect.get_size() / 2)
 
 func do_mesh_stuff(landmarks: MediaPipeNormalizedLandmarks, blendshapes: Array[MediaPipeClassifications]) -> void:
-	var diffH = landmarks.landmarks[356].z - (landmarks.landmarks[34].z + 0.025)
+	var diffH = landmarks.landmarks[356].z - (landmarks.landmarks[34].z + 0.030)
 	dir_latest.x = clamp(inverse_lerp(0.05, -0.05, diffH), 0.0, 1.0)
 	current_rot.y = lerp(-45, 45, dir_latest.x)
-	var diffV = landmarks.landmarks[10].z - (landmarks.landmarks[18].z - 0.015)
+	var diffV = landmarks.landmarks[10].z - (landmarks.landmarks[18].z + 0.035)
 	dir_latest.y = clamp(inverse_lerp(0.05, -0.05, diffV), 0.0, 1.0)
 	current_rot.x = 90.0 + lerp(-45, 45, dir_latest.y)
 

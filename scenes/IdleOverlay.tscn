@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c7jnrip4qi2n4"]
+[gd_scene format=3 uid="uid://c7jnrip4qi2n4"]
 
 [ext_resource type="Script" uid="uid://cpkcmunsqvkbu" path="res://scenes/idle_overlay.gd" id="1_v43c8"]
 [ext_resource type="Texture2D" uid="uid://b156n4pjoliaq" path="res://art/level1/shrimp.png" id="2_22oun"]
@@ -103,26 +103,26 @@ animations = [{
 "speed": 3.0
 }]
 
-[node name="IdleOverlay" type="Node2D" node_paths=PackedStringArray("foodsToStart")]
+[node name="IdleOverlay" type="Node2D" unique_id=1465386157 node_paths=PackedStringArray("foodsToStart")]
 z_index = 1
 script = ExtResource("1_v43c8")
 foodsToStart = [NodePath("FoodItemLeft"), NodePath("FoodItemRight")]
 idle_foodSprites = Array[Texture]([ExtResource("2_enomx"), ExtResource("3_j625g"), ExtResource("2_22oun")])
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1861028786]
 follow_viewport_enabled = true
 
-[node name="Top Fade" type="Sprite2D" parent="CanvasLayer"]
+[node name="Top Fade" type="Sprite2D" parent="CanvasLayer" unique_id=2025783805]
 position = Vector2(963, 100)
 scale = Vector2(31.4688, 5.46875)
 texture = SubResource("GradientTexture2D_k6rqe")
 
-[node name="Bottom Fade" type="Sprite2D" parent="CanvasLayer"]
+[node name="Bottom Fade" type="Sprite2D" parent="CanvasLayer" unique_id=766121791]
 position = Vector2(970, 1021)
 scale = Vector2(31.4688, 5.46875)
 texture = SubResource("GradientTexture2D_j625g")
 
-[node name="Message" type="RichTextLabel" parent="CanvasLayer"]
+[node name="Message" type="RichTextLabel" parent="CanvasLayer" unique_id=923392775]
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.985
@@ -146,7 +146,7 @@ scroll_active = false
 autowrap_mode = 0
 shortcut_keys_enabled = false
 
-[node name="TOTAL total Count" type="RichTextLabel" parent="CanvasLayer"]
+[node name="TOTAL total Count" type="RichTextLabel" parent="CanvasLayer" unique_id=383836756]
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.016
@@ -159,28 +159,26 @@ grow_horizontal = 2
 theme_override_fonts/normal_font = ExtResource("3_dlrf8")
 theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
-text = "[center][outline_size=20][outline_color=#331E1D]Total Food Eaten By Everyone At Art Works: 
+text = "[center][outline_size=20][outline_color=#331E1D]Total Food Eaten By Everyone At GDC: 
 {NUM}[/outline_color][/outline_size][/center]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 shortcut_keys_enabled = false
 
-[node name="TextSizePulse" type="AnimationPlayer" parent="CanvasLayer"]
+[node name="TextSizePulse" type="AnimationPlayer" parent="CanvasLayer" unique_id=1684527066]
 root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_02j7v")
-}
-autoplay = "pulse_text"
+libraries/ = SubResource("AnimationLibrary_02j7v")
+autoplay = &"pulse_text"
 
-[node name="Instructions" type="AnimatedSprite2D" parent="CanvasLayer"]
+[node name="Instructions" type="AnimatedSprite2D" parent="CanvasLayer" unique_id=1344944033]
 z_index = 200
 position = Vector2(1575, 962)
 scale = Vector2(0.158796, 0.165278)
 sprite_frames = SubResource("SpriteFrames_e0rvp")
 autoplay = "default"
 
-[node name="CameraStatus" type="ColorRect" parent="CanvasLayer"]
+[node name="CameraStatus" type="ColorRect" parent="CanvasLayer" unique_id=966026369]
 unique_name_in_owner = true
 anchors_preset = 3
 anchor_left = 1.0
@@ -195,7 +193,7 @@ grow_horizontal = 0
 grow_vertical = 0
 color = Color(0, 0, 0, 1)
 
-[node name="FoodItemLeft" parent="." instance=ExtResource("3_iw48v")]
+[node name="FoodItemLeft" parent="." unique_id=12512019 instance=ExtResource("3_iw48v")]
 position = Vector2(415, 600)
 gravity_scale = 0.0
 inertia = 0.0
@@ -203,7 +201,7 @@ sleeping = true
 freeze_mode = 1
 autoKillSecs = -1.0
 
-[node name="FoodItemRight" parent="." instance=ExtResource("3_iw48v")]
+[node name="FoodItemRight" parent="." unique_id=1673766228 instance=ExtResource("3_iw48v")]
 position = Vector2(1533, 600)
 gravity_scale = 0.0
 inertia = 0.0
