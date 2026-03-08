@@ -8,11 +8,15 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Hibachi Havoc"
 run/main_scene="uid://cecqnmowco7dj"
-config/features=PackedStringArray("4.4", "Mobile")
+config/features=PackedStringArray("4.6", "Mobile")
 boot_splash/bg_color=Color(0.807843, 0.584314, 0.498039, 1)
 boot_splash/image="uid://b2k1o5v1mx8f0"
 config/icon="uid://cu6vffrvxa1hd"
@@ -32,6 +36,10 @@ window/size/viewport_height=1080
 window/size/mode=3
 window/size/borderless=true
 window/stretch/mode="viewport"
+
+[dotnet]
+
+project/assembly_name="Hibachi Havoc"
 
 [editor_plugins]
 

@@ -5,7 +5,7 @@ var model_assets_dir := "user://GDMP/vision"
 var request: HTTPRequest
 var delegate := MediaPipeTaskBaseOptions.DELEGATE_CPU
 var camera_helper: MediaPipeCameraHelper = MediaPipeCameraHelper.new()
-var camera_extension := CameraServerExtension.new()
+var camera_extension : CameraServerExtension
 var camera_feed: CameraFeed
 var camera_texture := CameraTexture.new()
 var use_camera_extension := true
@@ -17,6 +17,9 @@ func _exit_tree() -> void:
 	camera_extension = null
 
 func _ready():
+	CameraServer.monitoring_feeds = true
+	camera_extension = CameraServerExtension.new()
+
 	camera_helper.new_frame.connect(self._camera_frame)
 
 	print("VISION TASK: ", CameraServer.feeds().size())
